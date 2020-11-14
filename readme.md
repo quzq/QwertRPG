@@ -4,6 +4,10 @@
 
 ![12-09-2003](https://github.com/quzq/QwertRPG/blob/master/bin/screenshot/031209b.jpg)
 
+![11-20-2003](https://github.com/quzq/QwertRPG/blob/master/bin/screenshot/031120a.jpg)
+
+
+
 # How to develop
 1. Clone this repository.
 2. Open `RPG.vbproj` in Microsoft Visual Studio.
