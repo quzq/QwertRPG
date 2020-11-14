@@ -1,1870 +1,1877 @@
-this is written by vb.net 2003
+# QwertRPG
 
+![11-12-2003](https://github.com/quzq/QwertRPG/blob/master/bin/screenshot/031112a.jpg)
+
+![12-09-2003](https://github.com/quzq/QwertRPG/blob/master/bin/screenshot/031209b.jpg)
+
+# How to develop
+1. Clone this repository.
+2. Open `RPG.vbproj` in Microsoft Visual Studio.
 
 # developer diary
 
-�����̐i���@���p�u�ΎR�e�v���_���ҁu�֌Â̋��l�v�̒ǉ�
+今日の進捗　魔術「火山弾」魔神召還「蒙古の巨人」の追加
 <IMG SRC="http://hobby.2log.net/develop/images/031219a.jpg" ALT="">
 <IMG SRC="http://hobby.2log.net/develop/images/031219b.jpg" ALT="">
-<B>[2003/12/19�̐i��]</B>
-���p�u�ΎR�e�v�A�j���[�V�����摜�쐬�B
-���p�u�ΎR�e�v�̒ǉ��B
-���_���ҁu�֌Â̋��l�v�A�j���[�V�����摜�쐬�B
-���_���ҁu�֌Â̋��l�v�̒ǉ��B
-VB.NET2002��VB.NET2003�ւ̈ڍs�B
-<B>[����̊J���\��]</B>
-�X�e�[�W�Q�̉��f�[�^�쐬�B
-BGM�֘A�̒����B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�H�ɁA�퓬���ɂ�������炸�A�G�̉摜�C���[�W�I�u�W�F�N�g���J������Ă��܂��B
-BGM�̌J��Ԃ����������������B
+<B>[2003/12/19の進捗]</B>
+魔術「火山弾」アニメーション画像作成。
+魔術「火山弾」の追加。
+魔神召還「蒙古の巨人」アニメーション画像作成。
+魔神召還「蒙古の巨人」の追加。
+VB.NET2002→VB.NET2003への移行。
+<B>[次回の開発予定]</B>
+ステージ２の仮データ作成。
+BGM関連の調整。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+稀に、戦闘中にもかかわらず、敵の画像イメージオブジェクトが開放されてしまう。
+BGMの繰り返し処理がおかしい。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbproj(7,934�o�C�g)�FVB��ۼު��̧��
-AssemblyInfo.vb(858�o�C�g)�F�����؏��̧��
-Character.vb(22,291�o�C�g)�F��׸���׽Ӽޭ��
-common.vb(5,096�o�C�g)�F����Ӽޭ��
-define.vb(7,578�o�C�g)�F���ʒ�`Ӽޭ��
-Equipment.vb(3,029�o�C�g)�F�����׽
-Main.vb(118,003�o�C�g)�FҲ݉�ʸ׽
-MidPlay.vb(3,781�o�C�g)�FMIDI��ڲ԰�׽
-ShortMessage.vb(4,369�o�C�g)�F����ү���޸׽
-FlexPicture.vb(3,586�o�C�g):�گ���߸����׽
-Title.vb(36,766�o�C�g)�F���ى�ʸ׽
-WavPlay.vb(964�o�C�g)�FWav��ڲ԰�׽
-GraphicalMeter.vb(2,729�o�C�g)�F���̨��Ұ��հ�޺��۰�
-Performance.vb(21,639�o�C�g)�F����U���׽
-weapon.dat(412�o�C�g)�F����h���ް�
-���v�F<B>239,652�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbproj(7,934バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+AssemblyInfo.vb(858バイト)：ｱｾﾝﾌﾞﾘ情報ﾌｧｲﾙ
+Character.vb(22,291バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+common.vb(5,096バイト)：共通ﾓｼﾞｭｰﾙ
+define.vb(7,578バイト)：共通定義ﾓｼﾞｭｰﾙ
+Equipment.vb(3,029バイト)：装備ｸﾗｽ
+Main.vb(118,003バイト)：ﾒｲﾝ画面ｸﾗｽ
+MidPlay.vb(3,781バイト)：MIDIﾌﾟﾚｲﾔｰｸﾗｽ
+ShortMessage.vb(4,369バイト)：ｼｮｰﾄﾒｯｾｰｼﾞｸﾗｽ
+FlexPicture.vb(3,586バイト):ﾌﾚｯｸｽﾋﾟｸﾁｬｰｸﾗｽ
+Title.vb(36,766バイト)：ﾀｲﾄﾙ画面ｸﾗｽ
+WavPlay.vb(964バイト)：Wavﾌﾟﾚｲﾔｰｸﾗｽ
+GraphicalMeter.vb(2,729バイト)：ｸﾞﾗﾌｨｶﾙﾒｰﾀ･ﾕｰｻﾞｺﾝﾄﾛｰﾙ
+Performance.vb(21,639バイト)：特殊攻撃ｸﾗｽ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+合計：<B>239,652バイト</B>
 
 
-�����̐i���@�U���Z�u�^��g�v�u�n����v�̒ǉ�
+今日の進捗　攻撃技「真空波」「地走り」の追加
 <IMG SRC="http://hobby.2log.net/develop/images/031209a.jpg" ALT="">
-<B>[2003/12/09�̐i��]</B>
-�U���Z�u�^��g�v�A�j���[�V�����摜�쐬�B
-�U���Z�u�^��g�v�̒ǉ��B
-�U���Z�u�n����v�A�j���[�V�����摜�쐬�B
-�U���Z�u�n����v�̒ǉ��B
-<B>[����̊J���\��]</B>
-�X�e�[�W�Q�̉��f�[�^�쐬�B
-BGM�֘A�̒����B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�H�ɁA�퓬���ɂ�������炸�A�G�̉摜�C���[�W�I�u�W�F�N�g���J������Ă��܂��B
-BGM�̌J��Ԃ����������������B
+<B>[2003/12/09の進捗]</B>
+攻撃技「真空波」アニメーション画像作成。
+攻撃技「真空波」の追加。
+攻撃技「地走り」アニメーション画像作成。
+攻撃技「地走り」の追加。
+<B>[次回の開発予定]</B>
+ステージ２の仮データ作成。
+BGM関連の調整。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+稀に、戦闘中にもかかわらず、敵の画像イメージオブジェクトが開放されてしまう。
+BGMの繰り返し処理がおかしい。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbproj(7,933�o�C�g)�FVB��ۼު��̧��
-AssemblyInfo.vb(858�o�C�g)�F�����؏��̧��
-Character.vb(22,291�o�C�g)�F��׸���׽Ӽޭ��
-common.vb(5,096�o�C�g)�F����Ӽޭ��
-define.vb(7,578�o�C�g)�F���ʒ�`Ӽޭ��
-Equipment.vb(3,029�o�C�g)�F�����׽
-Main.vb(117,395�o�C�g)�FҲ݉�ʸ׽
-MidPlay.vb(3,781�o�C�g)�FMIDI��ڲ԰�׽
-ShortMessage.vb(4,369�o�C�g)�F����ү���޸׽
-FlexPicture.vb(3,586�o�C�g):�گ���߸����׽
-Title.vb(36,766�o�C�g)�F���ى�ʸ׽
-WavPlay.vb(964�o�C�g)�FWav��ڲ԰�׽
-GraphicalMeter.vb(2,729�o�C�g)�F���̨��Ұ��հ�޺��۰�
-Performance.vb(19,563�o�C�g)�F����U���׽
-weapon.dat(412�o�C�g)�F����h���ް�
-���v�F<B>236,967�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbproj(7,933バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+AssemblyInfo.vb(858バイト)：ｱｾﾝﾌﾞﾘ情報ﾌｧｲﾙ
+Character.vb(22,291バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+common.vb(5,096バイト)：共通ﾓｼﾞｭｰﾙ
+define.vb(7,578バイト)：共通定義ﾓｼﾞｭｰﾙ
+Equipment.vb(3,029バイト)：装備ｸﾗｽ
+Main.vb(117,395バイト)：ﾒｲﾝ画面ｸﾗｽ
+MidPlay.vb(3,781バイト)：MIDIﾌﾟﾚｲﾔｰｸﾗｽ
+ShortMessage.vb(4,369バイト)：ｼｮｰﾄﾒｯｾｰｼﾞｸﾗｽ
+FlexPicture.vb(3,586バイト):ﾌﾚｯｸｽﾋﾟｸﾁｬｰｸﾗｽ
+Title.vb(36,766バイト)：ﾀｲﾄﾙ画面ｸﾗｽ
+WavPlay.vb(964バイト)：Wavﾌﾟﾚｲﾔｰｸﾗｽ
+GraphicalMeter.vb(2,729バイト)：ｸﾞﾗﾌｨｶﾙﾒｰﾀ･ﾕｰｻﾞｺﾝﾄﾛｰﾙ
+Performance.vb(19,563バイト)：特殊攻撃ｸﾗｽ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+合計：<B>236,967バイト</B>
 
 
-�����̐i���@�U���Z�u�]�V���Ƃ��v�u�Ռ��g�v�̒ǉ�
+今日の進捗　攻撃技「脳天落とし」「衝撃波」の追加
 <IMG SRC="http://hobby.2log.net/develop/images/031205a.jpg" ALT="">
-<B>[2003/12/05�̐i��]</B>
-�U���Z�u�]�V���Ƃ��v�A�j���[�V�����摜�쐬�B
-�U���Z�u�]�V���Ƃ��v�̒ǉ��B
-�U���Z�u�Ռ��g�v�A�j���[�V�����摜�쐬�B
-�U���Z�u�Ռ��g�v�̒ǉ��B
-�v���O�����\�[�X�̃`���[�j���O�B
-<B>[����̊J���\��]</B>
-�X�e�[�W�Q�̉��f�[�^�쐬�B
-BGM�֘A�̒����B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�H�ɁA�퓬���ɂ�������炸�A�G�̉摜�C���[�W�I�u�W�F�N�g���J������Ă��܂��B
-BGM�̌J��Ԃ����������������B
+<B>[2003/12/05の進捗]</B>
+攻撃技「脳天落とし」アニメーション画像作成。
+攻撃技「脳天落とし」の追加。
+攻撃技「衝撃波」アニメーション画像作成。
+攻撃技「衝撃波」の追加。
+プログラムソースのチューニング。
+<B>[次回の開発予定]</B>
+ステージ２の仮データ作成。
+BGM関連の調整。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+稀に、戦闘中にもかかわらず、敵の画像イメージオブジェクトが開放されてしまう。
+BGMの繰り返し処理がおかしい。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbproj(7,933�o�C�g)�FVB��ۼު��̧��
-AssemblyInfo.vb(858�o�C�g)�F�����؏��̧��
-Character.vb(22,291�o�C�g)�F��׸���׽Ӽޭ��
-common.vb(5,096�o�C�g)�F����Ӽޭ��
-define.vb(7,578�o�C�g)�F���ʒ�`Ӽޭ��
-Equipment.vb(3,029�o�C�g)�F�����׽
-Main.vb(116,779�o�C�g)�FҲ݉�ʸ׽
-MidPlay.vb(3,781�o�C�g)�FMIDI��ڲ԰�׽
-ShortMessage.vb(4,369�o�C�g)�F����ү���޸׽
-FlexPicture.vb(3,586�o�C�g):�گ���߸����׽
-Title.vb(36,766�o�C�g)�F���ى�ʸ׽
-WavPlay.vb(964�o�C�g)�FWav��ڲ԰�׽
-GraphicalMeter.vb(2,729�o�C�g)�F���̨��Ұ��հ�޺��۰�
-Performance.vb(18,385�o�C�g)�F����U���׽
-weapon.dat(412�o�C�g)�F����h���ް�
-���v�F<B>234,556�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbproj(7,933バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+AssemblyInfo.vb(858バイト)：ｱｾﾝﾌﾞﾘ情報ﾌｧｲﾙ
+Character.vb(22,291バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+common.vb(5,096バイト)：共通ﾓｼﾞｭｰﾙ
+define.vb(7,578バイト)：共通定義ﾓｼﾞｭｰﾙ
+Equipment.vb(3,029バイト)：装備ｸﾗｽ
+Main.vb(116,779バイト)：ﾒｲﾝ画面ｸﾗｽ
+MidPlay.vb(3,781バイト)：MIDIﾌﾟﾚｲﾔｰｸﾗｽ
+ShortMessage.vb(4,369バイト)：ｼｮｰﾄﾒｯｾｰｼﾞｸﾗｽ
+FlexPicture.vb(3,586バイト):ﾌﾚｯｸｽﾋﾟｸﾁｬｰｸﾗｽ
+Title.vb(36,766バイト)：ﾀｲﾄﾙ画面ｸﾗｽ
+WavPlay.vb(964バイト)：Wavﾌﾟﾚｲﾔｰｸﾗｽ
+GraphicalMeter.vb(2,729バイト)：ｸﾞﾗﾌｨｶﾙﾒｰﾀ･ﾕｰｻﾞｺﾝﾄﾛｰﾙ
+Performance.vb(18,385バイト)：特殊攻撃ｸﾗｽ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+合計：<B>234,556バイト</B>
 
-�����̐i���@�R�}���h���[�g�Ɂu���_���ҁv�A���p�Ɂu�Ɖ΁v��ǉ�
+今日の進捗　コマンドルートに「魔神召還」、魔術に「業火」を追加
 <IMG SRC="http://hobby.2log.net/develop/images/031204a.jpg" ALT="">
-<B>[2003/12/04�̐i��]</B>
-�R�}���h���[�g�Ɂu���_���ҁv��ǉ��B
-���p�u�Ɖ΁v�̒ǉ��B
-�v���O�����\�[�X�̃`���[�j���O�B
-<B>[����̊J���\��]</B>
-�X�e�[�W�Q�̉��f�[�^�쐬�B
-BGM�֘A�̒����B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�H�ɁA�퓬���ɂ�������炸�A�G�̉摜�C���[�W�I�u�W�F�N�g���J������Ă��܂��B
-BGM�̌J��Ԃ����������������B
+<B>[2003/12/04の進捗]</B>
+コマンドルートに「魔神召還」を追加。
+魔術「業火」の追加。
+プログラムソースのチューニング。
+<B>[次回の開発予定]</B>
+ステージ２の仮データ作成。
+BGM関連の調整。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+稀に、戦闘中にもかかわらず、敵の画像イメージオブジェクトが開放されてしまう。
+BGMの繰り返し処理がおかしい。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbproj(7,933�o�C�g)�FVB��ۼު��̧��
-AssemblyInfo.vb(858�o�C�g)�F�����؏��̧��
-Character.vb(22,313�o�C�g)�F��׸���׽Ӽޭ��
-common.vb(5,096�o�C�g)�F����Ӽޭ��
-define.vb(7,578�o�C�g)�F���ʒ�`Ӽޭ��
-Equipment.vb(3,029�o�C�g)�F�����׽
-Main.vb(115,947�o�C�g)�FҲ݉�ʸ׽
-MidPlay.vb(3,781�o�C�g)�FMIDI��ڲ԰�׽
-ShortMessage.vb(4,369�o�C�g)�F����ү���޸׽
-FlexPicture.vb(3,586�o�C�g):�گ���߸����׽
-Title.vb(36,766�o�C�g)�F���ى�ʸ׽
-WavPlay.vb(964�o�C�g)�FWav��ڲ԰�׽
-GraphicalMeter.vb(2,729�o�C�g)�F���̨��Ұ��հ�޺��۰�
-Performance.vb(16,691�o�C�g)�F����U���׽
-weapon.dat(412�o�C�g)�F����h���ް�
-���v�F<B>232,052�o�C�g</B>
-
-
-�����̐i���@���X�̃C���^�[�t�F�C�X��ύX
-<IMG SRC="http://hobby.2log.net/develop/images/031121a.jpg" ALT="�v�X�̍X�V�ł��B">
-<B>[2003/11/28�̐i��]</B>
-�����p�����[�^�ݒ�_�C�A���O�ɃL�[�{�[�h���͂����ꍇ�A�c�|�C���g�ȏ����͉\�ȕs��C��
-�X���L�����Z���{�^���ŕ����悤�ɕύX�B
-�v���O�����\�[�X�̃`���[�j���O�B
-<B>[����̊J���\��]</B>
-�X�e�[�W�Q�̉��f�[�^�쐬�B
-BGM�֘A�̒����B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�H�ɁA�퓬���ɂ�������炸�A�G�̉摜�C���[�W�I�u�W�F�N�g���J������Ă��܂��B
-BGM�̌J��Ԃ����������������B
-
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbproj(7,553�o�C�g)�FVB��ۼު��̧��
-AssemblyInfo.vb(858�o�C�g)�F�����؏��̧��
-Character.vb(26,346�o�C�g)�F��׸���׽Ӽޭ��
-common.vb(5,096�o�C�g)�F����Ӽޭ��
-define.vb(7,578�o�C�g)�F���ʒ�`Ӽޭ��
-Equipment.vb(3,029�o�C�g)�F�����׽
-Main.vb(116,157�o�C�g)�FҲ݉�ʸ׽
-MidPlay.vb(3,781�o�C�g)�FMIDI��ڲ԰�׽
-ShortMessage.vb(4,240�o�C�g)�F����ү���޸׽
-Title.vb(36,764�o�C�g)�F���ى�ʸ׽
-WavPlay.vb(964�o�C�g)�FWav��ڲ԰�׽
-GraphicalMeter.vb(2,729�o�C�g)�F���̨��Ұ��հ�޺��۰�
-Performance.vb(20,230�o�C�g)�F����U���׽
-weapon.dat(412�o�C�g)�F����h���ް�
-���v�F<B>235,735�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbproj(7,933バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+AssemblyInfo.vb(858バイト)：ｱｾﾝﾌﾞﾘ情報ﾌｧｲﾙ
+Character.vb(22,313バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+common.vb(5,096バイト)：共通ﾓｼﾞｭｰﾙ
+define.vb(7,578バイト)：共通定義ﾓｼﾞｭｰﾙ
+Equipment.vb(3,029バイト)：装備ｸﾗｽ
+Main.vb(115,947バイト)：ﾒｲﾝ画面ｸﾗｽ
+MidPlay.vb(3,781バイト)：MIDIﾌﾟﾚｲﾔｰｸﾗｽ
+ShortMessage.vb(4,369バイト)：ｼｮｰﾄﾒｯｾｰｼﾞｸﾗｽ
+FlexPicture.vb(3,586バイト):ﾌﾚｯｸｽﾋﾟｸﾁｬｰｸﾗｽ
+Title.vb(36,766バイト)：ﾀｲﾄﾙ画面ｸﾗｽ
+WavPlay.vb(964バイト)：Wavﾌﾟﾚｲﾔｰｸﾗｽ
+GraphicalMeter.vb(2,729バイト)：ｸﾞﾗﾌｨｶﾙﾒｰﾀ･ﾕｰｻﾞｺﾝﾄﾛｰﾙ
+Performance.vb(16,691バイト)：特殊攻撃ｸﾗｽ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+合計：<B>232,052バイト</B>
 
 
-�����̐i���@�f�X�n���p�u�f�X�v�u���_���ҁv�̒ǉ�
-<IMG SRC="http://hobby.2log.net/develop/images/031121a.jpg" ALT="�f�X">
-<IMG SRC="http://hobby.2log.net/develop/images/031121b.jpg" ALT="���_����">
-<IMG SRC="http://hobby.2log.net/develop/images/031121c.jpg" ALT="���p�̃w���v">
-<B>[2003/11/21�̐i��]</B>
-�u�f�X�v�̃A�j���[�V�����摜��ǉ��B
-�u���_���ҁv�̃A�j���[�V�����摜��ǉ��B
-�u�f�X�v�̃A�j���[�V�����E���W�b�N��ǉ��B
-�u���_���ҁv�̃A�j���[�V�����E���W�b�N��ǉ��B
-<B>[����̊J���\��]</B>
-�X�e�[�W�Q�̉��f�[�^�쐬�B
-BGM�֘A�̒����B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�����p�����[�^�ݒ�_�C�A���O�ɃL�[�{�[�h���͂����ꍇ�A�c�|�C���g�ȏ����͉\�B
-�H�ɁA�퓬���ɂ�������炸�A�G�̉摜�C���[�W�I�u�W�F�N�g���J������Ă��܂��B
-BGM�̌J��Ԃ����������������B
+今日の進捗　売店のインターフェイスを変更
+<IMG SRC="http://hobby.2log.net/develop/images/031121a.jpg" ALT="久々の更新です。">
+<B>[2003/11/28の進捗]</B>
+初期パラメータ設定ダイアログにキーボード入力した場合、残ポイント以上を入力可能な不具合修正
+店をキャンセルボタンで閉じれるように変更。
+プログラムソースのチューニング。
+<B>[次回の開発予定]</B>
+ステージ２の仮データ作成。
+BGM関連の調整。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+稀に、戦闘中にもかかわらず、敵の画像イメージオブジェクトが開放されてしまう。
+BGMの繰り返し処理がおかしい。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbproj(7,154�o�C�g)�FVB��ۼު��̧��
-AssemblyInfo.vb(858�o�C�g)�F�����؏��̧��
-main.vb(115,850�o�C�g)�FҲ݉�ʸ׽
-title.vb(36,048�o�C�g)�F���ى�ʸ׽
-define.vb(7,418�o�C�g)�F���ʒ�`Ӽޭ��
-common.vb(6,083�o�C�g)�F����Ӽޭ��
-character.vb(26,228�o�C�g)�F��׸���׽Ӽޭ��
-equipment.vb(2,945�o�C�g)�F�����׽
-atkPat.vb(19,666�o�C�g)�F����U���׽
-MidPlay.vb(3,530�o�C�g)�FMIDI��ڲ԰�׽
-WavPlay.vb(922�o�C�g)�FWav��ڲ԰�׽
-ShortMessage.vb(4,198�o�C�g)�F����ү���޸׽
-weapon.dat(412�o�C�g)�F����h���ް�
-���v�F<B>231,312�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbproj(7,553バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+AssemblyInfo.vb(858バイト)：ｱｾﾝﾌﾞﾘ情報ﾌｧｲﾙ
+Character.vb(26,346バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+common.vb(5,096バイト)：共通ﾓｼﾞｭｰﾙ
+define.vb(7,578バイト)：共通定義ﾓｼﾞｭｰﾙ
+Equipment.vb(3,029バイト)：装備ｸﾗｽ
+Main.vb(116,157バイト)：ﾒｲﾝ画面ｸﾗｽ
+MidPlay.vb(3,781バイト)：MIDIﾌﾟﾚｲﾔｰｸﾗｽ
+ShortMessage.vb(4,240バイト)：ｼｮｰﾄﾒｯｾｰｼﾞｸﾗｽ
+Title.vb(36,764バイト)：ﾀｲﾄﾙ画面ｸﾗｽ
+WavPlay.vb(964バイト)：Wavﾌﾟﾚｲﾔｰｸﾗｽ
+GraphicalMeter.vb(2,729バイト)：ｸﾞﾗﾌｨｶﾙﾒｰﾀ･ﾕｰｻﾞｺﾝﾄﾛｰﾙ
+Performance.vb(20,230バイト)：特殊攻撃ｸﾗｽ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+合計：<B>235,735バイト</B>
 
-�����̐i���@�U���Z�u�n���˂��v�̍X�V
-<IMG SRC="http://hobby.2log.net/develop/images/031120a.jpg" ALT="�摜�͌l�I��ɏ������܂����B">
+
+今日の進捗　デス系魔術「デス」「死神召還」の追加
+<IMG SRC="http://hobby.2log.net/develop/images/031121a.jpg" ALT="デス">
+<IMG SRC="http://hobby.2log.net/develop/images/031121b.jpg" ALT="死神召還">
+<IMG SRC="http://hobby.2log.net/develop/images/031121c.jpg" ALT="魔術のヘルプ">
+<B>[2003/11/21の進捗]</B>
+「デス」のアニメーション画像を追加。
+「死神召還」のアニメーション画像を追加。
+「デス」のアニメーション・ロジックを追加。
+「死神召還」のアニメーション・ロジックを追加。
+<B>[次回の開発予定]</B>
+ステージ２の仮データ作成。
+BGM関連の調整。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+初期パラメータ設定ダイアログにキーボード入力した場合、残ポイント以上を入力可能。
+稀に、戦闘中にもかかわらず、敵の画像イメージオブジェクトが開放されてしまう。
+BGMの繰り返し処理がおかしい。
+
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbproj(7,154バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+AssemblyInfo.vb(858バイト)：ｱｾﾝﾌﾞﾘ情報ﾌｧｲﾙ
+main.vb(115,850バイト)：ﾒｲﾝ画面ｸﾗｽ
+title.vb(36,048バイト)：ﾀｲﾄﾙ画面ｸﾗｽ
+define.vb(7,418バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.vb(6,083バイト)：共通ﾓｼﾞｭｰﾙ
+character.vb(26,228バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.vb(2,945バイト)：装備ｸﾗｽ
+atkPat.vb(19,666バイト)：特殊攻撃ｸﾗｽ
+MidPlay.vb(3,530バイト)：MIDIﾌﾟﾚｲﾔｰｸﾗｽ
+WavPlay.vb(922バイト)：Wavﾌﾟﾚｲﾔｰｸﾗｽ
+ShortMessage.vb(4,198バイト)：ｼｮｰﾄﾒｯｾｰｼﾞｸﾗｽ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+合計：<B>231,312バイト</B>
+
+今日の進捗　攻撃技「地獄突き」の更新
+<IMG SRC="http://hobby.2log.net/develop/images/031120a.jpg" ALT="画像は個人的趣味に準拠しました。">
 <IMG SRC="http://hobby.2log.net/develop/images/031120b.jpg" ALT="">
-<B>[2003/11/16�̐i��]</B>
-�n���˂��̃A�j���[�V�����摜��ǉ��B
-�n���˂��̃A�j���[�V�����E���W�b�N��ǉ��B
-<B>[����̊J���\��]</B>
-�X�e�[�W�Q�̉��f�[�^�쐬�B
-BGM�֘A�̒����B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�����p�����[�^�ݒ�_�C�A���O�ɃL�[�{�[�h���͂����ꍇ�A�c�|�C���g�ȏ����͉\�B
-�H�ɁA�퓬���ɂ�������炸�A�G�̉摜�C���[�W�I�u�W�F�N�g���J������Ă��܂��B
-BGM�̌J��Ԃ����������������B
+<B>[2003/11/16の進捗]</B>
+地獄突きのアニメーション画像を追加。
+地獄突きのアニメーション・ロジックを追加。
+<B>[次回の開発予定]</B>
+ステージ２の仮データ作成。
+BGM関連の調整。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+初期パラメータ設定ダイアログにキーボード入力した場合、残ポイント以上を入力可能。
+稀に、戦闘中にもかかわらず、敵の画像イメージオブジェクトが開放されてしまう。
+BGMの繰り返し処理がおかしい。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbproj(7,154�o�C�g)�FVB��ۼު��̧��
-AssemblyInfo.vb(858�o�C�g)�F�����؏��̧��
-main.vb(115,473�o�C�g)�FҲ݉�ʸ׽
-title.vb(36,048�o�C�g)�F���ى�ʸ׽
-define.vb(7,418�o�C�g)�F���ʒ�`Ӽޭ��
-common.vb(6,083�o�C�g)�F����Ӽޭ��
-character.vb(26,228�o�C�g)�F��׸���׽Ӽޭ��
-equipment.vb(2,945�o�C�g)�F�����׽
-atkPat.vb(17,307�o�C�g)�F����U���׽
-MidPlay.vb(3,530�o�C�g)�FMIDI��ڲ԰�׽
-WavPlay.vb(922�o�C�g)�FWav��ڲ԰�׽
-ShortMessage.vb(4,198�o�C�g)�F����ү���޸׽
-weapon.dat(412�o�C�g)�F����h���ް�
-���v�F<B>228,576�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbproj(7,154バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+AssemblyInfo.vb(858バイト)：ｱｾﾝﾌﾞﾘ情報ﾌｧｲﾙ
+main.vb(115,473バイト)：ﾒｲﾝ画面ｸﾗｽ
+title.vb(36,048バイト)：ﾀｲﾄﾙ画面ｸﾗｽ
+define.vb(7,418バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.vb(6,083バイト)：共通ﾓｼﾞｭｰﾙ
+character.vb(26,228バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.vb(2,945バイト)：装備ｸﾗｽ
+atkPat.vb(17,307バイト)：特殊攻撃ｸﾗｽ
+MidPlay.vb(3,530バイト)：MIDIﾌﾟﾚｲﾔｰｸﾗｽ
+WavPlay.vb(922バイト)：Wavﾌﾟﾚｲﾔｰｸﾗｽ
+ShortMessage.vb(4,198バイト)：ｼｮｰﾄﾒｯｾｰｼﾞｸﾗｽ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+合計：<B>228,576バイト</B>
 
 
-�����̐i���@�U���Z�u�n���˂��v�̒ǉ�
+今日の進捗　攻撃技「地獄突き」の追加
 <IMG SRC="http://hobby.2log.net/develop/images/031116a.jpg" ALT="">
-<B>[2003/11/16�̐i��]</B>
-�n���˂��̃A�j���[�V�����摜���쐬�B
-����U���Ƃ��āu�n���˂��v��ǉ��B
-<B>[����̊J���\��]</B>
-�X�e�[�W�Q�̉��f�[�^�쐬�B
-BGM�֘A�̒����B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�����p�����[�^�ݒ�_�C�A���O�ɃL�[�{�[�h���͂����ꍇ�A�c�|�C���g�ȏ����͉\�B
-�H�ɁA�퓬���ɂ�������炸�A�G�̉摜�C���[�W�I�u�W�F�N�g���J������Ă��܂��B
-BGM�̌J��Ԃ����������������B
+<B>[2003/11/16の進捗]</B>
+地獄突きのアニメーション画像を作成。
+特殊攻撃として「地獄突き」を追加。
+<B>[次回の開発予定]</B>
+ステージ２の仮データ作成。
+BGM関連の調整。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+初期パラメータ設定ダイアログにキーボード入力した場合、残ポイント以上を入力可能。
+稀に、戦闘中にもかかわらず、敵の画像イメージオブジェクトが開放されてしまう。
+BGMの繰り返し処理がおかしい。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbproj(7,154�o�C�g)�FVB��ۼު��̧��
-AssemblyInfo.vb(858�o�C�g)�F�����؏��̧��
-main.vb(115,473�o�C�g)�FҲ݉�ʸ׽
-title.vb(36,046�o�C�g)�F���ى�ʸ׽
-define.vb(7,418�o�C�g)�F���ʒ�`Ӽޭ��
-common.vb(6,083�o�C�g)�F����Ӽޭ��
-character.vb(27,924�o�C�g)�F��׸���׽Ӽޭ��
-equipment.vb(2,945�o�C�g)�F�����׽
-atkPat.vb(16,198�o�C�g)�F����U���׽
-MidPlay.vb(3,530�o�C�g)�FMIDI��ڲ԰�׽
-WavPlay.vb(922�o�C�g)�FWav��ڲ԰�׽
-ShortMessage.vb(4,198�o�C�g)�F����ү���޸׽
-weapon.dat(412�o�C�g)�F����h���ް�
-���v�F<B>229,161�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbproj(7,154バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+AssemblyInfo.vb(858バイト)：ｱｾﾝﾌﾞﾘ情報ﾌｧｲﾙ
+main.vb(115,473バイト)：ﾒｲﾝ画面ｸﾗｽ
+title.vb(36,046バイト)：ﾀｲﾄﾙ画面ｸﾗｽ
+define.vb(7,418バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.vb(6,083バイト)：共通ﾓｼﾞｭｰﾙ
+character.vb(27,924バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.vb(2,945バイト)：装備ｸﾗｽ
+atkPat.vb(16,198バイト)：特殊攻撃ｸﾗｽ
+MidPlay.vb(3,530バイト)：MIDIﾌﾟﾚｲﾔｰｸﾗｽ
+WavPlay.vb(922バイト)：Wavﾌﾟﾚｲﾔｰｸﾗｽ
+ShortMessage.vb(4,198バイト)：ｼｮｰﾄﾒｯｾｰｼﾞｸﾗｽ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+合計：<B>229,161バイト</B>
 
 
-�����̐i���@���p�u�j�[�h���v�̒ǉ�
+今日の進捗　魔術「ニードル」の追加
 <IMG SRC="http://hobby.2log.net/develop/images/031114a.jpg" ALT="">
-<B>[2003/11/14�̐i��]</B>
-�j�[�h���̃A�j���[�V�����摜���쐬�B
-���p�U���Ƃ��āu�j�[�h���v��ǉ��B
-<B>[����̊J���\��]</B>
-�X�e�[�W�Q�̉��f�[�^�쐬�B
-BGM�֘A�̒����B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�����p�����[�^�ݒ�_�C�A���O�ɃL�[�{�[�h���͂����ꍇ�A�c�|�C���g�ȏ����͉\�B
-�H�ɁA�퓬���ɂ�������炸�A�G�̉摜�C���[�W�I�u�W�F�N�g���J������Ă��܂��B
-BGM�̌J��Ԃ����������������B
+<B>[2003/11/14の進捗]</B>
+ニードルのアニメーション画像を作成。
+魔術攻撃として「ニードル」を追加。
+<B>[次回の開発予定]</B>
+ステージ２の仮データ作成。
+BGM関連の調整。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+初期パラメータ設定ダイアログにキーボード入力した場合、残ポイント以上を入力可能。
+稀に、戦闘中にもかかわらず、敵の画像イメージオブジェクトが開放されてしまう。
+BGMの繰り返し処理がおかしい。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbproj(7,154�o�C�g)�FVB��ۼު��̧��
-AssemblyInfo.vb(858�o�C�g)�F�����؏��̧��
-main.vb(115,149�o�C�g)�FҲ݉�ʸ׽
-title.vb(36,046�o�C�g)�F���ى�ʸ׽
-define.vb(6,908�o�C�g)�F���ʒ�`Ӽޭ��
-common.vb(6,083�o�C�g)�F����Ӽޭ��
-character.vb(27,924�o�C�g)�F��׸���׽Ӽޭ��
-equipment.vb(2,945�o�C�g)�F�����׽
-atkPat.vb(13,555�o�C�g)�F����U���׽
-MidPlay.vb(3,530�o�C�g)�FMIDI��ڲ԰�׽
-WavPlay.vb(922�o�C�g)�FWav��ڲ԰�׽
-ShortMessage.vb(4,198�o�C�g)�F����ү���޸׽
-weapon.dat(412�o�C�g)�F����h���ް�
-���v�F<B>225,714�o�C�g</B>
-
-
-�����̐i���@�X�e�[�W�}�b�v��`�����̍쐬
-<IMG SRC="http://hobby.2log.net/develop/images/031113a.jpg" ALT="��ʓI�ɂ͂قƂ�Ǖς��f�����Ȃ���ł����A���̔����ȈႢ�A��̂ɗ��s�����uWally��T���v�̂悤�ɒT���Ă��������B">
-<B>[2003/11/13�̐i��]</B>
-�X�e�[�W�}�b�v��`�i�n�}��ɂǂ�ȃA�C�R����u�����j�����̍쐬�B
-�X�e�[�W�}�b�v�f�[�^�̍쐬�B
-<B>[����̊J���\��]</B>
-�X�e�[�W�Q�̉��f�[�^�쐬�B
-BGM�֘A�̒����B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�����p�����[�^�ݒ�_�C�A���O�ɃL�[�{�[�h���͂����ꍇ�A�c�|�C���g�ȏ����͉\�B
-BGM�̌J��Ԃ����������������B
-
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbproj(7,154�o�C�g)�FVB��ۼު��̧��
-AssemblyInfo.vb(858�o�C�g)�F�����؏��̧��
-main.vb(113,176�o�C�g)�FҲ݉�ʸ׽
-title.vb(35,777�o�C�g)�F���ى�ʸ׽
-define.vb(6,908�o�C�g)�F���ʒ�`Ӽޭ��
-common.vb(6,083�o�C�g)�F����Ӽޭ��
-character.vb(27,723�o�C�g)�F��׸���׽Ӽޭ��
-equipment.vb(2,945�o�C�g)�F�����׽
-atkPat.vb(12,455�o�C�g)�F����U���׽
-MidPlay.vb(3,530�o�C�g)�FMIDI��ڲ԰�׽
-WavPlay.vb(922�o�C�g)�FWav��ڲ԰�׽
-ShortMessage.vb(4,198�o�C�g)�F����ү���޸׽
-weapon.dat(412�o�C�g)�F����h���ް�
-���v�F<B>227,321�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbproj(7,154バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+AssemblyInfo.vb(858バイト)：ｱｾﾝﾌﾞﾘ情報ﾌｧｲﾙ
+main.vb(115,149バイト)：ﾒｲﾝ画面ｸﾗｽ
+title.vb(36,046バイト)：ﾀｲﾄﾙ画面ｸﾗｽ
+define.vb(6,908バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.vb(6,083バイト)：共通ﾓｼﾞｭｰﾙ
+character.vb(27,924バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.vb(2,945バイト)：装備ｸﾗｽ
+atkPat.vb(13,555バイト)：特殊攻撃ｸﾗｽ
+MidPlay.vb(3,530バイト)：MIDIﾌﾟﾚｲﾔｰｸﾗｽ
+WavPlay.vb(922バイト)：Wavﾌﾟﾚｲﾔｰｸﾗｽ
+ShortMessage.vb(4,198バイト)：ｼｮｰﾄﾒｯｾｰｼﾞｸﾗｽ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+合計：<B>225,714バイト</B>
 
 
-�����̐i���@��l���̏����ݒ���
-<IMG SRC="http://hobby.2log.net/develop/images/031111a.jpg" ALT="�v���O�����̖��ʂ��ۂ������i��ɁA����Ɏ����ϊ����ꂽ�����j���y�ʉ��B�����I�ɂ́A����ɂ��J���������A�b�v���邱�Ƃ����҂��Ă��܂��B����͂����ƁA���A��Ԃ̔Y�݂́Amidi�ŉ��F�ݒ肵�Ă��ꂪ���f�����܂łɃu�����N�������Ă��܂����ƁB��Ȃł��Ȃ��A�v���O�����ł��Ȃ��A�ςȋK�i�ɔY�܂����̂���Ԃ炢�I">
-<B>[2003/11/11�̐i��]</B>
-��l���̏����ݒ��ʂ̍X�V�B
-�v���O�����\�[�X�̌y�ʉ��B
-<B>[����̊J���\��]</B>
-�X�e�[�W�Q�̉��f�[�^�쐬�B
-�X�e�[�W�}�b�v��`�i�n�}��ɂǂ�ȃA�C�R����u�����j�����̍쐬�B
-�X�e�[�W�}�b�v�f�[�^�̍쐬�B
-BGM�֘A�̒����B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�����p�����[�^�ݒ�_�C�A���O�ɃL�[�{�[�h���͂����ꍇ�A�c�|�C���g�ȏ����͉\�B
-BGM�̌J��Ԃ����������������B
+今日の進捗　ステージマップ定義処理の作成
+<IMG SRC="http://hobby.2log.net/develop/images/031113a.jpg" ALT="画面的にはほとんど変わり映えしないんですが、この微妙な違い、大昔に流行った「Wallyを探せ」のように探してください。">
+<B>[2003/11/13の進捗]</B>
+ステージマップ定義（地図上にどんなアイコンを置くか）処理の作成。
+ステージマップデータの作成。
+<B>[次回の開発予定]</B>
+ステージ２の仮データ作成。
+BGM関連の調整。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+初期パラメータ設定ダイアログにキーボード入力した場合、残ポイント以上を入力可能。
+BGMの繰り返し処理がおかしい。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbproj(7,154�o�C�g)�FVB��ۼު��̧��
-AssemblyInfo.vb(858�o�C�g)�F�����؏��̧��
-main.vb(113,176�o�C�g)�FҲ݉�ʸ׽
-title.vb(35,777�o�C�g)�F���ى�ʸ׽
-define.vb(6,908�o�C�g)�F���ʒ�`Ӽޭ��
-common.vb(6,083�o�C�g)�F����Ӽޭ��
-battle.vb(5,549�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.vb(27,723�o�C�g)�F��׸���׽Ӽޭ��
-equipment.vb(2,945�o�C�g)�F�����׽
-atkPat.vb(12,455�o�C�g)�F����U���׽
-MidPlay.vb(3,530�o�C�g)�FMIDI��ڲ԰�׽
-WavPlay.vb(922�o�C�g)�FWav��ڲ԰�׽
-ShortMessage.vb(4,198�o�C�g)�F����ү���޸׽
-weapon.dat(412�o�C�g)�F����h���ް�
-���v�F<B>227,321�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbproj(7,154バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+AssemblyInfo.vb(858バイト)：ｱｾﾝﾌﾞﾘ情報ﾌｧｲﾙ
+main.vb(113,176バイト)：ﾒｲﾝ画面ｸﾗｽ
+title.vb(35,777バイト)：ﾀｲﾄﾙ画面ｸﾗｽ
+define.vb(6,908バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.vb(6,083バイト)：共通ﾓｼﾞｭｰﾙ
+character.vb(27,723バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.vb(2,945バイト)：装備ｸﾗｽ
+atkPat.vb(12,455バイト)：特殊攻撃ｸﾗｽ
+MidPlay.vb(3,530バイト)：MIDIﾌﾟﾚｲﾔｰｸﾗｽ
+WavPlay.vb(922バイト)：Wavﾌﾟﾚｲﾔｰｸﾗｽ
+ShortMessage.vb(4,198バイト)：ｼｮｰﾄﾒｯｾｰｼﾞｸﾗｽ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+合計：<B>227,321バイト</B>
 
 
-�����̐i���@�X�e�[�W�ړ�����
-<IMG SRC="http://hobby.2log.net/develop/images/031110a.jpg" ALT="�悤�₭���ł������[�X�������[�X�ł��āA���͂Ђƈ��S�B�t���[�\�t�g�Ƃ͂����A�����[�X���͔��ɖZ�����Ȃ�܂��B�Ă�Ă��܂��ł��B��K�ɂ��Ȃ�Ȃ��̂ɁA�̂��I>��">
-<B>[2003/11/10�̐i��]</B>
-�v���O�����\�[�X�̌y�ʉ��B
-�X�e�[�W�ړ������̍쐬�B
-�X�e�[�W�Q�̉��f�[�^�쐬�B
-<B>[����̊J���\��]</B>
-�X�e�[�W�Q�̉��f�[�^�쐬�B
-�X�e�[�W�}�b�v��`�i�n�}��ɂǂ�ȃA�C�R����u�����j�����̍쐬�B
-�X�e�[�W�}�b�v�f�[�^�̍쐬�B
-BGM�֘A�̒����B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-BGM�̌J��Ԃ����������������B
+今日の進捗　主人公の初期設定画面
+<IMG SRC="http://hobby.2log.net/develop/images/031111a.jpg" ALT="プログラムの無駄っぽい部分（主に、勝手に自動変換された部分）を軽量化。自分的には、これにより開発効率がアップすることを期待しています。それはそうと、今、一番の悩みは、midiで音色設定してそれが反映されるまでにブランクが生じてしまうこと。作曲でもなく、プログラムでもない、変な規格に悩まされるのが一番つらい！">
+<B>[2003/11/11の進捗]</B>
+主人公の初期設定画面の更新。
+プログラムソースの軽量化。
+<B>[次回の開発予定]</B>
+ステージ２の仮データ作成。
+ステージマップ定義（地図上にどんなアイコンを置くか）処理の作成。
+ステージマップデータの作成。
+BGM関連の調整。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+初期パラメータ設定ダイアログにキーボード入力した場合、残ポイント以上を入力可能。
+BGMの繰り返し処理がおかしい。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbproj(7,154�o�C�g)�FVB��ۼު��̧��
-AssemblyInfo.vb(858�o�C�g)�F�����؏��̧��
-main.vb(119,778�o�C�g)�FҲ݉�ʸ׽
-title.vb(39,791�o�C�g)�F���ى�ʸ׽
-define.vb(6,908�o�C�g)�F���ʒ�`Ӽޭ��
-common.vb(6,083�o�C�g)�F����Ӽޭ��
-battle.vb(5,549�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.vb(31,240�o�C�g)�F��׸���׽Ӽޭ��
-equipment.vb(2,945�o�C�g)�F�����׽
-atkPat.vb(12,455�o�C�g)�F����U���׽
-MidPlay.vb(3,530�o�C�g)�FMIDI��ڲ԰�׽
-WavPlay.vb(922�o�C�g)�FWav��ڲ԰�׽
-ShortMessage.vb(4,198�o�C�g)�F����ү���޸׽
-weapon.dat(412�o�C�g)�F����h���ް�
-���v�F<B>241,763�o�C�g</B>
-
-
-���쒆��RPG�̃��ł������[�X���܂����I
-���쒆��RPG�̃��ŁiVersion 0.71�j�������[�X���܂����I
-���̃��ł́A�قڍŏI�`�Ԃɋ߂��`�ŃX�e�[�W�P���v���C�ł��܂��B
-<B>[�����]</B><BR>
-Windows95�ȍ~�B<BR>
-Windows95�̂݁A�\��<A HREF="http://www.microsoft.com/windows95/downloads/contents/WUAdminTools/S_WUNetworkingTools/W95Sockets2/Default.asp">Windows Soket2</A>�̃C���X�g�[�����K�v�ł��B<BR>
-�܂��A�S�Ă�OS�ɂ����āA�uMicrosoft .NET Framework�v�̃C���X�g�[�����K�v�ł��B�u�X�^�[�g�v�{�^�����uWindows Update�v���u���i�̍X�V�v����Microsoft .NET Framework���`�F�b�N���āA�_�E�����[�h���Ă��������B�������́AMicrosoft�̃T�C�g�����肵�Ă��������B<BR>
-�������̃C���X�g�[���͎��ȐӔC�ōs���Ă��������BQWERT�́A�����Ȃ�ӔC�������܂���B<BR>
-<A href="http://www.geocities.co.jp/SiliconValley/4977/rpg071.html">�_�E�����[�h�͂�����</A>
-
-�����̐i���@�X�e�[�W�}�b�v�̃`�b�v�쐬
-<IMG SRC="http://hobby.2log.net/develop/images/031106a.jpg" ALT="���ڍs�����������A�Ăэ�荞�݂��i��ł��܂��B�Q�[���o�����X�����������Ȃ�ɂȂ��Ă����ŁA���̕ӂ�����낻����Ȃ��Ƃ܂����ȁ[�B">
-<B>[2003/11/06�̐i��]</B>
-�X�e�[�W�ړ��A�C�R���̍쐬�B
-�e��A�C�R���i�{�X�E�X�E�h�E�r��j�̍쐬�B
-�X�e�[�W�ړ������̍쐬�B
-<B>[����̊J���\��]</B>
-�X�e�[�W�Q�̉��f�[�^�쐬�B
-�X�e�[�W�}�b�v��`�i�n�}��ɂǂ�ȃA�C�R����u�����j�����̍쐬�B
-�X�e�[�W�}�b�v�f�[�^�̍쐬�B
-BGM�֘A�̒����B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�G�������Ă��Ȃ��͂��̃A�C�e����D���Ă��܂��B
-BGM�̌J��Ԃ����������������B
-
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbproj(7,636�o�C�g)�FVB��ۼު��̧��
-AssemblyInfo.vb(858�o�C�g)�F�����؏��̧��
-main.vb(134,236�o�C�g)�FҲ݉�ʸ׽
-title.vb(45,379�o�C�g)�F���ى�ʸ׽
-define.vb(6,996�o�C�g)�F���ʒ�`Ӽޭ��
-common.vb(6,053�o�C�g)�F����Ӽޭ��
-battle.vb(5,549�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.vb(36,846�o�C�g)�F��׸���׽Ӽޭ��
-equipment.vb(2,422�o�C�g)�F�����׽
-atkPat.vb(12,523�o�C�g)�F����U���׽
-MidPlay.vb(3,530�o�C�g)�FMIDI��ڲ԰�׽
-WavPlay.vb(922�o�C�g)�FWav��ڲ԰�׽
-ShortMessage.vb(4,198�o�C�g)�F����ү���޸׽
-weapon.dat(412�o�C�g)�F����h���ް�
-���v�F<B>267,560�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbproj(7,154バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+AssemblyInfo.vb(858バイト)：ｱｾﾝﾌﾞﾘ情報ﾌｧｲﾙ
+main.vb(113,176バイト)：ﾒｲﾝ画面ｸﾗｽ
+title.vb(35,777バイト)：ﾀｲﾄﾙ画面ｸﾗｽ
+define.vb(6,908バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.vb(6,083バイト)：共通ﾓｼﾞｭｰﾙ
+battle.vb(5,549バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.vb(27,723バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.vb(2,945バイト)：装備ｸﾗｽ
+atkPat.vb(12,455バイト)：特殊攻撃ｸﾗｽ
+MidPlay.vb(3,530バイト)：MIDIﾌﾟﾚｲﾔｰｸﾗｽ
+WavPlay.vb(922バイト)：Wavﾌﾟﾚｲﾔｰｸﾗｽ
+ShortMessage.vb(4,198バイト)：ｼｮｰﾄﾒｯｾｰｼﾞｸﾗｽ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+合計：<B>227,321バイト</B>
 
 
-�����̐i���@�_���[�W�̊ȈՕ\���̕���
-<IMG SRC="http://hobby.2log.net/develop/images/031105a.jpg" ALT="���΂炭�O����A�������ĉ摜�ɉB�����b�Z�[�W�𖄂ߍ���ł����ł����A�ʂ����ċC�����Ă���l�������ł��傤���H�����N�����Ȃ��Ƃ�����A�������s���łȂ�܂���B�N���[���I�������Ă܂����[���I">
-<B>[2003/11/05�̐i��]</B>
-�_���[�W�̊ȈՕ\���̒����B
-�{�X���Ăяo���Ɣ�������C���f�b�N�X�G���[���C���B
-�{�XBGM�̖��ߍ��݁B
-�Q�[���I�[�o�[��ɕ��A���Ȃ��s��̏C���B
-���x���A�b�v���ɓ����~����s��̏C���B
-�e�A�j���[�V�����̓��ߕ\�����s���R�ȕs��C���i�b��j�B
-<B>[����̊J���\��]</B>
-BGM�֘A�̒����B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�G�������Ă��Ȃ��͂��̃A�C�e����D���Ă��܂��B
-BGM�̌J��Ԃ����������������B
+今日の進捗　ステージ移動処理
+<IMG SRC="http://hobby.2log.net/develop/images/031110a.jpg" ALT="ようやくα版をリリースをリリースできて、今はひと安心。フリーソフトとはいえ、リリース時は非常に忙しくなります。てんてこまいです。一銭にもならないのに、偉い！>俺">
+<B>[2003/11/10の進捗]</B>
+プログラムソースの軽量化。
+ステージ移動処理の作成。
+ステージ２の仮データ作成。
+<B>[次回の開発予定]</B>
+ステージ２の仮データ作成。
+ステージマップ定義（地図上にどんなアイコンを置くか）処理の作成。
+ステージマップデータの作成。
+BGM関連の調整。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+BGMの繰り返し処理がおかしい。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbproj(7,636�o�C�g)�FVB��ۼު��̧��
-AssemblyInfo.vb(858�o�C�g)�F�����؏��̧��
-main.vb(130,230�o�C�g)�FҲ݉�ʸ׽
-title.vb(45,379�o�C�g)�F���ى�ʸ׽
-define.vb(5,562�o�C�g)�F���ʒ�`Ӽޭ��
-common.vb(6,053�o�C�g)�F����Ӽޭ��
-battle.vb(5,549�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.vb(36,846�o�C�g)�F��׸���׽Ӽޭ��
-equipment.vb(2,422�o�C�g)�F�����׽
-atkPat.vb(12,523�o�C�g)�F����U���׽
-MidPlay.vb(3,530�o�C�g)�FMIDI��ڲ԰�׽
-WavPlay.vb(922�o�C�g)�FWav��ڲ԰�׽
-ShortMessage.vb(4,198�o�C�g)�F����ү���޸׽
-weapon.dat(412�o�C�g)�F����h���ް�
-���v�F<B>262,120�o�C�g</B>
-
-�����̐i���@BGM�Đ������̕���
-<IMG SRC="http://hobby.2log.net/develop/images/031104a.jpg" ALT="����̓G�摜���A�č��ߌ��c(��)�̎x�z�l(��)�l�ihttp://www.2log.net/home/kagekidan/�j�ɒ����Ă���܂��B�܂��Ƃɂ��肪�Ƃ��������܂��I">
-<B>[2003/11/04�̐i��]</B>
-�_���[�W�̊ȈՕ\����g�ݍ��ށi���j�B
-BGM���Ȃ�Ȃ�(���s���G���[����������)�s��C���B
-<B>[����̊J���\��]</B>
-�R���o�[�g�ɂ�蔭�������s��̏C���B
-<B>[���݂̖��_�E�s�]</B>
-(�J�����ύX�ɂ�萶��������)
-�e�A�j���[�V�����̓��ߕ\�����s���R�B
-���x���A�b�v���ɓ����~����B
-�{�X���Ăяo���ƃC���f�b�N�X�G���[�������B
-�Q�[���I�[�o�[��ɕ��A���Ȃ��B
-(�ȑO����̂���)
-�G�������Ă��Ȃ��͂��̃A�C�e����D���Ă��܂��B
-BGM�̌J��Ԃ����������������B
-
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbproj(7,636�o�C�g)�FVB��ۼު��̧��
-AssemblyInfo.vb(858�o�C�g)�F�����؏��̧��
-main.vb(130,361�o�C�g)�FҲ݉�ʸ׽
-title.vb(45,381�o�C�g)�F���ى�ʸ׽
-define.bas(5,894�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(6,053�o�C�g)�F����Ӽޭ��
-battle.bas(5,556�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(37,032�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,422�o�C�g)�F�����׽
-atkPat.cls(12,500�o�C�g)�F����U���׽
-MidPlay.cls(3,5030�o�C�g)�FMIDI��ڲ԰�׽
-WavPlay.cls(961�o�C�g)�FWav��ڲ԰�׽
-ShortMessage.vb(4,011�o�C�g)�F����ү���޸׽
-weapon.dat(412�o�C�g)�F����h���ް�
-���v�F<B>294,107�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbproj(7,154バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+AssemblyInfo.vb(858バイト)：ｱｾﾝﾌﾞﾘ情報ﾌｧｲﾙ
+main.vb(119,778バイト)：ﾒｲﾝ画面ｸﾗｽ
+title.vb(39,791バイト)：ﾀｲﾄﾙ画面ｸﾗｽ
+define.vb(6,908バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.vb(6,083バイト)：共通ﾓｼﾞｭｰﾙ
+battle.vb(5,549バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.vb(31,240バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.vb(2,945バイト)：装備ｸﾗｽ
+atkPat.vb(12,455バイト)：特殊攻撃ｸﾗｽ
+MidPlay.vb(3,530バイト)：MIDIﾌﾟﾚｲﾔｰｸﾗｽ
+WavPlay.vb(922バイト)：Wavﾌﾟﾚｲﾔｰｸﾗｽ
+ShortMessage.vb(4,198バイト)：ｼｮｰﾄﾒｯｾｰｼﾞｸﾗｽ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+合計：<B>241,763バイト</B>
 
 
+製作中のRPGのα版をリリースしました！
+製作中のRPGのα版（Version 0.71）をリリースしました！
+このα版は、ほぼ最終形態に近い形でステージ１をプレイできます。
+<B>[動作環境]</B><BR>
+Windows95以降。<BR>
+Windows95のみ、予め<A HREF="http://www.microsoft.com/windows95/downloads/contents/WUAdminTools/S_WUNetworkingTools/W95Sockets2/Default.asp">Windows Soket2</A>のインストールが必要です。<BR>
+また、全てのOSにおいて、「Microsoft .NET Framework」のインストールが必要です。「スタート」ボタン→「Windows Update」→「製品の更新」からMicrosoft .NET Frameworkをチェックして、ダウンロードしてください。もしくは、Microsoftのサイトより入手してください。<BR>
+※これらのインストールは自己責任で行ってください。QWERTは、いかなる責任も負いません。<BR>
+<A href="http://www.geocities.co.jp/SiliconValley/4977/rpg071.html">ダウンロードはこちら</A>
 
-�����̐i���@�A�j���[�V���������̕���
-<IMG SRC="http://hobby.2log.net/develop/images/031031a.jpg" ALT="�Ȃ��Ȃ��i�݂�<B>[2003/10/31�̐i��]</B>
-����B����ȑO�ɁA�ǂ����ǂ��Ȃ������炢���̂������A�킩��Ȃ��Ȃ��Ă��Ă��܂��B��ʂ܂��̂��Ƃ́A��񂵂ɂ������������̂����B">
-�}���ȁi�Q�[���I�[�o�[�j�̍�ȁi���r�j
-�e�A�j���[�V�����̕\���������s����C���B
-<B>[����̊J���\��]</B>
-�R���o�[�g�ɂ�蔭�������s��̏C���B
-<B>[���݂̖��_�E�s�]</B>
-(�J�����ύX�ɂ�萶��������)
-�e�A�j���[�V�����̕\���������
-�_���[�W�\�����Ȃ�(���s���G���[����������)�B
-BGM���Ȃ�Ȃ�(���s���G���[����������)�B
-���x���A�b�v���ɓ����~����B
-�{�X���Ăяo���ƃC���f�b�N�X�G���[�������B
-�Q�[���I�[�o�[��ɕ��A���Ȃ��B
-(�ȑO����̂���)
-�G�������Ă��Ȃ��͂��̃A�C�e����D���Ă��܂��B
-BGM�̌J��Ԃ����������������B
+今日の進捗　ステージマップのチップ作成
+<IMG SRC="http://hobby.2log.net/develop/images/031106a.jpg" ALT="環境移行も落ち着き、再び作り込みが進んでいます。ゲームバランス調整がおざなりになっているんで、その辺りをそろそろやらないとまずいなー。">
+<B>[2003/11/06の進捗]</B>
+ステージ移動アイコンの作成。
+各種アイコン（ボス・店・宿・荒野）の作成。
+ステージ移動処理の作成。
+<B>[次回の開発予定]</B>
+ステージ２の仮データ作成。
+ステージマップ定義（地図上にどんなアイコンを置くか）処理の作成。
+ステージマップデータの作成。
+BGM関連の調整。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+敵が持っていないはずのアイテムを奪えてしまう。
+BGMの繰り返し処理がおかしい。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbproj(7,639�o�C�g)�FVB��ۼު��̧��
-AssemblyInfo.vb(858�o�C�g)�F�����؏��̧��
-main.vb(136,616�o�C�g)�FҲ݉�ʸ׽
-title.vb(45,317�o�C�g)�F���ى�ʸ׽
-define.bas(5,891�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(6,053�o�C�g)�F����Ӽޭ��
-battle.bas(5,556�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(37,325�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,422�o�C�g)�F�����׽
-atkPat.cls(12,500�o�C�g)�F����U���׽
-MidPlay.cls(2,028�o�C�g)�FMIDI��ڲ԰�׽
-WavPlay.cls(961�o�C�g)�FWav��ڲ԰�׽
-ShortMessage.vb(765�o�C�g)�F����ү���޸׽
-weapon.dat(412�o�C�g)�F����h���ް�
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbproj(7,636バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+AssemblyInfo.vb(858バイト)：ｱｾﾝﾌﾞﾘ情報ﾌｧｲﾙ
+main.vb(134,236バイト)：ﾒｲﾝ画面ｸﾗｽ
+title.vb(45,379バイト)：ﾀｲﾄﾙ画面ｸﾗｽ
+define.vb(6,996バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.vb(6,053バイト)：共通ﾓｼﾞｭｰﾙ
+battle.vb(5,549バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.vb(36,846バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.vb(2,422バイト)：装備ｸﾗｽ
+atkPat.vb(12,523バイト)：特殊攻撃ｸﾗｽ
+MidPlay.vb(3,530バイト)：MIDIﾌﾟﾚｲﾔｰｸﾗｽ
+WavPlay.vb(922バイト)：Wavﾌﾟﾚｲﾔｰｸﾗｽ
+ShortMessage.vb(4,198バイト)：ｼｮｰﾄﾒｯｾｰｼﾞｸﾗｽ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+合計：<B>267,560バイト</B>
 
-�����̐i���@��l���G�̕ύX
-<B>[2003/10/30�̐i��]</B>
+
+今日の進捗　ダメージの簡易表示の復活
+<IMG SRC="http://hobby.2log.net/develop/images/031105a.jpg" ALT="しばらく前から、こうして画像に隠しメッセージを埋め込んでいるんですが、果たして気がついている人がいるんでしょうか？もし誰もいないとしたら、自分が不憫でなりません。誰かーっ！聞こえてますかーっ！">
+<B>[2003/11/05の進捗]</B>
+ダメージの簡易表示の調整。
+ボスを呼び出すと発生するインデックスエラーを修正。
+ボスBGMの埋め込み。
+ゲームオーバー後に復帰しない不具合の修正。
+レベルアップ時に動作停止する不具合の修正。
+各アニメーションの透過表示が不自然な不具合修正（暫定）。
+<B>[次回の開発予定]</B>
+BGM関連の調整。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+敵が持っていないはずのアイテムを奪えてしまう。
+BGMの繰り返し処理がおかしい。
+
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbproj(7,636バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+AssemblyInfo.vb(858バイト)：ｱｾﾝﾌﾞﾘ情報ﾌｧｲﾙ
+main.vb(130,230バイト)：ﾒｲﾝ画面ｸﾗｽ
+title.vb(45,379バイト)：ﾀｲﾄﾙ画面ｸﾗｽ
+define.vb(5,562バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.vb(6,053バイト)：共通ﾓｼﾞｭｰﾙ
+battle.vb(5,549バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.vb(36,846バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.vb(2,422バイト)：装備ｸﾗｽ
+atkPat.vb(12,523バイト)：特殊攻撃ｸﾗｽ
+MidPlay.vb(3,530バイト)：MIDIﾌﾟﾚｲﾔｰｸﾗｽ
+WavPlay.vb(922バイト)：Wavﾌﾟﾚｲﾔｰｸﾗｽ
+ShortMessage.vb(4,198バイト)：ｼｮｰﾄﾒｯｾｰｼﾞｸﾗｽ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+合計：<B>262,120バイト</B>
+
+今日の進捗　BGM再生処理の復活
+<IMG SRC="http://hobby.2log.net/develop/images/031104a.jpg" ALT="今回の敵画像も、米国過激団(仮)の支配人(仮)様（http://www.2log.net/home/kagekidan/）に頂いております。まことにありがとうございます！">
+<B>[2003/11/04の進捗]</B>
+ダメージの簡易表示を組み込む（仮）。
+BGMがならない(実行時エラーが発生する)不具合修正。
+<B>[次回の開発予定]</B>
+コンバートにより発生した不具合の修正。
+<B>[現在の問題点・不具合]</B>
+(開発環境変更により生じたもの)
+各アニメーションの透過表示が不自然。
+レベルアップ時に動作停止する。
+ボスを呼び出すとインデックスエラーが発生。
+ゲームオーバー後に復帰しない。
+(以前からのもの)
+敵が持っていないはずのアイテムを奪えてしまう。
+BGMの繰り返し処理がおかしい。
+
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbproj(7,636バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+AssemblyInfo.vb(858バイト)：ｱｾﾝﾌﾞﾘ情報ﾌｧｲﾙ
+main.vb(130,361バイト)：ﾒｲﾝ画面ｸﾗｽ
+title.vb(45,381バイト)：ﾀｲﾄﾙ画面ｸﾗｽ
+define.bas(5,894バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(6,053バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(5,556バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(37,032バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,422バイト)：装備ｸﾗｽ
+atkPat.cls(12,500バイト)：特殊攻撃ｸﾗｽ
+MidPlay.cls(3,5030バイト)：MIDIﾌﾟﾚｲﾔｰｸﾗｽ
+WavPlay.cls(961バイト)：Wavﾌﾟﾚｲﾔｰｸﾗｽ
+ShortMessage.vb(4,011バイト)：ｼｮｰﾄﾒｯｾｰｼﾞｸﾗｽ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+合計：<B>294,107バイト</B>
+
+
+
+今日の進捗　アニメーション処理の復活
+<IMG SRC="http://hobby.2log.net/develop/images/031031a.jpg" ALT="なかなか進みま<B>[2003/10/31の進捗]</B>
+せん。それ以前に、どこをどうなおしたらいいのかさえ、わからなくなってきています。画面まわりのことは、後回しにした方がいいのかも。">
+挿入曲（ゲームオーバー）の作曲（中途）
+各アニメーションの表示が乱れる不具合を修正。
+<B>[次回の開発予定]</B>
+コンバートにより発生した不具合の修正。
+<B>[現在の問題点・不具合]</B>
+(開発環境変更により生じたもの)
+各アニメーションの表示が乱れる
+ダメージ表示しない(実行時エラーが発生する)。
+BGMがならない(実行時エラーが発生する)。
+レベルアップ時に動作停止する。
+ボスを呼び出すとインデックスエラーが発生。
+ゲームオーバー後に復帰しない。
+(以前からのもの)
+敵が持っていないはずのアイテムを奪えてしまう。
+BGMの繰り返し処理がおかしい。
+
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbproj(7,639バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+AssemblyInfo.vb(858バイト)：ｱｾﾝﾌﾞﾘ情報ﾌｧｲﾙ
+main.vb(136,616バイト)：ﾒｲﾝ画面ｸﾗｽ
+title.vb(45,317バイト)：ﾀｲﾄﾙ画面ｸﾗｽ
+define.bas(5,891バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(6,053バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(5,556バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(37,325バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,422バイト)：装備ｸﾗｽ
+atkPat.cls(12,500バイト)：特殊攻撃ｸﾗｽ
+MidPlay.cls(2,028バイト)：MIDIﾌﾟﾚｲﾔｰｸﾗｽ
+WavPlay.cls(961バイト)：Wavﾌﾟﾚｲﾔｰｸﾗｽ
+ShortMessage.vb(765バイト)：ｼｮｰﾄﾒｯｾｰｼﾞｸﾗｽ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+
+今日の進捗　主人公絵の変更
+<B>[2003/10/30の進捗]</B>
 <IMG SRC="http://hobby.2log.net/develop/images/031030a.jpg" ALT="">
-��l���G�̕ύX�B
-�}���ȁi�e�[�}�ȁj�̕ҋȁi�Ƃ肠���������j
-�}���ȁi�{�X�̃e�[�}�j�̕ҋȁi�Ƃ肠���������j
-�}���ȁi���x���A�b�v�j�̍�ȁi���r�j
-�e�A�j���[�V�����̕\���������s��C���B
-<B>[����̊J���\��]</B>
-�R���o�[�g�ɂ�蔭�������s��̏C���B
-<B>[���݂̖��_�E�s�]</B>
-(�J�����ύX�ɂ�萶��������)
-�e�A�j���[�V�����̕\���������
-�_���[�W�\�����Ȃ�(���s���G���[����������)�B
-BGM���Ȃ�Ȃ�(���s���G���[����������)�B
-���x���A�b�v���ɓ����~����B
-�{�X���Ăяo���ƃC���f�b�N�X�G���[�������B
-(�ȑO����̂���)
-�G�������Ă��Ȃ��͂��̃A�C�e����D���Ă��܂��B
-BGM�̌J��Ԃ����������������B
+主人公絵の変更。
+挿入曲（テーマ曲）の編曲（とりあえず完成）
+挿入曲（ボスのテーマ）の編曲（とりあえず完成）
+挿入曲（レベルアップ）の作曲（中途）
+各アニメーションの表示が乱れる不具合修正。
+<B>[次回の開発予定]</B>
+コンバートにより発生した不具合の修正。
+<B>[現在の問題点・不具合]</B>
+(開発環境変更により生じたもの)
+各アニメーションの表示が乱れる
+ダメージ表示しない(実行時エラーが発生する)。
+BGMがならない(実行時エラーが発生する)。
+レベルアップ時に動作停止する。
+ボスを呼び出すとインデックスエラーが発生。
+(以前からのもの)
+敵が持っていないはずのアイテムを奪えてしまう。
+BGMの繰り返し処理がおかしい。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-�O��ƕω��Ȃ�
-
-
-�����̐i���@�}���Ȃ̍쐬
-<B>[2003/10/29�̐i��]</B>
-�}���ȁi�ʏ펞�̋ȁj�̍�ȁi�Ƃ肠���������j
-�}���ȁi�e�[�}�ȁj�̕ҋȁi���r�j
-�}���ȁi�{�X-�f����-�̃e�[�}�j�̍�ȁi���r�j
-�}���ȁi���x���A�b�v�j�̍�ȁi���r�j
-<B>[����̊J���\��]</B>
-�R���o�[�g�ɂ�蔭�������s��̏C���B
-<B>[���݂̖��_�E�s�]</B>
-(�J�����ύX�ɂ�萶��������)
-�_���[�W�\�����Ȃ�(���s���G���[����������)�B
-BGM���Ȃ�Ȃ�(���s���G���[����������)�B
-�e�A�j���[�V�����̕\���������
-(�ȑO����̂���)
-�G�������Ă��Ȃ��͂��̃A�C�e����D���Ă��܂��B
-BGM�̌J��Ԃ����������������B
-
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-�O��ƕω��Ȃ�
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+前回と変化なし
 
 
-�����̐i���@���ʉ��̍쐬
-<B>[2003/10/24�̐i��]</B>
-���ʉ���13��쐬
-<B>[����̊J���\��]</B>
-�R���o�[�g�ɂ�蔭�������s��̏C���B
-<B>[���݂̖��_�E�s�]</B>
-(�J�����ύX�ɂ�萶��������)
-�_���[�W�\�����Ȃ�(���s���G���[����������)�B
-BGM���Ȃ�Ȃ�(���s���G���[����������)�B
-(�ȑO����̂���)
-�G�������Ă��Ȃ��͂��̃A�C�e����D���Ă��܂��B
-BGM�̌J��Ԃ����������������B
+今日の進捗　挿入曲の作成
+<B>[2003/10/29の進捗]</B>
+挿入曲（通常時の曲）の作曲（とりあえず完成）
+挿入曲（テーマ曲）の編曲（中途）
+挿入曲（ボス-吐炎竜-のテーマ）の作曲（中途）
+挿入曲（レベルアップ）の作曲（中途）
+<B>[次回の開発予定]</B>
+コンバートにより発生した不具合の修正。
+<B>[現在の問題点・不具合]</B>
+(開発環境変更により生じたもの)
+ダメージ表示しない(実行時エラーが発生する)。
+BGMがならない(実行時エラーが発生する)。
+各アニメーションの表示が乱れる
+(以前からのもの)
+敵が持っていないはずのアイテムを奪えてしまう。
+BGMの繰り返し処理がおかしい。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-����ƕω��Ȃ�
-
-
-�����̐i���@VB6����VB.Net�ւ̃R���o�[�g���̂Q
-<IMG SRC="http://hobby.2log.net/develop/images/031023a.jpg" ALT=".NET�ɕύX���āA�A�j���[�V�������X���[�Y�ɂȂ�܂����B�`�摬�x�������ł��B">
-<B>[2003/10/23�̐i��]</B>
-VB6����VB.Net�ւ̃R���o�[�g�B
-�A�j���[�V�������Ȃ��s��C���B
-�L�����G�ɍ��g�����s��C���B
-�G�L�����̕\���ʒu�����������s��C���B
-<B>[����̊J���\��]</B>
-�R���o�[�g�ɂ�蔭�������s��̏C���B
-<B>[���݂̖��_�E�s�]</B>
-(�J�����ύX�ɂ�萶��������)
-�_���[�W�\�����Ȃ�(���s���G���[����������)�B
-BGM���Ȃ�Ȃ�(���s���G���[����������)�B
-(�ȑO����̂���)
-�G�������Ă��Ȃ��͂��̃A�C�e����D���Ă��܂��B
-BGM�̌J��Ԃ����������������B
-
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-�������悭�킩��܂���B
-
-�����̐i���@VB6����VB.Net�ւ̃R���o�[�g
-<IMG SRC="http://hobby.2log.net/develop/images/031022a.jpg" ALT="�����A�߂��Ⴍ����ɂȂ��Ă܂��B���̎��_�ŁA���C��90����������Ă��܂��B�����o���Ă��܂������ł��B">
-<B>[2003/10/22�̐i��]</B>
-VB6����VB.Net�ւ̃R���o�[�g�B
-�R���o�[�g��̃R���p�C���G���[���C���B
-<B>[����̊J���\��]</B>
-�R���o�[�g�ɂ�蔭�������s��̏C���B
-<B>[���݂̖��_�E�s�]</B>
-(�J�����ύX�ɂ�萶��������)
-�A�j���[�V�������Ȃ��B
-�L�����G�ɍ��g�����B
-�G�L�����̕\���ʒu�����������B
-�_���[�W�\�����Ȃ�(���s���G���[����������)�B
-BGM���Ȃ�Ȃ�(���s���G���[����������)�B
-(�ȑO����̂���)
-�G�������Ă��Ȃ��͂��̃A�C�e����D���Ă��܂��B
-BGM�̌J��Ԃ����������������B
-
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-�������悭�킩��܂���B
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+前回と変化なし
 
 
-���悤�Ȃ�AWindows 95
-�����܂�VB6�ŊJ�����Ă��܂������A����̊J������VB.Net�Ɉڍs���邱�ƂɂȂ�܂����B���������̗���ł��傤���B
-����ŁA�c�O�Ȃ���u.NET Framework�v���C���X�g�[���ł��Ȃ�Windows95�ł́A����A���̃Q�[���𓮍삳���邱�Ƃ��ł��܂���B
-�����ŁA�v�]������܂�����A�����܂ł̍ŏI�o�[�W�����������[�X�����Ă������������Ǝv���܂��B���̍ŏI�o�[�W�����́AWindows95�œ��삵�܂��B����]�̕��́A�u�ŏI�o�[�W�����~�����΂����I�v�ƌf���ɏ�������ł��������ˁI
+今日の進捗　効果音の作成
+<B>[2003/10/24の進捗]</B>
+効果音を13種作成
+<B>[次回の開発予定]</B>
+コンバートにより発生した不具合の修正。
+<B>[現在の問題点・不具合]</B>
+(開発環境変更により生じたもの)
+ダメージ表示しない(実行時エラーが発生する)。
+BGMがならない(実行時エラーが発生する)。
+(以前からのもの)
+敵が持っていないはずのアイテムを奪えてしまう。
+BGMの繰り返し処理がおかしい。
 
-���̍�Ƃ����ĂȂ��̂ɕ񍐂��闥�V�ȃ��^�V
-<IMG SRC="http://hobby.2log.net/develop/images/031019a.jpg" ALT="�S���l�I�ȓs���ō����͉�����Ƃ��Ă܂���B���݂܂���I���ă��^�V�A�ӂ�ׂ��Ȃ�ł��傤���B">
-<B>[2003/10/19�̐i��]</B>
-�����Ȃ��B
-<B>[����̊J���\��]</B>
-��l���̊G�������ւ��B
-�G�������Ă��Ȃ��͂��̃A�C�e����D���Ă��܂��s��C���B
-�G�̃p�����[�^�f�[�^�쐬�B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�G�������Ă��Ȃ��͂��̃A�C�e����D���Ă��܂��B
-BGM�̌J��Ԃ����������������B
-
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-����ƕω��Ȃ�
-
-�����̐i���@�^�C�g����ʂ̍쐬
-<IMG SRC="http://hobby.2log.net/develop/images/031018a.jpg" ALT="��H���̉�ʃ��C�A�E�g�̓��C�a���O���^�[�̃p�N���ł����H����ł����āA�Z���X�͈�̑O��Visual�n�o���h���ۂ���ł����ǁc�B">
-<IMG SRC="http://hobby.2log.net/develop/images/031018b.jpg" ALT="�����ݒ�̏�����������X���C�h���܂��B������ꂾ�ˁI�ō� >��">
-<B>[2003/10/18�̐i��]</B>
-��l���̏����ݒ��ʂ̃f�U�C���ύX�B
-�^�C�g����ʂ̍쐬�B
-�^�C�g����ʂƏ����ݒ��ʂ̓����B
-���C����ʂ̃f�U�C�����኱�ύX�B
-<B>[����̊J���\��]</B>
-�G�������Ă��Ȃ��͂��̃A�C�e����D���Ă��܂��s��C���B
-�G�̃p�����[�^�f�[�^�쐬�B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�G�������Ă��Ȃ��͂��̃A�C�e����D���Ă��܂��B
-BGM�̌J��Ԃ����������������B
-
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(957�o�C�g)�FVB��ۼު��̧��
-main.frm(84,160�o�C�g)�FҲ݉��̫��Ӽޭ��
-title.frm(23,233�o�C�g)�F���ى��̫��Ӽޭ��
-define.bas(5,240�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(11,808�o�C�g)�F����Ӽޭ��
-battle.bas(3,881�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(25,806�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,755�o�C�g)�F�����׽Ӽޭ��
-atkPat.cls(8,819�o�C�g)�F����U���׽Ӽޭ��
-midplay.ctl(4,931�o�C�g)�FMIDI��ڲ԰����۰�
-labelDX.ctl(5,998�o�C�g)�F�������٥���۰�
-weapon.dat(412�o�C�g)�F����h���ް�
-���v�F<B>177,947�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+昨日と変化なし
 
 
-�����̐i���@�퓬�R�}���h�u����v�u�˂��h���v��ǉ�
-<IMG SRC="http://hobby.2log.net/develop/images/031017a.jpg" ALT="��Ȃ��S�R�i�܂Ȃ����I�X�����v�����B��芸�����A�^�C�g����ʂ̋ȂƁA�X�e�[�W1�̃{�X�̃e�[�}���K�v�Ȃ񂾂��ǁc�B�ʏ펞��BGM�Ƃ������������������񂾂낤���ǁA�����܂Ŏ肪�܂���I���ʉ����S�R����ĂȂ����A�ǂȂ�����[���B">
-<B>[2003/10/17�̐i��]</B>
-�U���Z�u�˂��h���v��ǉ��B
-�퓬�R�}���h�̌n���u���p�v��ǉ��B
-�u����v�R�}���h�̎����B
-<B>[����̊J���\��]</B>
-�^�C�g����ʂ̉��쐬�B
-�G�������Ă��Ȃ��͂��̃A�C�e����D���Ă��܂��s��C���B
-�G�̃p�����[�^�f�[�^�쐬�B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�G�������Ă��Ȃ��͂��̃A�C�e����D���Ă��܂��B
-BGM�̌J��Ԃ����������������B
+今日の進捗　VB6からVB.Netへのコンバートその２
+<IMG SRC="http://hobby.2log.net/develop/images/031023a.jpg" ALT=".NETに変更して、アニメーションがスムーズになりました。描画速度が速いです。">
+<B>[2003/10/23の進捗]</B>
+VB6からVB.Netへのコンバート。
+アニメーションしない不具合修正。
+キャラ絵に黒枠がつく不具合修正。
+敵キャラの表示位置がおかしい不具合修正。
+<B>[次回の開発予定]</B>
+コンバートにより発生した不具合の修正。
+<B>[現在の問題点・不具合]</B>
+(開発環境変更により生じたもの)
+ダメージ表示しない(実行時エラーが発生する)。
+BGMがならない(実行時エラーが発生する)。
+(以前からのもの)
+敵が持っていないはずのアイテムを奪えてしまう。
+BGMの繰り返し処理がおかしい。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(957�o�C�g)�FVB��ۼު��̧��
-main.frm(85,177�o�C�g)�FҲ݉��̫��Ӽޭ��
-initMe.frm(13,150�o�C�g)�F�����ݒ���̫��Ӽޭ��
-define.bas(5,240�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(11,753�o�C�g)�F����Ӽޭ��
-battle.bas(3,881�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(25,806�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,755�o�C�g)�F�����׽Ӽޭ��
-atkPat.cls(8,819�o�C�g)�F����U���׽Ӽޭ��
-midplay.ctl(4,931�o�C�g)�FMIDI��ڲ԰����۰�
-animation.ctl(8,954�o�C�g)�FImage��Ұ��ݥ���۰�
-DigitFont.ctl(3,583�o�C�g)�F����̫�Đ��䥺��۰�
-labelDX.ctl(5,998�o�C�g)�F�������٥���۰�
-weapon.dat(412�o�C�g)�F����h���ް�
-���v�F<B>181,416�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+何だかよくわかりません。
 
+今日の進捗　VB6からVB.Netへのコンバート
+<IMG SRC="http://hobby.2log.net/develop/images/031022a.jpg" ALT="何か、めちゃくちゃになってます。この時点で、やる気の90％をそがれています。投げ出してしまいたいです。">
+<B>[2003/10/22の進捗]</B>
+VB6からVB.Netへのコンバート。
+コンバート後のコンパイルエラーを修正。
+<B>[次回の開発予定]</B>
+コンバートにより発生した不具合の修正。
+<B>[現在の問題点・不具合]</B>
+(開発環境変更により生じたもの)
+アニメーションしない。
+キャラ絵に黒枠がつく。
+敵キャラの表示位置がおかしい。
+ダメージ表示しない(実行時エラーが発生する)。
+BGMがならない(実行時エラーが発生する)。
+(以前からのもの)
+敵が持っていないはずのアイテムを奪えてしまう。
+BGMの繰り返し処理がおかしい。
 
-�����̐i���@�U���Z�u�Ή��v�̒ǉ�
-<IMG SRC="http://hobby.2log.net/develop/images/031016a.jpg" ALT="�Ƃ����킯�ŁA�O�Ƀ����[�X�����f���łƂ͑S���Ⴄ���Ȃ��Ă��܂��B����ŋߓ��A�̌��ł������[�X����[���ȁ[�ƍl���Ă��܂��B�̌��ł́A�ŏI�`�Ԃɋ߂��`�ŁA�X�e�[�W�P���v���C�ł��܂��B���łɔ��\���Ă���f���ł́A�Ȃ��������Ƃɂ��Ă��������I">
-<B>[2003/10/16�̐i��]</B>
-�G�̍U���o���G�[�V�������f�[�^���B
-�U���Z�u�Ή��v�̒ǉ��B
-���S���ɐ퓬�Z�\���������B
-�퓬�Z�\�̃Z�[�u�����[�h�B
-��{�Z�u�a��v���}�X�^�[������V�����Z���o����B
-<B>[����̊J���\��]</B>
-BGM�̌J��Ԃ����������������s��̏C���B
-�u����v�R�}���h�̎����B
-�G�̃p�����[�^�f�[�^�쐬�B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-BGM�̌J��Ԃ����������������B
-
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(957�o�C�g)�FVB��ۼު��̧��
-main.frm(82,944�o�C�g)�FҲ݉��̫��Ӽޭ��
-initMe.frm(13,150�o�C�g)�F�����ݒ���̫��Ӽޭ��
-define.bas(5,238�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(4,184�o�C�g)�F����Ӽޭ��
-battle.bas(3,881�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(25,807�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,755�o�C�g)�F�����׽Ӽޭ��
-atkPat.cls(7,946�o�C�g)�F����U���׽Ӽޭ��
-midplay.ctl(4,931�o�C�g)�FMIDI��ڲ԰����۰�
-animation.ctl(8,954�o�C�g)�FImage��Ұ��ݥ���۰�
-DigitFont.ctl(3,583�o�C�g)�F����̫�Đ��䥺��۰�
-labelDX.ctl(5,951�o�C�g)�F�������٥���۰�
-weapon.dat(412�o�C�g)�F����h���ް�
-���v�F<B>177,518�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+何だかよくわかりません。
 
 
-�����̐i���@���_�̓p�����[�^�̒ǉ�
-<IMG SRC="http://hobby.2log.net/develop/images/031015a.jpg" ALT="����[�A�Ȃ��Ȃ��J�����i�܂Ȃ��ȁ[�B�����P�`�Q���Ԓ��x�̍�ƂȂ�ŁA���R������[���R�Ȃ񂾂��ǁB">
-<B>[2003/10/15�̐i��]</B>
-�퓬�Z�\�g�p���ɐ��_�͂�����鏈���B
-�X�e�[�W�P�̃U�R�G�̃p�����[�^�f�[�^�𐳎��쐬�B
-���b�Z�[�W���Ɏg�p�����U���Z����\���B
-<B>[����̊J���\��]</B>
-�퓬�Z�\�̃Z�[�u�����[�h�B
-BGM�̌J��Ԃ����������������s��̏C���B
-�u����v�R�}���h�̎����B
-�G�̃p�����[�^�f�[�^�쐬�B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-BGM�̌J��Ԃ����������������B
-�v���O�����\�[�X���Ăщ����Ȃ��Ă����i���ɁAbattle.bas�j�B
+さようなら、Windows 95
+ここまでVB6で開発してきましたが、今後の開発環境をVB.Netに移行することになりました。これも時代の流れでしょうか。
+それで、残念ながら「.NET Framework」をインストールできないWindows95では、今後、このゲームを動作させることができません。
+そこで、要望がありましたら、ここまでの最終バージョンをリリースさせていただこうかと思います。この最終バージョンは、Windows95で動作します。ご希望の方は、「最終バージョン欲しかばいっ！」と掲示板に書き込んでくださいね！
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(957�o�C�g)�FVB��ۼު��̧��
-main.frm(81,885�o�C�g)�FҲ݉��̫��Ӽޭ��
-initMe.frm(13,150�o�C�g)�F�����ݒ���̫��Ӽޭ��
-define.bas(5,244�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(4,184�o�C�g)�F����Ӽޭ��
-battle.bas(3,881�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(25,807�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,755�o�C�g)�F�����׽Ӽޭ��
-atkPat.cls(5,137�o�C�g)�F����U���׽Ӽޭ��
-midplay.ctl(4,931�o�C�g)�FMIDI��ڲ԰����۰�
-animation.ctl(8,954�o�C�g)�FImage��Ұ��ݥ���۰�
-DigitFont.ctl(3,583�o�C�g)�F����̫�Đ��䥺��۰�
-labelDX.ctl(5,951�o�C�g)�F�������٥���۰�
-weapon.dat(412�o�C�g)�F����h���ް�
-���v�F<B>173,656�o�C�g</B>
+何の作業もしてないのに報告する律儀なワタシ
+<IMG SRC="http://hobby.2log.net/develop/images/031019a.jpg" ALT="全く個人的な都合で今日は何も作業してません。すみません！ってワタシ、謝るべきなんでしょうか。">
+<B>[2003/10/19の進捗]</B>
+何もなし。
+<B>[次回の開発予定]</B>
+主人公の絵を差し替え。
+敵が持っていないはずのアイテムを奪えてしまう不具合修正。
+敵のパラメータデータ作成。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+敵が持っていないはずのアイテムを奪えてしまう。
+BGMの繰り返し処理がおかしい。
 
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+昨日と変化なし
 
-�����̐i���@���_�̓p�����[�^�̒ǉ�
-<IMG SRC="http://hobby.2log.net/develop/images/031014a.jpg" ALT="���낻��V�@�\�𐷂荞�ނ̂͂�߂āA�d�l��FIX���悤�B">
-<B>[2003/10/14�̐i��]</B>
-�X�̃f�U�C����ύX�B
-���_�̓p�����[�^�i������MP�j�̒ǉ��B
-�I�[�v�j���O�e�[�}�Ȍ��̍�ȁB
-�퓬�R�}���h�̐�������\���B
-�X�e�[�^�X�\���̃f�U�C����ύX�B
-<B>[����̊J���\��]</B>
-�퓬�Z�\�g�p���ɐ��_�͂�����鏈���B
-BGM�̌J��Ԃ����������������s��̏C���B
-�u����v�R�}���h�̎����B
-�G�̃p�����[�^�f�[�^�쐬�B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-BGM�̌J��Ԃ����������������B
-�v���O�����\�[�X���Ăщ����Ȃ��Ă����i���ɁAbattle.bas�j�B
+今日の進捗　タイトル画面の作成
+<IMG SRC="http://hobby.2log.net/develop/images/031018a.jpg" ALT="ん？この画面レイアウトはライヂング○ターのパクリですか？そんでもって、センスは一昔前のVisual系バンドっぽいんですけど…。">
+<IMG SRC="http://hobby.2log.net/develop/images/031018b.jpg" ALT="初期設定の小窓が横からスライドします。おしゃれだね！最高 >俺">
+<B>[2003/10/18の進捗]</B>
+主人公の初期設定画面のデザイン変更。
+タイトル画面の作成。
+タイトル画面と初期設定画面の統合。
+メイン画面のデザインを若干変更。
+<B>[次回の開発予定]</B>
+敵が持っていないはずのアイテムを奪えてしまう不具合修正。
+敵のパラメータデータ作成。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+敵が持っていないはずのアイテムを奪えてしまう。
+BGMの繰り返し処理がおかしい。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(977�o�C�g)�FVB��ۼު��̧��
-main.frm(73,748�o�C�g)�FҲ݉��̫��Ӽޭ��
-initMe.frm(13,150�o�C�g)�F�����ݒ���̫��Ӽޭ��
-define.bas(4,832�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(4,184�o�C�g)�F����Ӽޭ��
-battle.bas(9,833�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(25,203�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,755�o�C�g)�F�����׽Ӽޭ��
-atkPat.cls(2,800�o�C�g)�F����U���׽Ӽޭ��
-midplay.ctl(4,931�o�C�g)�FMIDI��ڲ԰����۰�
-animation.ctl(8,954�o�C�g)�FImage��Ұ��ݥ���۰�
-DigitFont.ctl(3,583�o�C�g)�F����̫�Đ��䥺��۰�
-labelDX.ctl(5,562�o�C�g)�F�������٥���۰�
-weapon.dat(412�o�C�g)�F����h���ް�
-simulator.frm(41,088�o�C�g)�F�퓬�Эڰ����̫��Ӽޭ��</FONT>
-���v�F<B>208,837�o�C�g</B>
-
-�����̐i���@�d�l�ύX�F�p�����[�^�w��ɂ�郌�x���A�b�v�̔p�~
-<IMG SRC="http://hobby.2log.net/develop/images/031013a.jpg" ALT="����̓G�摜�́A�č��ߌ��c(��)�̎x�z�l(��)�l�ihttp://www.2log.net/home/kagekidan/�j�ɒ����܂����B���肪�Ƃ��������܂��B">
-<B>[2003/10/13�̐i��]</B>
-�U���̏K�n�x�̃��A���^�C���\���B
-�G�L�����̉摜���S���쐬�B
-�p�����[�^�w��ɂ�郌�x���A�b�v�̔p�~�i���R�́A�v���C���[�����ʓ|�Ȋ��ɑ債�������b�g���Ȃ�����j�B
-<B>[����̊J���\��]</B>
-BGM�̌J��Ԃ����������������s��̏C���B
-�u����v�R�}���h�̎����B
-�G�̃p�����[�^�f�[�^�쐬�B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-BGM�̌J��Ԃ����������������B
-�v���O�����\�[�X���Ăщ����Ȃ��Ă����i���ɁAbattle.bas�j�B
-
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(977�o�C�g)�FVB��ۼު��̧��
-main.frm(68,884�o�C�g)�FҲ݉��̫��Ӽޭ��
-initMe.frm(13,150�o�C�g)�F�����ݒ���̫��Ӽޭ��
-define.bas(4,832�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(4,184�o�C�g)�F����Ӽޭ��
-battle.bas(9,830�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(23,981�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,755�o�C�g)�F�����׽Ӽޭ��
-atkPat.cls(2,146�o�C�g)�F����U���׽Ӽޭ��
-midplay.ctl(4,931�o�C�g)�FMIDI��ڲ԰����۰�
-animation.ctl(8,954�o�C�g)�FImage��Ұ��ݥ���۰�
-DigitFont.ctl(3,583�o�C�g)�F����̫�Đ��䥺��۰�
-labelDX.ctl(5,562�o�C�g)�F�������٥���۰�
-weapon.dat(412�o�C�g)�F����h���ް�
-simulator.frm(41,063�o�C�g)�F�퓬�Эڰ����̫��Ӽޭ��</FONT>
-���v�F<B>195,244�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(957バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+main.frm(84,160バイト)：ﾒｲﾝ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+title.frm(23,233バイト)：ﾀｲﾄﾙ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+define.bas(5,240バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(11,808バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(3,881バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(25,806バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,755バイト)：装備ｸﾗｽﾓｼﾞｭｰﾙ
+atkPat.cls(8,819バイト)：特殊攻撃ｸﾗｽﾓｼﾞｭｰﾙ
+midplay.ctl(4,931バイト)：MIDIﾌﾟﾚｲﾔｰ･ｺﾝﾄﾛｰﾙ
+labelDX.ctl(5,998バイト)：装飾ﾗﾍﾞﾙ･ｺﾝﾄﾛｰﾙ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+合計：<B>177,947バイト</B>
 
 
-�����̐i���@�}���Ȃ̍쐬
-<IMG SRC="http://hobby.2log.net/develop/images/031011a.jpg" ALT="���N�O����g���Ă鈤�@�B�o��ł���Ȃł���̂����_�B">
-<IMG SRC="http://hobby.2log.net/develop/images/031011b.jpg" ALT="QY10��QY20�������Ă܂��B">
-<B>[2003/10/11�̐i��]</B>
-�I�[�v�j���O�e�[�}�Ȍ��̍�ȁB
-�Q�[���I�[�o�[���̋Ȃ���ȁB
-<B>[����̊J���\��]</B>
-�U���̏K�n�x�̃��A���^�C���\���B
-BGM�̌J��Ԃ����������������s��̏C���B
-�u����v�R�}���h�̎����B
-�G�̃p�����[�^�f�[�^�쐬�B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�U���̏K�n�x�����A���^�C���ɔ��f����Ȃ��B
-BGM�̌J��Ԃ����������������B
-�ȈՃL�������\�����S�������Ȃ��B�Ƃ������A�R���p�C���G���[�������Ȃ�Ȃ��B
-�v���O�����\�[�X���Ăщ����Ȃ��Ă����i���ɁAbattle.bas�j�B
+今日の進捗　戦闘コマンド「命乞い」「突き刺す」を追加
+<IMG SRC="http://hobby.2log.net/develop/images/031017a.jpg" ALT="作曲が全然進まないっ！スランプかも。取り敢えず、タイトル画面の曲と、ステージ1のボスのテーマが必要なんだけど…。通常時のBGMとかもあった方がいいんだろうけど、そこまで手がまわらん！効果音も全然作ってないし、どないしよーっ。">
+<B>[2003/10/17の進捗]</B>
+攻撃技「突き刺す」を追加。
+戦闘コマンドの系統「魔術」を追加。
+「命乞い」コマンドの実装。
+<B>[次回の開発予定]</B>
+タイトル画面の仮作成。
+敵が持っていないはずのアイテムを奪えてしまう不具合修正。
+敵のパラメータデータ作成。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+敵が持っていないはずのアイテムを奪えてしまう。
+BGMの繰り返し処理がおかしい。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-�O���ƕω��Ȃ�
-
-�����̐i���@�^�C�g�����u���V -Bon��en-�v�ɉ�����
-<B>[2003/10/10�̐i��]</B>
-�^�C�g�����u���V -Bon��en-�v�ɉ�����B
-�I�[�v�j���O�e�[�}�Ȍ��̍�ȁB
-<B>[����̊J���\��]</B>
-�U���̏K�n�x�̃��A���^�C���\���B
-BGM�̌J��Ԃ����������������s��̏C���B
-�u����v�R�}���h�̎����B
-�G�̃p�����[�^�f�[�^�쐬�B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�U���̏K�n�x�����A���^�C���ɔ��f����Ȃ��B
-BGM�̌J��Ԃ����������������B
-�ȈՃL�������\�����S�������Ȃ��B�Ƃ������A�R���p�C���G���[�������Ȃ�Ȃ��B
-�v���O�����\�[�X���Ăщ����Ȃ��Ă����i���ɁAbattle.bas�j�B
-
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-�O���ƕω��Ȃ�
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(957バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+main.frm(85,177バイト)：ﾒｲﾝ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+initMe.frm(13,150バイト)：初期設定画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+define.bas(5,240バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(11,753バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(3,881バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(25,806バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,755バイト)：装備ｸﾗｽﾓｼﾞｭｰﾙ
+atkPat.cls(8,819バイト)：特殊攻撃ｸﾗｽﾓｼﾞｭｰﾙ
+midplay.ctl(4,931バイト)：MIDIﾌﾟﾚｲﾔｰ･ｺﾝﾄﾛｰﾙ
+animation.ctl(8,954バイト)：Imageｱﾆﾒｰｼｮﾝ･ｺﾝﾄﾛｰﾙ
+DigitFont.ctl(3,583バイト)：数字ﾌｫﾝﾄ制御･ｺﾝﾄﾛｰﾙ
+labelDX.ctl(5,998バイト)：装飾ﾗﾍﾞﾙ･ｺﾝﾄﾛｰﾙ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+合計：<B>181,416バイト</B>
 
 
-�����̐i���@�ʏ�U�����̃A�j���[�V����
-<IMG SRC="http://hobby.2log.net/develop/images/031009a.jpg" ALT="�悤�₭���ʉ�������܂����B�ł��A�����Ƃ����Ǝ�ނ��K�v�Ȃ񂾂�ȁ[�B�C���d���B">
-<B>[2003/10/09�̐i��]</B>
-�ʏ�U�����̃A�j���[�V�����쐬�������B
-�U���̏K�n�x�\���B
-�ʏ�U�����̌��ʉ��쐬�B
-<B>[����̊J���\��]</B>
-�U���̏K�n�x�̃��A���^�C���\���B
-BGM�̌J��Ԃ����������������s��̏C���B
-�u����v�R�}���h�̎����B
-�G�̃p�����[�^�f�[�^�쐬�B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�U���̏K�n�x�����A���^�C���ɔ��f����Ȃ��B
-BGM�̌J��Ԃ����������������B
-�ȈՃL�������\�����S�������Ȃ��B�Ƃ������A�R���p�C���G���[�������Ȃ�Ȃ��B
-�v���O�����\�[�X���Ăщ����Ȃ��Ă����i���ɁAbattle.bas�j�B
+今日の進捗　攻撃技「火炎」の追加
+<IMG SRC="http://hobby.2log.net/develop/images/031016a.jpg" ALT="というわけで、前にリリースしたデモ版とは全く違うくなっています。それで近日、体験版をリリースしよーかなーと考えています。体験版は、最終形態に近い形で、ステージ１をプレイできます。すでに発表しているデモ版は、なかったことにしてください！">
+<B>[2003/10/16の進捗]</B>
+敵の攻撃バリエーションをデータ化。
+攻撃技「火炎」の追加。
+死亡時に戦闘技能を初期化。
+戦闘技能のセーブ＆ロード。
+基本技「斬る」をマスターしたら新しい技を覚える。
+<B>[次回の開発予定]</B>
+BGMの繰り返し処理がおかしい不具合の修正。
+「命乞い」コマンドの実装。
+敵のパラメータデータ作成。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+BGMの繰り返し処理がおかしい。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(977�o�C�g)�FVB��ۼު��̧��
-main.frm(67,848�o�C�g)�FҲ݉��̫��Ӽޭ��
-initMe.frm(13,150�o�C�g)�F�����ݒ���̫��Ӽޭ��
-define.bas(4,829�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(4,184�o�C�g)�F����Ӽޭ��
-battle.bas(9,463�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(23,981�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,755�o�C�g)�F�����׽Ӽޭ��
-atkPat.cls(1,900�o�C�g)�F����U���׽Ӽޭ��
-midplay.ctl(4,931�o�C�g)�FMIDI��ڲ԰����۰�
-animation.ctl(8,954�o�C�g)�FImage��Ұ��ݥ���۰�
-DigitFont.ctl(3,583�o�C�g)�F����̫�Đ��䥺��۰�
-labelDX.ctl(5,562�o�C�g)�F�������٥���۰�
-weapon.dat(412�o�C�g)�F����h���ް�
-simulator.frm(41,063�o�C�g)�F�퓬�Эڰ����̫��Ӽޭ��</FONT>
-���v�F<B>193,592�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(957バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+main.frm(82,944バイト)：ﾒｲﾝ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+initMe.frm(13,150バイト)：初期設定画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+define.bas(5,238バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(4,184バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(3,881バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(25,807バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,755バイト)：装備ｸﾗｽﾓｼﾞｭｰﾙ
+atkPat.cls(7,946バイト)：特殊攻撃ｸﾗｽﾓｼﾞｭｰﾙ
+midplay.ctl(4,931バイト)：MIDIﾌﾟﾚｲﾔｰ･ｺﾝﾄﾛｰﾙ
+animation.ctl(8,954バイト)：Imageｱﾆﾒｰｼｮﾝ･ｺﾝﾄﾛｰﾙ
+DigitFont.ctl(3,583バイト)：数字ﾌｫﾝﾄ制御･ｺﾝﾄﾛｰﾙ
+labelDX.ctl(5,951バイト)：装飾ﾗﾍﾞﾙ･ｺﾝﾄﾛｰﾙ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+合計：<B>177,518バイト</B>
 
 
-�����̐i���@���A���^�C���ȈՃL�������\��
-<IMG SRC="http://hobby.2log.net/develop/images/031008a.jpg" ALT="���񂾂�����̃Q�[�����痣��Ă����c�B���v���ȁ[�B�N�����Ă��Ă����񂩂ȁ[�B�Q�[���Ƃ������A�A�v���P�[�V�������ۂ��Ȃ��Ă��������ǁB">
-<B>[2003/10/08�̐i��]</B>
-�ȈՃL�������\�����S�������Ȃ��s��C���B
-�������x���R���g���[���̏C���B
-�퓬BGM�̑}���B
-<B>[����̊J���\��]</B>
-BGM�̌J��Ԃ����������������s��̏C���B
-�u����v�R�}���h�̎����B
-�G�̃p�����[�^�f�[�^�쐬�B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-BGM�̌J��Ԃ����������������B
-�ȈՃL�������\�����S�������Ȃ��B�Ƃ������A�R���p�C���G���[�������Ȃ�Ȃ��B
-�v���O�����\�[�X���Ăщ����Ȃ��Ă����i���ɁAbattle.bas�j�B
+今日の進捗　精神力パラメータの追加
+<IMG SRC="http://hobby.2log.net/develop/images/031015a.jpg" ALT="いやー、なかなか開発が進まないなー。毎日１～２時間程度の作業なんで、当然っちゃー当然なんだけど。">
+<B>[2003/10/15の進捗]</B>
+戦闘技能使用時に精神力を消費する処理。
+ステージ１のザコ敵のパラメータデータを正式作成。
+メッセージ欄に使用した攻撃技名を表示。
+<B>[次回の開発予定]</B>
+戦闘技能のセーブ＆ロード。
+BGMの繰り返し処理がおかしい不具合の修正。
+「命乞い」コマンドの実装。
+敵のパラメータデータ作成。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+BGMの繰り返し処理がおかしい。
+プログラムソースが再び汚くなってきた（特に、battle.bas）。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(951�o�C�g)�FVB��ۼު��̧��
-main.frm(66,852�o�C�g)�FҲ݉��̫��Ӽޭ��
-initMe.frm(13,150�o�C�g)�F�����ݒ���̫��Ӽޭ��
-define.bas(4,798�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(4,184�o�C�g)�F����Ӽޭ��
-battle.bas(9,347�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(23,981�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,755�o�C�g)�F�����׽Ӽޭ��
-midplay.ctl(4,931�o�C�g)�FMIDI��ڲ԰����۰�
-animation.ctl(8,954�o�C�g)�FImage��Ұ��ݥ���۰�
-DigitFont.ctl(3,583�o�C�g)�F����̫�Đ��䥺��۰�
-labelDX.ctl(5,562�o�C�g)�F�������٥���۰�
-weapon.dat(412�o�C�g)�F����h���ް�
-simulator.frm(41,063�o�C�g)�F�퓬�Эڰ����̫��Ӽޭ��</FONT>
-���v�F<B>190,523�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(957バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+main.frm(81,885バイト)：ﾒｲﾝ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+initMe.frm(13,150バイト)：初期設定画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+define.bas(5,244バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(4,184バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(3,881バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(25,807バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,755バイト)：装備ｸﾗｽﾓｼﾞｭｰﾙ
+atkPat.cls(5,137バイト)：特殊攻撃ｸﾗｽﾓｼﾞｭｰﾙ
+midplay.ctl(4,931バイト)：MIDIﾌﾟﾚｲﾔｰ･ｺﾝﾄﾛｰﾙ
+animation.ctl(8,954バイト)：Imageｱﾆﾒｰｼｮﾝ･ｺﾝﾄﾛｰﾙ
+DigitFont.ctl(3,583バイト)：数字ﾌｫﾝﾄ制御･ｺﾝﾄﾛｰﾙ
+labelDX.ctl(5,951バイト)：装飾ﾗﾍﾞﾙ･ｺﾝﾄﾛｰﾙ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+合計：<B>173,656バイト</B>
 
 
-�p�ޕۊǌɁi�t���[�f�ޏW�j�n�߂܂����B
+今日の進捗　精神力パラメータの追加
+<IMG SRC="http://hobby.2log.net/develop/images/031014a.jpg" ALT="そろそろ新機能を盛り込むのはやめて、仕様をFIXしよう。">
+<B>[2003/10/14の進捗]</B>
+店のデザインを変更。
+精神力パラメータ（いわゆるMP）の追加。
+オープニングテーマ曲候補の作曲。
+戦闘コマンドの説明文を表示。
+ステータス表示のデザインを変更。
+<B>[次回の開発予定]</B>
+戦闘技能使用時に精神力を消費する処理。
+BGMの繰り返し処理がおかしい不具合の修正。
+「命乞い」コマンドの実装。
+敵のパラメータデータ作成。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+BGMの繰り返し処理がおかしい。
+プログラムソースが再び汚くなってきた（特に、battle.bas）。
+
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(977バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+main.frm(73,748バイト)：ﾒｲﾝ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+initMe.frm(13,150バイト)：初期設定画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+define.bas(4,832バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(4,184バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(9,833バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(25,203バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,755バイト)：装備ｸﾗｽﾓｼﾞｭｰﾙ
+atkPat.cls(2,800バイト)：特殊攻撃ｸﾗｽﾓｼﾞｭｰﾙ
+midplay.ctl(4,931バイト)：MIDIﾌﾟﾚｲﾔｰ･ｺﾝﾄﾛｰﾙ
+animation.ctl(8,954バイト)：Imageｱﾆﾒｰｼｮﾝ･ｺﾝﾄﾛｰﾙ
+DigitFont.ctl(3,583バイト)：数字ﾌｫﾝﾄ制御･ｺﾝﾄﾛｰﾙ
+labelDX.ctl(5,562バイト)：装飾ﾗﾍﾞﾙ･ｺﾝﾄﾛｰﾙ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+simulator.frm(41,088バイト)：戦闘ｼﾐｭﾚｰﾀ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ</FONT>
+合計：<B>208,837バイト</B>
+
+今日の進捗　仕様変更：パラメータ指定によるレベルアップの廃止
+<IMG SRC="http://hobby.2log.net/develop/images/031013a.jpg" ALT="今回の敵画像は、米国過激団(仮)の支配人(仮)様（http://www.2log.net/home/kagekidan/）に頂きました。ありがとうございます。">
+<B>[2003/10/13の進捗]</B>
+攻撃の習熟度のリアルタイム表示。
+敵キャラの画像を４枚作成。
+パラメータ指定によるレベルアップの廃止（理由は、プレイヤー側が面倒な割に大したメリットがないから）。
+<B>[次回の開発予定]</B>
+BGMの繰り返し処理がおかしい不具合の修正。
+「命乞い」コマンドの実装。
+敵のパラメータデータ作成。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+BGMの繰り返し処理がおかしい。
+プログラムソースが再び汚くなってきた（特に、battle.bas）。
+
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(977バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+main.frm(68,884バイト)：ﾒｲﾝ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+initMe.frm(13,150バイト)：初期設定画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+define.bas(4,832バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(4,184バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(9,830バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(23,981バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,755バイト)：装備ｸﾗｽﾓｼﾞｭｰﾙ
+atkPat.cls(2,146バイト)：特殊攻撃ｸﾗｽﾓｼﾞｭｰﾙ
+midplay.ctl(4,931バイト)：MIDIﾌﾟﾚｲﾔｰ･ｺﾝﾄﾛｰﾙ
+animation.ctl(8,954バイト)：Imageｱﾆﾒｰｼｮﾝ･ｺﾝﾄﾛｰﾙ
+DigitFont.ctl(3,583バイト)：数字ﾌｫﾝﾄ制御･ｺﾝﾄﾛｰﾙ
+labelDX.ctl(5,562バイト)：装飾ﾗﾍﾞﾙ･ｺﾝﾄﾛｰﾙ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+simulator.frm(41,063バイト)：戦闘ｼﾐｭﾚｰﾀ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ</FONT>
+合計：<B>195,244バイト</B>
+
+
+今日の進捗　挿入曲の作成
+<IMG SRC="http://hobby.2log.net/develop/images/031011a.jpg" ALT="数年前から使ってる愛機。出先でも作曲できるのが利点。">
+<IMG SRC="http://hobby.2log.net/develop/images/031011b.jpg" ALT="QY10やQY20も持ってます。">
+<B>[2003/10/11の進捗]</B>
+オープニングテーマ曲候補の作曲。
+ゲームオーバー時の曲を作曲。
+<B>[次回の開発予定]</B>
+攻撃の習熟度のリアルタイム表示。
+BGMの繰り返し処理がおかしい不具合の修正。
+「命乞い」コマンドの実装。
+敵のパラメータデータ作成。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+攻撃の習熟度がリアルタイムに反映されない。
+BGMの繰り返し処理がおかしい。
+簡易キャラ情報表示が全く動かない。というか、コンパイルエラーが無くならない。
+プログラムソースが再び汚くなってきた（特に、battle.bas）。
+
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+前日と変化なし
+
+今日の進捗　タイトルを「梵天 -Bon†en-」に仮決定
+<B>[2003/10/10の進捗]</B>
+タイトルを「梵天 -Bon†en-」に仮決定。
+オープニングテーマ曲候補の作曲。
+<B>[次回の開発予定]</B>
+攻撃の習熟度のリアルタイム表示。
+BGMの繰り返し処理がおかしい不具合の修正。
+「命乞い」コマンドの実装。
+敵のパラメータデータ作成。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+攻撃の習熟度がリアルタイムに反映されない。
+BGMの繰り返し処理がおかしい。
+簡易キャラ情報表示が全く動かない。というか、コンパイルエラーが無くならない。
+プログラムソースが再び汚くなってきた（特に、battle.bas）。
+
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+前日と変化なし
+
+
+今日の進捗　通常攻撃時のアニメーション
+<IMG SRC="http://hobby.2log.net/develop/images/031009a.jpg" ALT="ようやく効果音が入りました。でも、もっともっと種類が必要なんだよなー。気が重い。">
+<B>[2003/10/09の進捗]</B>
+通常攻撃時のアニメーション作成＆実装。
+攻撃の習熟度表示。
+通常攻撃時の効果音作成。
+<B>[次回の開発予定]</B>
+攻撃の習熟度のリアルタイム表示。
+BGMの繰り返し処理がおかしい不具合の修正。
+「命乞い」コマンドの実装。
+敵のパラメータデータ作成。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+攻撃の習熟度がリアルタイムに反映されない。
+BGMの繰り返し処理がおかしい。
+簡易キャラ情報表示が全く動かない。というか、コンパイルエラーが無くならない。
+プログラムソースが再び汚くなってきた（特に、battle.bas）。
+
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(977バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+main.frm(67,848バイト)：ﾒｲﾝ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+initMe.frm(13,150バイト)：初期設定画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+define.bas(4,829バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(4,184バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(9,463バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(23,981バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,755バイト)：装備ｸﾗｽﾓｼﾞｭｰﾙ
+atkPat.cls(1,900バイト)：特殊攻撃ｸﾗｽﾓｼﾞｭｰﾙ
+midplay.ctl(4,931バイト)：MIDIﾌﾟﾚｲﾔｰ･ｺﾝﾄﾛｰﾙ
+animation.ctl(8,954バイト)：Imageｱﾆﾒｰｼｮﾝ･ｺﾝﾄﾛｰﾙ
+DigitFont.ctl(3,583バイト)：数字ﾌｫﾝﾄ制御･ｺﾝﾄﾛｰﾙ
+labelDX.ctl(5,562バイト)：装飾ﾗﾍﾞﾙ･ｺﾝﾄﾛｰﾙ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+simulator.frm(41,063バイト)：戦闘ｼﾐｭﾚｰﾀ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ</FONT>
+合計：<B>193,592バイト</B>
+
+
+今日の進捗　リアルタイム簡易キャラ情報表示
+<IMG SRC="http://hobby.2log.net/develop/images/031008a.jpg" ALT="だんだん既存のゲームから離れていく…。大丈夫かなー。誰かついてきてくれるんかなー。ゲームというより、アプリケーションっぽくなってるんっすけど。">
+<B>[2003/10/08の進捗]</B>
+簡易キャラ情報表示が全く動かない不具合修正。
+装飾ラベルコントロールの修正。
+戦闘BGMの挿入。
+<B>[次回の開発予定]</B>
+BGMの繰り返し処理がおかしい不具合の修正。
+「命乞い」コマンドの実装。
+敵のパラメータデータ作成。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+BGMの繰り返し処理がおかしい。
+簡易キャラ情報表示が全く動かない。というか、コンパイルエラーが無くならない。
+プログラムソースが再び汚くなってきた（特に、battle.bas）。
+
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(951バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+main.frm(66,852バイト)：ﾒｲﾝ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+initMe.frm(13,150バイト)：初期設定画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+define.bas(4,798バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(4,184バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(9,347バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(23,981バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,755バイト)：装備ｸﾗｽﾓｼﾞｭｰﾙ
+midplay.ctl(4,931バイト)：MIDIﾌﾟﾚｲﾔｰ･ｺﾝﾄﾛｰﾙ
+animation.ctl(8,954バイト)：Imageｱﾆﾒｰｼｮﾝ･ｺﾝﾄﾛｰﾙ
+DigitFont.ctl(3,583バイト)：数字ﾌｫﾝﾄ制御･ｺﾝﾄﾛｰﾙ
+labelDX.ctl(5,562バイト)：装飾ﾗﾍﾞﾙ･ｺﾝﾄﾛｰﾙ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+simulator.frm(41,063バイト)：戦闘ｼﾐｭﾚｰﾀ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ</FONT>
+合計：<B>190,523バイト</B>
+
+
+廃材保管庫（フリー素材集）始めました。
 http://www.2log.net/bbs/develop/hmen6p.html
 
-�����̐i���@MAP�ړ��C���^�[�t�F�[�X�̕ύX
-<IMG SRC="http://hobby.2log.net/develop/images/031007a.jpg" ALT="�����͂���܂���Ƃ��ĂȂ������c�B�����A����ɖ����āB">
-<B>[2003/10/07�̐i��]</B>
-�n�`�}�b�v�摜�̍쐬�B
-MAP�ړ��C���^�[�t�F�[�X�̕ύX
-�������x���R���g���[���̍쐬
-<B>[����̊J���\��]</B>
-�퓬BGM�̑}���B
-�u����v�R�}���h�̎����B
-�G�̃p�����[�^�f�[�^�쐬�B
-�n�`�}�b�v�摜�̍쐬�B
-�n�`�}�b�v�̕\���B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�ȈՃL�������\�����S�������Ȃ��B�Ƃ������A�R���p�C���G���[�������Ȃ�Ȃ��B
-�A�j���[�V�����ɂ�����������Ă���A���Ȃ茩�ꂵ���B�ʂ̕�������������K�v����B
-�v���O�����\�[�X���Ăщ����Ȃ��Ă����i���ɁAbattle.bas�j�B
+今日の進捗　MAP移動インターフェースの変更
+<IMG SRC="http://hobby.2log.net/develop/images/031007a.jpg" ALT="今日はあんまし作業してないっす…。何か、強烈に眠くて。">
+<B>[2003/10/07の進捗]</B>
+地形マップ画像の作成。
+MAP移動インターフェースの変更
+装飾ラベルコントロールの作成
+<B>[次回の開発予定]</B>
+戦闘BGMの挿入。
+「命乞い」コマンドの実装。
+敵のパラメータデータ作成。
+地形マップ画像の作成。
+地形マップの表示。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+簡易キャラ情報表示が全く動かない。というか、コンパイルエラーが無くならない。
+アニメーションにちらつきが生じており、かなり見苦しい。別の方式を検討する必要あり。
+プログラムソースが再び汚くなってきた（特に、battle.bas）。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(951�o�C�g)�FVB��ۼު��̧��
-main.frm(64,286�o�C�g)�FҲ݉��̫��Ӽޭ��
-initMe.frm(13,150�o�C�g)�F�����ݒ���̫��Ӽޭ��
-define.bas(4,798�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(4,184�o�C�g)�F����Ӽޭ��
-battle.bas(8,642�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(23,687�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,755�o�C�g)�F�����׽Ӽޭ��
-midplay.ctl(4,932�o�C�g)�FMIDI��ڲ԰����۰�
-animation.ctl(8,954�o�C�g)�FImage��Ұ��ݥ���۰�
-DigitFont.ctl(3,583�o�C�g)�F����̫�Đ��䥺��۰�
-labelDX.ctl(5,742�o�C�g)�F�������٥���۰�
-weapon.dat(412�o�C�g)�F����h���ް�
-simulator.frm(41,063�o�C�g)�F�퓬�Эڰ����̫��Ӽޭ��</FONT>
-���v�F<B>187,139�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(951バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+main.frm(64,286バイト)：ﾒｲﾝ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+initMe.frm(13,150バイト)：初期設定画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+define.bas(4,798バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(4,184バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(8,642バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(23,687バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,755バイト)：装備ｸﾗｽﾓｼﾞｭｰﾙ
+midplay.ctl(4,932バイト)：MIDIﾌﾟﾚｲﾔｰ･ｺﾝﾄﾛｰﾙ
+animation.ctl(8,954バイト)：Imageｱﾆﾒｰｼｮﾝ･ｺﾝﾄﾛｰﾙ
+DigitFont.ctl(3,583バイト)：数字ﾌｫﾝﾄ制御･ｺﾝﾄﾛｰﾙ
+labelDX.ctl(5,742バイト)：装飾ﾗﾍﾞﾙ･ｺﾝﾄﾛｰﾙ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+simulator.frm(41,063バイト)：戦闘ｼﾐｭﾚｰﾀ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ</FONT>
+合計：<B>187,139バイト</B>
 
-�����̐i���@�������x���R���g���[���̍쐬
-<IMG SRC="http://hobby.2log.net/develop/images/031006a.jpg" ALT="����\������Ă���G�L�����́A��M�����蒸���܂����B���肪�Ƃ��������܂����I">
-<B>[2003/10/06�̐i��]</B>
-�������x���R���g���[���̍쐬
-�ȈՃL�������\���i���A���^�C���ȃL������ԏ����A�ȈՕ\���j�������i���r�j
-<B>[����̊J���\��]</B>
-�퓬BGM�̑}���B
-�u����v�R�}���h�̎����B
-�G�̃p�����[�^�f�[�^�쐬�B
-�n�`�}�b�v�摜�̍쐬�B
-�n�`�}�b�v�̕\���B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�ȈՃL�������\�����S�������Ȃ��B�Ƃ������A�R���p�C���G���[�������Ȃ�Ȃ��B
-�A�j���[�V�����ɂ�����������Ă���A���Ȃ茩�ꂵ���B�ʂ̕�������������K�v����B
-�v���O�����\�[�X���Ăщ����Ȃ��Ă����i���ɁAbattle.bas�j�B
+今日の進捗　装飾ラベルコントロールの作成
+<IMG SRC="http://hobby.2log.net/develop/images/031006a.jpg" ALT="今回表示されている敵キャラは、夜熱さんより頂きました。ありがとうございました！">
+<B>[2003/10/06の進捗]</B>
+装飾ラベルコントロールの作成
+簡易キャラ情報表示（リアルタイムなキャラ状態情報を、簡易表示）を実装（中途）
+<B>[次回の開発予定]</B>
+戦闘BGMの挿入。
+「命乞い」コマンドの実装。
+敵のパラメータデータ作成。
+地形マップ画像の作成。
+地形マップの表示。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+簡易キャラ情報表示が全く動かない。というか、コンパイルエラーが無くならない。
+アニメーションにちらつきが生じており、かなり見苦しい。別の方式を検討する必要あり。
+プログラムソースが再び汚くなってきた（特に、battle.bas）。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(951�o�C�g)�FVB��ۼު��̧��
-main.frm(64,185�o�C�g)�FҲ݉��̫��Ӽޭ��
-initMe.frm(13,150�o�C�g)�F�����ݒ���̫��Ӽޭ��
-define.bas(4,798�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(4,184�o�C�g)�F����Ӽޭ��
-battle.bas(8,642�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(23,687�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,755�o�C�g)�F�����׽Ӽޭ��
-midplay.ctl(4,932�o�C�g)�FMIDI��ڲ԰����۰�
-animation.ctl(8,954�o�C�g)�FImage��Ұ��ݥ���۰�
-DigitFont.ctl(3,583�o�C�g)�F����̫�Đ��䥺��۰�
-labelDX.ctl(5,742�o�C�g)�F�������٥���۰�
-weapon.dat(412�o�C�g)�F����h���ް�
-simulator.frm(41,063�o�C�g)�F�퓬�Эڰ����̫��Ӽޭ��</FONT>
-���v�F<B>187,038�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(951バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+main.frm(64,185バイト)：ﾒｲﾝ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+initMe.frm(13,150バイト)：初期設定画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+define.bas(4,798バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(4,184バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(8,642バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(23,687バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,755バイト)：装備ｸﾗｽﾓｼﾞｭｰﾙ
+midplay.ctl(4,932バイト)：MIDIﾌﾟﾚｲﾔｰ･ｺﾝﾄﾛｰﾙ
+animation.ctl(8,954バイト)：Imageｱﾆﾒｰｼｮﾝ･ｺﾝﾄﾛｰﾙ
+DigitFont.ctl(3,583バイト)：数字ﾌｫﾝﾄ制御･ｺﾝﾄﾛｰﾙ
+labelDX.ctl(5,742バイト)：装飾ﾗﾍﾞﾙ･ｺﾝﾄﾛｰﾙ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+simulator.frm(41,063バイト)：戦闘ｼﾐｭﾚｰﾀ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ</FONT>
+合計：<B>187,038バイト</B>
 
-�����̐i���@�퓬�R�}���h�C���^�[�t�F�C�X�̕ύX
-<IMG SRC="http://hobby.2log.net/develop/images/031004a.jpg" ALT="�蔲���������ł������A���傢�ƋC��������č�邱�Ƃɂ��܂����B���ꂩ�����낵���ˁI">
-<B>[2003/10/04�̐i��]</B>
-�퓬�R�}���h���͂��c���[�r���[�ɕύX�B
-�u�Z�[�u�v�u���[�h�v�u�I���v�R�}���h���v���O�������j���[�Ɉړ��B
-�퓬����BGM�w῝�x��ҋȁB
-�{�^�����J�`�J�`�����̂��ʓ|�L�����߁A��l���U����ɑ����Ď����I�ɓG�̍U�����J�n����悤�ɕύX�B
-<B>[����̊J���\��]</B>
-�퓬BGM�̑}���B
-�u����v�R�}���h�̎����B
-�G�̃p�����[�^�f�[�^�쐬�B
-�n�`�}�b�v�摜�̍쐬�B
-�n�`�}�b�v�̕\���B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�A�j���[�V�����ɂ�����������Ă���A���Ȃ茩�ꂵ���B�ʂ̕�������������K�v����B
-�v���O�����\�[�X���Ăщ����Ȃ��Ă����i���ɁAbattle.bas�j�B
+今日の進捗　戦闘コマンドインターフェイスの変更
+<IMG SRC="http://hobby.2log.net/develop/images/031004a.jpg" ALT="手抜きするつもりでしたが、ちょいと気合をいれて作ることにしました。これからもよろしくね！">
+<B>[2003/10/04の進捗]</B>
+戦闘コマンド入力をツリービューに変更。
+「セーブ」「ロード」「終了」コマンドをプログラムメニューに移動。
+戦闘時のBGM『眩暈』を編曲。
+ボタンをカチカチ押すのが面倒臭いため、主人公攻撃後に続けて自動的に敵の攻撃が開始するように変更。
+<B>[次回の開発予定]</B>
+戦闘BGMの挿入。
+「命乞い」コマンドの実装。
+敵のパラメータデータ作成。
+地形マップ画像の作成。
+地形マップの表示。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+アニメーションにちらつきが生じており、かなり見苦しい。別の方式を検討する必要あり。
+プログラムソースが再び汚くなってきた（特に、battle.bas）。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(926�o�C�g)�FVB��ۼު��̧��
-main.frm(60,908�o�C�g)�FҲ݉��̫��Ӽޭ��
-initMe.frm(13,150�o�C�g)�F�����ݒ���̫��Ӽޭ��
-define.bas(4,503�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(4,184�o�C�g)�F����Ӽޭ��
-battle.bas(8,438�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(22,247�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,755�o�C�g)�F�����׽Ӽޭ��
-midplay.ctl(4,932�o�C�g)�FMIDI��ڲ԰����۰�
-animation.ctl(8,954�o�C�g)�FImage��Ұ��ݥ���۰�
-DigitFont.ctl(3,583�o�C�g)�F����̫�Đ��䥺��۰�
-weapon.dat(412�o�C�g)�F����h���ް�
-simulator.frm(41,063�o�C�g)�F�퓬�Эڰ����̫��Ӽޭ��</FONT>
-���v�F<B>176,055�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(926バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+main.frm(60,908バイト)：ﾒｲﾝ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+initMe.frm(13,150バイト)：初期設定画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+define.bas(4,503バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(4,184バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(8,438バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(22,247バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,755バイト)：装備ｸﾗｽﾓｼﾞｭｰﾙ
+midplay.ctl(4,932バイト)：MIDIﾌﾟﾚｲﾔｰ･ｺﾝﾄﾛｰﾙ
+animation.ctl(8,954バイト)：Imageｱﾆﾒｰｼｮﾝ･ｺﾝﾄﾛｰﾙ
+DigitFont.ctl(3,583バイト)：数字ﾌｫﾝﾄ制御･ｺﾝﾄﾛｰﾙ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+simulator.frm(41,063バイト)：戦闘ｼﾐｭﾚｰﾀ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ</FONT>
+合計：<B>176,055バイト</B>
 
-�����̐i���@�G�̉摜�쐬
-<IMG SRC="http://hobby.2log.net/develop/images/031003a.jpg" ALT="�G�̊G�͑��ς�炸��W���Ă����ŁA�����������瑗���ĂˁI�}�W�ł��I">
-<B>[2003/10/03�̐i��]</B>
-�e�X�g�v���C���Q�[���o�����X�����B
-�G�̉摜�������쐬�B
-�퓬����BGM����ȁB
-<B>[����̊J���\��]</B>
-�e�X�g�v���C���Q�[���o�����X�����B
-�G�̃p�����[�^�f�[�^�쐬�B
-<B>[���݂̖��_�E�s�]</B>
-�A�j���[�V�����ɂ�����������Ă���A���Ȃ茩�ꂵ���B�ʂ̕�������������K�v����B
-�v���O�����\�[�X���Ăщ����Ȃ��Ă����i���ɁAbattle.bas�j�B
+今日の進捗　敵の画像作成
+<IMG SRC="http://hobby.2log.net/develop/images/031003a.jpg" ALT="敵の絵は相変わらず募集しているんで、何かあったら送ってね！マジです！">
+<B>[2003/10/03の進捗]</B>
+テストプレイ＆ゲームバランス調整。
+敵の画像を七枚作成。
+戦闘時のBGMを作曲。
+<B>[次回の開発予定]</B>
+テストプレイ＆ゲームバランス調整。
+敵のパラメータデータ作成。
+<B>[現在の問題点・不具合]</B>
+アニメーションにちらつきが生じており、かなり見苦しい。別の方式を検討する必要あり。
+プログラムソースが再び汚くなってきた（特に、battle.bas）。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(859�o�C�g)�FVB��ۼު��̧��
-main.frm(57,871�o�C�g)�FҲ݉��̫��Ӽޭ��
-initMe.frm(13,150�o�C�g)�F�����ݒ���̫��Ӽޭ��
-define.bas(4,502�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(4,184�o�C�g)�F����Ӽޭ��
-battle.bas(8,441�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(22,247�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,755�o�C�g)�F�����׽Ӽޭ��
-midplay.ctl(4,932�o�C�g)�FMIDI��ڲ԰����۰�
-animation.ctl(8,954�o�C�g)�FImage��Ұ��ݥ���۰�
-DigitFont.ctl(3,583�o�C�g)�F����̫�Đ��䥺��۰�
-weapon.dat(412�o�C�g)�F����h���ް�
-simulator.frm(41,063�o�C�g)�F�퓬�Эڰ����̫��Ӽޭ��</FONT>
-���v�F<B>173,365�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(859バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+main.frm(57,871バイト)：ﾒｲﾝ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+initMe.frm(13,150バイト)：初期設定画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+define.bas(4,502バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(4,184バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(8,441バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(22,247バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,755バイト)：装備ｸﾗｽﾓｼﾞｭｰﾙ
+midplay.ctl(4,932バイト)：MIDIﾌﾟﾚｲﾔｰ･ｺﾝﾄﾛｰﾙ
+animation.ctl(8,954バイト)：Imageｱﾆﾒｰｼｮﾝ･ｺﾝﾄﾛｰﾙ
+DigitFont.ctl(3,583バイト)：数字ﾌｫﾝﾄ制御･ｺﾝﾄﾛｰﾙ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+simulator.frm(41,063バイト)：戦闘ｼﾐｭﾚｰﾀ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ</FONT>
+合計：<B>173,365バイト</B>
 
 
 pic 5+3+3+3+3 +1=18
 boss 1+1+1+1+1 +1=6
 back 6
 
-�����̐i���@�����ݒ���
-<IMG SRC="http://hobby.2log.net/develop/images/031002a.jpg" ALT="���ɎE���i�ȉ�ʂł��ȁB">
-<B>[2003/10/02�̐i��]</B>
-�e�X�g�v���C���Q�[���o�����X�����B
-�퓬�p�����[�^�̌������B
-�����ݒ��ʂ̍쐬
-<B>[����̊J���\��]</B>
-�퓬�p�����[�^�̌������B
-�e�X�g�v���C���Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�A�j���[�V�����ɂ�����������Ă���A���Ȃ茩�ꂵ���B�ʂ̕�������������K�v����B
-�v���O�����\�[�X���Ăщ����Ȃ��Ă����i���ɁAbattle.bas�j�B
+今日の進捗　初期設定画面
+<IMG SRC="http://hobby.2log.net/develop/images/031002a.jpg" ALT="実に殺風景な画面ですな。">
+<B>[2003/10/02の進捗]</B>
+テストプレイ＆ゲームバランス調整。
+戦闘パラメータの見直し。
+初期設定画面の作成
+<B>[次回の開発予定]</B>
+戦闘パラメータの見直し。
+テストプレイ＆ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+アニメーションにちらつきが生じており、かなり見苦しい。別の方式を検討する必要あり。
+プログラムソースが再び汚くなってきた（特に、battle.bas）。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(859�o�C�g)�FVB��ۼު��̧��
-main.frm(56,926�o�C�g)�FҲ݉��̫��Ӽޭ��
-initMe.frm(12,981�o�C�g)�F�����ݒ���̫��Ӽޭ��
-define.bas(4,259�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(3,622�o�C�g)�F����Ӽޭ��
-battle.bas(8,425�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(22,247�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,755�o�C�g)�F�����׽Ӽޭ��
-midplay.ctl(4,932�o�C�g)�FMIDI��ڲ԰����۰�
-animation.ctl(8,777�o�C�g)�FImage��Ұ��ݥ���۰�
-DigitFont.ctl(3,583�o�C�g)�F����̫�Đ��䥺��۰�
-weapon.dat(412�o�C�g)�F����h���ް�
-simulator.frm(41,063�o�C�g)�F�퓬�Эڰ����̫��Ӽޭ��</FONT>
-���v�F<B>170,841�o�C�g</B>
-
-
-���쒆��RPG��DEMO��(Ver.0.34)�������[�X���܂����B
-�ڍׂ�<A HREF="http://hobby.2log.net/develop/archives/blog36.html">������</A>�B
-�Q�[���Ɏg�p����f�ނ�����������W���Ă��܂��B�ڍׂ͈ȉ��B
-
-���쒆��RPG��DEMO��(Ver.0.34)�������[�X���܂����B
-
-<B>[�g�p���@]</B>
-�_�E�����[�h����qwert.zip��K���Ȉʒu�Ɋۂ��Ɓi�K�w�\�����S���j�𓀂��Ă��������Brpg.exe�����s����ƊJ�n���܂��i�ςȓ��{��j�B
-
-<B>[�����]</B>
-Windows95�ȍ~�B
-<A HREF="http://www.vector.co.jp/soft/win95/util/se188840.html">Visual Basic 6.0 SP5 �����^�C�����C�u����</A>�K�{�B
-<B>[��������]</B>
-�E�^�C�g����ʂ͂���܂���B
-�E�X�e�[�W�̈ړ��͂ł��ł��܂���B
-�E�G�͂R��ނ̂݁B�e�L�g�[�Ƀ��^�V���`�������̂Ȃ�ŁA�ςł��B
-�E�{�X�͈�̂̂݁iDEMO�ł́A�����ĖŒ��ꒃ�������Ă��܂��j�B
-�EBGM�Ȃ��i���݁A�������j�B
-�EDEMO�łɃX�g�[���[�͑S������܂���B
-�E�������͂���܂���B
-�EDEMO�ł̃Z�[�u�f�[�^�́A�{�҂ƌ݊����������܂���B
-
-<B>[���̑�]</B>
-�v���C���Ă̂��ӌ������z�A�o�O���|�[�g�������҂����Ă���܂��B�Ⴆ�΁A���x���̏オ������x���Ƃ��A�����Ȃ��Ȃ����܂�Ȃ��Ƃ��A�G����������Ƃ��A���ł������ł��B
-�ǂ�Ȃ��Ƃł�������ŁA<A HREF="http://hobby.2log.net/develop/">blog�y�[�W�̃g�b�v</A>�ɂł���������ł���������΂��肪�����ł��I
-
-�_�E�����[�h��<A HREF="http://www.geocities.co.jp/SiliconValley/4977/rpg034.html">����</A>���N���b�N�I
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(859バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+main.frm(56,926バイト)：ﾒｲﾝ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+initMe.frm(12,981バイト)：初期設定画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+define.bas(4,259バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(3,622バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(8,425バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(22,247バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,755バイト)：装備ｸﾗｽﾓｼﾞｭｰﾙ
+midplay.ctl(4,932バイト)：MIDIﾌﾟﾚｲﾔｰ･ｺﾝﾄﾛｰﾙ
+animation.ctl(8,777バイト)：Imageｱﾆﾒｰｼｮﾝ･ｺﾝﾄﾛｰﾙ
+DigitFont.ctl(3,583バイト)：数字ﾌｫﾝﾄ制御･ｺﾝﾄﾛｰﾙ
+weapon.dat(412バイト)：武器防具ﾃﾞｰﾀ
+simulator.frm(41,063バイト)：戦闘ｼﾐｭﾚｰﾀ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ</FONT>
+合計：<B>170,841バイト</B>
 
 
-�����̐i���@�G���[�n���h���̖��ߍ���
-<IMG SRC="http://hobby.2log.net/develop/images/030930a.jpg" ALT="�����摜�������ƌ��Ă���ƁA����������Ȃ�Ɍ����Ă��銴�o���|���c">
-<B>[2003/09/30�̐i��]</B>
-�G���[�n���h���̖��ߍ��݁B
-�G�摜���ꖇ�쐬�B
-�]��ɂЂǂ��G�摜��̂������ւ��B
-�e�X�g�v���C���Q�[���o�����X�����B
-DEMO�ł̃����[�X�����B
-<B>[����̊J���\��]</B>
-�e�X�g�v���C���Q�[���o�����X�����B
-DEMO�ł̃����[�X�����B
-<B>[���݂̖��_�E�s�]</B>
-�A�j���[�V�����ɂ�����������Ă���A���Ȃ茩�ꂵ���B�ʂ̕�������������K�v����B
-�v���O�����\�[�X���Ăщ����Ȃ��Ă����i���ɁAbattle.bas�j�B
+製作中のRPGのDEMO版(Ver.0.34)をリリースしました。
+詳細は<A HREF="http://hobby.2log.net/develop/archives/blog36.html">こちら</A>。
+ゲームに使用する素材も引き続き募集しています。詳細は以下。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(842�o�C�g)�FVB��ۼު��̧��
-main.frm(56,419�o�C�g)�FҲ݉��̫��Ӽޭ��
-define.bas(4,161�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(3,622�o�C�g)�F����Ӽޭ��
-battle.bas(7,193�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(21,841�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,755�o�C�g)�F�����׽Ӽޭ��
-midplay.ctl(4,932�o�C�g)�FMIDI��ڲ԰����۰�
-animation.ctl(8,777�o�C�g)�FImage��Ұ��ݥ���۰�
-DigitFont.ctl(3,583�o�C�g)�F����̫�Đ��䥺��۰�
-weapon.dat(401�o�C�g)�F����h���ް�
-simulator.frm(41,049�o�C�g)�F�퓬�Эڰ����̫��Ӽޭ��</FONT>
-���v�F<B>155,575�o�C�g</B>
+製作中のRPGのDEMO版(Ver.0.34)をリリースしました。
 
-�����̐i���@DEMO�ł̃����[�X����
+<B>[使用方法]</B>
+ダウンロードしたqwert.zipを適当な位置に丸ごと（階層構造も全部）解凍してください。rpg.exeを実行すると開始します（変な日本語）。
+
+<B>[動作環境]</B>
+Windows95以降。
+<A HREF="http://www.vector.co.jp/soft/win95/util/se188840.html">Visual Basic 6.0 SP5 ランタイムライブラリ</A>必須。
+<B>[制限事項]</B>
+・タイトル画面はありません。
+・ステージの移動はできできません。
+・敵は３種類のみ。テキトーにワタシが描いたものなんで、変です。
+・ボスは一体のみ（DEMO版は、あえて滅茶苦茶強くしています）。
+・BGMなし（現在、準備中）。
+・DEMO版にストーリーは全くありません。
+・説明書はありません。
+・DEMO版のセーブデータは、本編と互換性を持ちません。
+
+<B>[その他]</B>
+プレイしてのご意見ご感想、バグレポート等をお待ちしております。例えば、レベルの上がり方が遅いとか、金がなかなか溜まらないとか、敵が強すぎるとか、何でもいいです。
+どんなことでもいいんで、<A HREF="http://hobby.2log.net/develop/">blogページのトップ</A>にでも書き込んでいただければありがたいです！
+
+ダウンロードは<A HREF="http://www.geocities.co.jp/SiliconValley/4977/rpg034.html">ここ</A>をクリック！
+
+
+今日の進捗　エラーハンドラの埋め込み
+<IMG SRC="http://hobby.2log.net/develop/images/030930a.jpg" ALT="同じ画像をずっと見ていると、何だかそれなりに見えてくる感覚が怖い…">
+<B>[2003/09/30の進捗]</B>
+エラーハンドラの埋め込み。
+敵画像を一枚作成。
+余りにひどい敵画像一体を差し替え。
+テストプレイ＆ゲームバランス調整。
+DEMO版のリリース準備。
+<B>[次回の開発予定]</B>
+テストプレイ＆ゲームバランス調整。
+DEMO版のリリース準備。
+<B>[現在の問題点・不具合]</B>
+アニメーションにちらつきが生じており、かなり見苦しい。別の方式を検討する必要あり。
+プログラムソースが再び汚くなってきた（特に、battle.bas）。
+
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(842バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+main.frm(56,419バイト)：ﾒｲﾝ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+define.bas(4,161バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(3,622バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(7,193バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(21,841バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,755バイト)：装備ｸﾗｽﾓｼﾞｭｰﾙ
+midplay.ctl(4,932バイト)：MIDIﾌﾟﾚｲﾔｰ･ｺﾝﾄﾛｰﾙ
+animation.ctl(8,777バイト)：Imageｱﾆﾒｰｼｮﾝ･ｺﾝﾄﾛｰﾙ
+DigitFont.ctl(3,583バイト)：数字ﾌｫﾝﾄ制御･ｺﾝﾄﾛｰﾙ
+weapon.dat(401バイト)：武器防具ﾃﾞｰﾀ
+simulator.frm(41,049バイト)：戦闘ｼﾐｭﾚｰﾀ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ</FONT>
+合計：<B>155,575バイト</B>
+
+今日の進捗　DEMO版のリリース準備
 <IMG SRC="http://hobby.2log.net/develop/images/030928a.jpg">
-<B>[2003/09/28�̐i��]</B>
-��l���摜�̍X�V
-�e�X�g�v���C���Q�[���o�����X�����B
-DEMO�ł̃����[�X�����B
-<B>[����̊J���\��]</B>
-�e�X�g�v���C���Q�[���o�����X�����B
-DEMO�ł̃����[�X�����B
-<B>[���݂̖��_�E�s�]</B>
-�A�j���[�V�����ɂ�����������Ă���A���Ȃ茩�ꂵ���B�ʂ̕�������������K�v����B
-�v���O�����\�[�X���Ăщ����Ȃ��Ă����i���ɁAbattle.bas�j�B
+<B>[2003/09/28の進捗]</B>
+主人公画像の更新
+テストプレイ＆ゲームバランス調整。
+DEMO版のリリース準備。
+<B>[次回の開発予定]</B>
+テストプレイ＆ゲームバランス調整。
+DEMO版のリリース準備。
+<B>[現在の問題点・不具合]</B>
+アニメーションにちらつきが生じており、かなり見苦しい。別の方式を検討する必要あり。
+プログラムソースが再び汚くなってきた（特に、battle.bas）。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(842�o�C�g)�FVB��ۼު��̧��
-main.frm(52,589�o�C�g)�FҲ݉��̫��Ӽޭ��
-define.bas(3,781�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(2,468�o�C�g)�F����Ӽޭ��
-battle.bas(6,309�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(17,646�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,587�o�C�g)�F�����׽Ӽޭ��
-midplay.ctl(3,337�o�C�g)�FMIDI��ڲ԰����۰�
-animation.ctl(6,496�o�C�g)�FImage��Ұ��ݥ���۰�
-DigitFont.ctl(3,415�o�C�g)�F����̫�Đ��䥺��۰�
-weapon.dat(401�o�C�g)�F����h���ް�
-simulator.frm(41,049�o�C�g)�F�퓬�Эڰ����̫��Ӽޭ��</FONT>
-���v�F<B>140,920�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(842バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+main.frm(52,589バイト)：ﾒｲﾝ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+define.bas(3,781バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(2,468バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(6,309バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(17,646バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,587バイト)：装備ｸﾗｽﾓｼﾞｭｰﾙ
+midplay.ctl(3,337バイト)：MIDIﾌﾟﾚｲﾔｰ･ｺﾝﾄﾛｰﾙ
+animation.ctl(6,496バイト)：Imageｱﾆﾒｰｼｮﾝ･ｺﾝﾄﾛｰﾙ
+DigitFont.ctl(3,415バイト)：数字ﾌｫﾝﾄ制御･ｺﾝﾄﾛｰﾙ
+weapon.dat(401バイト)：武器防具ﾃﾞｰﾀ
+simulator.frm(41,049バイト)：戦闘ｼﾐｭﾚｰﾀ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ</FONT>
+合計：<B>140,920バイト</B>
 
 
 
-�����̐i���@�e�X�g�v���C���Q�[���o�����X����
+今日の進捗　テストプレイ＆ゲームバランス調整
 <IMG SRC="http://hobby.2log.net/develop/images/030927a.jpg">
-<B>[2003/09/27�̐i��]</B>
-�G�L�����̊G�i���j���Q���쐬�B
-�G�L�����̃f�[�^�Ǎ��ݏ������X�V�B
-�e�X�g�v���C���Q�[���o�����X�����B
-����E�h��f�[�^���X�V�B
-<B>[����̊J���\��]</B>
-�e�X�g�v���C���Q�[���o�����X�����B
-DEMO�ł̃����[�X�����B
-<B>[���݂̖��_�E�s�]</B>
-�A�j���[�V�����ɂ�����������Ă���A���Ȃ茩�ꂵ���B�ʂ̕�������������K�v����B
-�v���O�����\�[�X���Ăщ����Ȃ��Ă����i���ɁAbattle.bas�j�B
+<B>[2003/09/27の進捗]</B>
+敵キャラの絵（仮）を２枚作成。
+敵キャラのデータ読込み処理を更新。
+テストプレイ＆ゲームバランス調整。
+武器・防具データを更新。
+<B>[次回の開発予定]</B>
+テストプレイ＆ゲームバランス調整。
+DEMO版のリリース準備。
+<B>[現在の問題点・不具合]</B>
+アニメーションにちらつきが生じており、かなり見苦しい。別の方式を検討する必要あり。
+プログラムソースが再び汚くなってきた（特に、battle.bas）。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(842�o�C�g)�FVB��ۼު��̧��
-main.frm(52,588�o�C�g)�FҲ݉��̫��Ӽޭ��
-define.bas(3,781�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(2,468�o�C�g)�F����Ӽޭ��
-battle.bas(6,286�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(17,646�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,587�o�C�g)�F�����׽Ӽޭ��
-midplay.ctl(3,337�o�C�g)�FMIDI��ڲ԰����۰�
-animation.ctl(6,496�o�C�g)�FImage��Ұ��ݥ���۰�
-DigitFont.ctl(3,415�o�C�g)�F����̫�Đ��䥺��۰�
-weapon.dat(401�o�C�g)�F����h���ް�
-simulator.frm(41,049�o�C�g)�F�퓬�Эڰ����̫��Ӽޭ��</FONT>
-���v�F<B>140,896�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(842バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+main.frm(52,588バイト)：ﾒｲﾝ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+define.bas(3,781バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(2,468バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(6,286バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(17,646バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,587バイト)：装備ｸﾗｽﾓｼﾞｭｰﾙ
+midplay.ctl(3,337バイト)：MIDIﾌﾟﾚｲﾔｰ･ｺﾝﾄﾛｰﾙ
+animation.ctl(6,496バイト)：Imageｱﾆﾒｰｼｮﾝ･ｺﾝﾄﾛｰﾙ
+DigitFont.ctl(3,415バイト)：数字ﾌｫﾝﾄ制御･ｺﾝﾄﾛｰﾙ
+weapon.dat(401バイト)：武器防具ﾃﾞｰﾀ
+simulator.frm(41,049バイト)：戦闘ｼﾐｭﾚｰﾀ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ</FONT>
+合計：<B>140,896バイト</B>
 
 
 
-�����̐i���@�G����̃A�C�e�����D����
+今日の進捗　敵からのアイテム強奪処理
 <IMG SRC="http://hobby.2log.net/develop/images/030925a.jpg">
-<B>[2003/09/25�̐i��]</B>
-�퓬��ɓG����A�C�e�������D���鏈���B
-�G�L�����̃f�[�^�\���̐݌v�B
-�G�L�����̃f�[�^�Ǎ��ݏ������X�V�B
-<B>[����̊J���\��]</B>
-�G�L�����̃f�[�^�Ǎ��ݏ������X�V�B
-�G�L�����f�[�^���쐬�B
-�Q�[���o�����X�����B
-����E�h��f�[�^���쐬�B
-<B>[���݂̖��_�E�s�]</B>
-�A�j���[�V�����ɂ�����������Ă���A���Ȃ茩�ꂵ���B�ʂ̕�������������K�v����B
-�v���O�����\�[�X���Ăщ����Ȃ��Ă����i���ɁAbattle.bas�j�B
+<B>[2003/09/25の進捗]</B>
+戦闘後に敵からアイテムを強奪する処理。
+敵キャラのデータ構造の設計。
+敵キャラのデータ読込み処理を更新。
+<B>[次回の開発予定]</B>
+敵キャラのデータ読込み処理を更新。
+敵キャラデータを作成。
+ゲームバランス調整。
+武器・防具データを作成。
+<B>[現在の問題点・不具合]</B>
+アニメーションにちらつきが生じており、かなり見苦しい。別の方式を検討する必要あり。
+プログラムソースが再び汚くなってきた（特に、battle.bas）。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(842�o�C�g)�FVB��ۼު��̧��
-main.frm(52,373�o�C�g)�FҲ݉��̫��Ӽޭ��
-define.bas(3,255�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(2,468�o�C�g)�F����Ӽޭ��
-battle.bas(6,209�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(16,987�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,587�o�C�g)�F�����׽Ӽޭ��
-midplay.ctl(3,337�o�C�g)�FMIDI��ڲ԰����۰�
-animation.ctl(6,108�o�C�g)�FImage��Ұ��ݥ���۰�
-DigitFont.ctl(3,415�o�C�g)�F����̫�Đ��䥺��۰�
-weapon.dat(397�o�C�g)�F����h���ް�
-simulator.frm(41,049�o�C�g)�F�퓬�Эڰ����̫��Ӽޭ��</FONT>
-���v�F<B>139,027�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(842バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+main.frm(52,373バイト)：ﾒｲﾝ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+define.bas(3,255バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(2,468バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(6,209バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(16,987バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,587バイト)：装備ｸﾗｽﾓｼﾞｭｰﾙ
+midplay.ctl(3,337バイト)：MIDIﾌﾟﾚｲﾔｰ･ｺﾝﾄﾛｰﾙ
+animation.ctl(6,108バイト)：Imageｱﾆﾒｰｼｮﾝ･ｺﾝﾄﾛｰﾙ
+DigitFont.ctl(3,415バイト)：数字ﾌｫﾝﾄ制御･ｺﾝﾄﾛｰﾙ
+weapon.dat(397バイト)：武器防具ﾃﾞｰﾀ
+simulator.frm(41,049バイト)：戦闘ｼﾐｭﾚｰﾀ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ</FONT>
+合計：<B>139,027バイト</B>
 
-�����̐i���@�΃{�X��̏����i���̂Q�j
+今日の進捗　対ボス戦の処理（その２）
 <IMG SRC="http://hobby.2log.net/develop/images/030924a.jpg">
-<B>[2003/09/24�̐i��]</B>
-�{�X�G�i���j���P���쐬�B
-�΃{�X��w�i�G���P���쐬�B
-�΃{�X��ł̔w�i�ύX�����B
-�L�����N�^�̉B���p�����[�^�Ƃ��āu�^�̗ǂ��v��݂���B
-<B>[����̊J���\��]</B>
-�퓬��ɓG����A�C�e����D������
-�G�L�����f�[�^���쐬�B
-�Q�[���o�����X�����B
-����E�h��f�[�^���쐬�B
-<B>[���݂̖��_�E�s�]</B>
-�G�L�����̃f�[�^�\����������Ɛ݌v����K�v�L��B
-�A�j���[�V�����ɂ�����������Ă���A���Ȃ茩�ꂵ���B�ʂ̕�������������K�v����B
-�v���O�����\�[�X���Ăщ����Ȃ��Ă����i���ɁAbattle.bas�j�B
+<B>[2003/09/24の進捗]</B>
+ボス絵（仮）を１枚作成。
+対ボス戦背景絵を１枚作成。
+対ボス戦での背景変更処理。
+キャラクタの隠しパラメータとして「運の良さ」を設ける。
+<B>[次回の開発予定]</B>
+戦闘後に敵からアイテムを奪う処理
+敵キャラデータを作成。
+ゲームバランス調整。
+武器・防具データを作成。
+<B>[現在の問題点・不具合]</B>
+敵キャラのデータ構造をきちんと設計する必要有り。
+アニメーションにちらつきが生じており、かなり見苦しい。別の方式を検討する必要あり。
+プログラムソースが再び汚くなってきた（特に、battle.bas）。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(842�o�C�g)�FVB��ۼު��̧��
-main.frm(52,246�o�C�g)�FҲ݉��̫��Ӽޭ��
-define.bas(2,795�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(2,468�o�C�g)�F����Ӽޭ��
-battle.bas(6,144�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(16,872�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,587�o�C�g)�F�����׽Ӽޭ��
-midplay.ctl(3,337�o�C�g)�FMIDI��ڲ԰����۰�
-animation.ctl(6,108�o�C�g)�FImage��Ұ��ݥ���۰�
-DigitFont.ctl(3,415�o�C�g)�F����̫�Đ��䥺��۰�
-weapon.dat(397�o�C�g)�F����h���ް�
-simulator.frm(41,049�o�C�g)�F�퓬�Эڰ����̫��Ӽޭ��</FONT>
-���v�F<B>138,260�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(842バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+main.frm(52,246バイト)：ﾒｲﾝ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+define.bas(2,795バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(2,468バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(6,144バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(16,872バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,587バイト)：装備ｸﾗｽﾓｼﾞｭｰﾙ
+midplay.ctl(3,337バイト)：MIDIﾌﾟﾚｲﾔｰ･ｺﾝﾄﾛｰﾙ
+animation.ctl(6,108バイト)：Imageｱﾆﾒｰｼｮﾝ･ｺﾝﾄﾛｰﾙ
+DigitFont.ctl(3,415バイト)：数字ﾌｫﾝﾄ制御･ｺﾝﾄﾛｰﾙ
+weapon.dat(397バイト)：武器防具ﾃﾞｰﾀ
+simulator.frm(41,049バイト)：戦闘ｼﾐｭﾚｰﾀ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ</FONT>
+合計：<B>138,260バイト</B>
 
-�����̐i���@Windows95+98+ME�̃}���`�u�[�g���\�z
+今日の進捗　Windows95+98+MEのマルチブート環境構築
 <IMG SRC="http://hobby.2log.net/develop/images/030923b.jpg">
 <IMG SRC="http://hobby.2log.net/develop/images/030923a.jpg">
-<B>[2003/09/23�̐i��]</B>
-<A HREF="http://elm-chan.org/fsw/mbm/mbm.html">MBM</A>��p�����}���`�u�[�g�����\�z
-�E���p�[�e�B�V������Windows98SE�𓱓�
-�E���p�[�e�B�V������Windows95�𓱓�
-�E��O�p�[�e�B�V������WindowsME�𓱓�
-�E��l�p�[�e�B�V������OS�o�b�N�A�b�v�̈�
-���g�p�}�V���FCPU��K6-233MHz�A������128MB�AHDD8G�B
-<B>[����̊J���\��]</B>
-�O���ƕω��Ȃ�
-<B>[���݂̖��_�E�s�]</B>
-�O���ƕω��Ȃ�
+<B>[2003/09/23の進捗]</B>
+<A HREF="http://elm-chan.org/fsw/mbm/mbm.html">MBM</A>を用いたマルチブート環境を構築
+・第一パーティションにWindows98SEを導入
+・第二パーティションにWindows95を導入
+・第三パーティションにWindowsMEを導入
+・第四パーティションはOSバックアップ領域
+※使用マシン：CPUはK6-233MHz、メモリ128MB、HDD8G。
+<B>[次回の開発予定]</B>
+前日と変化なし
+<B>[現在の問題点・不具合]</B>
+前日と変化なし
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-�O���ƕω��Ȃ�
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+前日と変化なし
 
-<B>[�G�L]</B>
-���񏉂߂�Windows9X�̃}���`�u�[�g�����\�z���܂����B���������֗��ł��B
-��ԕ֗��Ȃ̂́A�ӂ��Ƀh���C�u�ۂ��Ɓu�R�s�[�v���u�\��t���v���邾���ŁA�ʂ̃h���C�u�ɓ��������R�s�[�ł���Ƃ���ł��B���R�Ȃ���ACD-ROM�Ɋۂ��ƃR�s�[���ăo�b�N�A�b�v���邱�Ƃ��ł��܂��B�ꌩ������O�Ȃ��Ƃ̂悤�ł����A�ʏ킱����s�����Ƃ͕s�\�ł��B
-���^�V�̏ꍇ�A����e�X�g���鎞���A�Ȃ�ׂ��܂�����Ȋ����~�����킯�ł����A���̓x�ɂ��������C���X�g�[���������͔̂��Ɏ�Ԃ�������܂��B�m�[�g���̃S�[�X�g���̃h���C�u�C���[�W���R�s�[�ł���\�t�g�͂���܂����A���̎�y���ɂ͓G��Ȃ���ł͂Ȃ��ł��傤���B
-���ƁAWindows9X���ɕʂ̃}�V������������悤�Ȕn���n���������Ƃ�����������܂����B����ŁA���^�V�̕�����苒����|���R�cPC�B���A�S�u���Ȃ��X�N���b�v�ɏo���܂��B���΂�I
-�����A���̊����\�z����܂łɖc��Ȏ��Ԃ��������Ă��܂��܂����B���߂ĂŊ���Ă��Ȃ����Ƃ�����A���v���Ԃ͖�10���Ԃ��炢�ł��傤���B������x�Ƃ���I
+<B>[雑記]</B>
+今回初めてWindows9Xのマルチブート環境を構築しました。すっごい便利です。
+一番便利なのは、ふつうにドライブ丸ごと「コピー」＆「貼り付け」するだけで、別のドライブに同じ環境をコピーできるところです。当然ながら、CD-ROMに丸ごとコピーしてバックアップすることもできます。一見あたり前なことのようですが、通常これを行うことは不可能です。
+ワタシの場合、動作テストする時等、なるべくまっさらな環境が欲しいわけですが、その度にいちいちインストールし直すのは非常に手間がかかります。ノートンのゴースト等のドライブイメージをコピーできるソフトはありますが、この手軽さには敵わないんではないでしょうか。
+あと、Windows9X毎に別のマシンを準備するような馬鹿馬鹿しいことからも解放されました。これで、ワタシの部屋を占拠するポンコツPC達も、心置きなくスクラップに出せます。あばよ！
+ただ、この環境を構築するまでに膨大な時間がかかってしまいました。初めてで慣れていないこともあり、所要時間は約10時間くらいでしょうか。もう二度とやらん！
 
-�����̐i���@�΃{�X��̏����i���̂P�j
+今日の進捗　対ボス戦の処理（その１）
 <IMG SRC="http://hobby.2log.net/develop/images/030922a.jpg">
-<B>[2003/09/22�̐i��]</B>
-�΃{�X��̏������쐬
-�I���{�^���̍쐬
-<B>[����̊J���\��]</B>
-�΃{�X��̏������X�V
-�Q�[���o�����X�����B
-����E�h��f�[�^���쐬�B
-�G�L�����f�[�^���쐬�B
-<B>[���݂̖��_�E�s�]</B>
-�v���O�����\�[�X���Ăщ����Ȃ��Ă����i���ɁAbattle.bas�j�B
-�A�j���[�V�����ɂ�����������Ă���A���X���ꂵ���B��X�y�b�N�̃}�V���œ��삳����Ƃǂ��Ȃ邩�m�F���K�v�B
+<B>[2003/09/22の進捗]</B>
+対ボス戦の処理を作成
+終了ボタンの作成
+<B>[次回の開発予定]</B>
+対ボス戦の処理を更新
+ゲームバランス調整。
+武器・防具データを作成。
+敵キャラデータを作成。
+<B>[現在の問題点・不具合]</B>
+プログラムソースが再び汚くなってきた（特に、battle.bas）。
+アニメーションにちらつきが生じており、少々見苦しい。低スペックのマシンで動作させるとどうなるか確認が必要。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(842�o�C�g)�FVB��ۼު��̧��
-main.frm(51,527�o�C�g)�FҲ݉��̫��Ӽޭ��
-define.bas(2,795�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(2,468�o�C�g)�F����Ӽޭ��
-battle.bas(6,144�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(17,235�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,587�o�C�g)�F�����׽Ӽޭ��
-midplay.ctl(3,337�o�C�g)�FMIDI��ڲ԰����۰�
-animation.ctl(6,108�o�C�g)�FImage��Ұ��ݥ���۰�
-DigitFont.ctl(3,415�o�C�g)�F����̫�Đ��䥺��۰�
-weapon.dat(355�o�C�g)�F����h���ް�
-simulator.frm(41,049�o�C�g)�F�퓬�Эڰ����̫��Ӽޭ��</FONT>
-���v�F<B>137,862�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(842バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+main.frm(51,527バイト)：ﾒｲﾝ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+define.bas(2,795バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(2,468バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(6,144バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(17,235バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,587バイト)：装備ｸﾗｽﾓｼﾞｭｰﾙ
+midplay.ctl(3,337バイト)：MIDIﾌﾟﾚｲﾔｰ･ｺﾝﾄﾛｰﾙ
+animation.ctl(6,108バイト)：Imageｱﾆﾒｰｼｮﾝ･ｺﾝﾄﾛｰﾙ
+DigitFont.ctl(3,415バイト)：数字ﾌｫﾝﾄ制御･ｺﾝﾄﾛｰﾙ
+weapon.dat(355バイト)：武器防具ﾃﾞｰﾀ
+simulator.frm(41,049バイト)：戦闘ｼﾐｭﾚｰﾀ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ</FONT>
+合計：<B>137,862バイト</B>
 
-�����̐i���@�X�e�[�W�^�C�g���y�єw�i�̕\������
+今日の進捗　ステージタイトル及び背景の表示処理
 <IMG SRC="http://hobby.2log.net/develop/images/030921a.jpg">
-<B>[2003/09/21�̐i��]</B>
-�Z�[�u�����[�h���ɕs�������������ꍇ�Ƀv���O��������~����s����C���B
-�uBOSS�v�{�^�����쐬�i�@�\�͖������j
-��ʃ��C�A�E�g�̕ύX
-�X�e�[�W�^�C�g���y�єw�i�̕\���������쐬
-<B>[����̊J���\��]</B>
-�Q�[���o�����X�����B
-����E�h��f�[�^���쐬�B
-�G�L�����f�[�^���쐬�B
-<B>[���݂̖��_�E�s�]</B>
-�v���O�����\�[�X���Ăщ����Ȃ��Ă����i���ɁAbattle.bas�j�B
-�A�j���[�V�����ɂ�����������Ă���A���X���ꂵ���B��X�y�b�N�̃}�V���œ��삳����Ƃǂ��Ȃ邩�m�F���K�v�B
+<B>[2003/09/21の進捗]</B>
+セーブ＆ロード時に不正が発生した場合にプログラムが停止する不具合を修正。
+「BOSS」ボタンを作成（機能は未実装）
+画面レイアウトの変更
+ステージタイトル及び背景の表示処理を作成
+<B>[次回の開発予定]</B>
+ゲームバランス調整。
+武器・防具データを作成。
+敵キャラデータを作成。
+<B>[現在の問題点・不具合]</B>
+プログラムソースが再び汚くなってきた（特に、battle.bas）。
+アニメーションにちらつきが生じており、少々見苦しい。低スペックのマシンで動作させるとどうなるか確認が必要。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(842�o�C�g)�FVB��ۼު��̧��
-main.frm(50,957�o�C�g)�FҲ݉��̫��Ӽޭ��
-define.bas(2,056�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(2,468�o�C�g)�F����Ӽޭ��
-battle.bas(6,144�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(17,235�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,587�o�C�g)�F�����׽Ӽޭ��
-midplay.ctl(3,337�o�C�g)�FMIDI��ڲ԰����۰�
-animation.ctl(6,108�o�C�g)�FImage��Ұ��ݥ���۰�
-DigitFont.ctl(3,415�o�C�g)�F����̫�Đ��䥺��۰�
-weapon.dat(355�o�C�g)�F����h���ް�
-simulator.frm(41,049�o�C�g)�F�퓬�Эڰ����̫��Ӽޭ��</FONT>
-���v�F<B>136,553�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(842バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+main.frm(50,957バイト)：ﾒｲﾝ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+define.bas(2,056バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(2,468バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(6,144バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(17,235バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,587バイト)：装備ｸﾗｽﾓｼﾞｭｰﾙ
+midplay.ctl(3,337バイト)：MIDIﾌﾟﾚｲﾔｰ･ｺﾝﾄﾛｰﾙ
+animation.ctl(6,108バイト)：Imageｱﾆﾒｰｼｮﾝ･ｺﾝﾄﾛｰﾙ
+DigitFont.ctl(3,415バイト)：数字ﾌｫﾝﾄ制御･ｺﾝﾄﾛｰﾙ
+weapon.dat(355バイト)：武器防具ﾃﾞｰﾀ
+simulator.frm(41,049バイト)：戦闘ｼﾐｭﾚｰﾀ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ</FONT>
+合計：<B>136,553バイト</B>
 
-�����̐i���@�Z�[�u�����[�h�����̍쐬
+今日の進捗　セーブ＆ロード処理の作成
 <IMG SRC="http://hobby.2log.net/develop/images/030920a.jpg">
-<B>[2003/09/20�̐i��]</B>
-�X�ŏ��i��I�����Ă��A�u�ǂ���I������Ă��Ȃ��v�Ɣ��f�����s����C���B
-�Z�[�u�����[�h�����̍쐬�B
-�Q�[���o�����X�����B
-����E�h��f�[�^���ꕔ�쐬�B
-<B>[����̊J���\��]</B>
-�s��C���B
-�Q�[���o�����X�����B
-����E�h��f�[�^���쐬�B
-�G�L�����f�[�^���쐬�B
-<B>[���݂̖��_�E�s�]</B>
-�Z�[�u�����[�h���ɕs�������������ꍇ�Ƀv���O��������~����B
-�X�̏������N���X���W���[�������邩�A�������K�v�B
-�v���O�����\�[�X���Ăщ����Ȃ��Ă����i���ɁAbattle.bas�j�B
-�A�j���[�V�����ɂ�����������Ă���A���X���ꂵ���B��X�y�b�N�̃}�V���œ��삳����Ƃǂ��Ȃ邩�m�F���K�v�B
+<B>[2003/09/20の進捗]</B>
+店で商品を選択しても、「どれも選択されていない」と判断される不具合を修正。
+セーブ＆ロード処理の作成。
+ゲームバランス調整。
+武器・防具データを一部作成。
+<B>[次回の開発予定]</B>
+不具合修正。
+ゲームバランス調整。
+武器・防具データを作成。
+敵キャラデータを作成。
+<B>[現在の問題点・不具合]</B>
+セーブ＆ロード時に不正が発生した場合にプログラムが停止する。
+店の処理をクラスモジュール化するか、検討が必要。
+プログラムソースが再び汚くなってきた（特に、battle.bas）。
+アニメーションにちらつきが生じており、少々見苦しい。低スペックのマシンで動作させるとどうなるか確認が必要。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(842�o�C�g)�FVB��ۼު��̧��
-main.frm(47,025�o�C�g)�FҲ݉��̫��Ӽޭ��
-define.bas(2,026�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(1,179�o�C�g)�F����Ӽޭ��
-battle.bas(6,144�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(16,975�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,587�o�C�g)�F�����׽Ӽޭ��
-midplay.ctl(3,337�o�C�g)�FMIDI��ڲ԰����۰�
-animation.ctl(6,108�o�C�g)�FImage��Ұ��ݥ���۰�
-DigitFont.ctl(3,415�o�C�g)�F����̫�Đ��䥺��۰�
-weapon.dat(355�o�C�g)�F����h���ް�
-simulator.frm(41,049�o�C�g)�F�퓬�Эڰ����̫��Ӽޭ��</FONT>
-���v�F<B>131,042�o�C�g</B>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(842バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+main.frm(47,025バイト)：ﾒｲﾝ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+define.bas(2,026バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(1,179バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(6,144バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(16,975バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,587バイト)：装備ｸﾗｽﾓｼﾞｭｰﾙ
+midplay.ctl(3,337バイト)：MIDIﾌﾟﾚｲﾔｰ･ｺﾝﾄﾛｰﾙ
+animation.ctl(6,108バイト)：Imageｱﾆﾒｰｼｮﾝ･ｺﾝﾄﾛｰﾙ
+DigitFont.ctl(3,415バイト)：数字ﾌｫﾝﾄ制御･ｺﾝﾄﾛｰﾙ
+weapon.dat(355バイト)：武器防具ﾃﾞｰﾀ
+simulator.frm(41,049バイト)：戦闘ｼﾐｭﾚｰﾀ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ</FONT>
+合計：<B>131,042バイト</B>
 
 
-�����̐i���@����E�h��X���̏������쐬�i���̂Q�j
+今日の進捗　武器・防具店内の処理を作成（その２）
 <IMG SRC="http://hobby.2log.net/develop/images/030919a.jpg">
-<B>[2003/09/19�̐i��]</B>
-�X���̏��i�̕\�����쐬�B
-�w���������i�̑����������쐬�B
-<B>[����̊J���\��]</B>
-�s��C���B
-�Z�[�u�����[�h���u�̍쐬�B
-�Q�[���o�����X�����B
-<B>[���݂̖��_�E�s�]</B>
-�X�ŏ��i��I�����Ă��A�u�ǂ���I������Ă��Ȃ��v�Ɣ��f�����s�������B
-�X�ōw���������i�����������������̂��A����m�F�����Ă��Ȃ��B
-�X�̏������N���X���W���[�������邩�A�������K�v�B
-�v���O�����\�[�X���Ăщ����Ȃ��Ă����i���ɁAbattle.bas�j�B
-�A�j���[�V�����ɂ�����������Ă���A���X���ꂵ���B��X�y�b�N�̃}�V���œ��삳����Ƃǂ��Ȃ邩�m�F���K�v�B
+<B>[2003/09/19の進捗]</B>
+店内の商品の表示を作成。
+購入した商品の装備処理を作成。
+<B>[次回の開発予定]</B>
+不具合修正。
+セーブ＆ロード処置の作成。
+ゲームバランス調整。
+<B>[現在の問題点・不具合]</B>
+店で商品を選択しても、「どれも選択されていない」と判断される不具合がある。
+店で購入した商品が正しく装備されるのか、動作確認をしていない。
+店の処理をクラスモジュール化するか、検討が必要。
+プログラムソースが再び汚くなってきた（特に、battle.bas）。
+アニメーションにちらつきが生じており、少々見苦しい。低スペックのマシンで動作させるとどうなるか確認が必要。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(842�o�C�g)�FVB��ۼު��̧��
-main.frm(42,254�o�C�g)�FҲ݉��̫��Ӽޭ��
-define.bas(2,027�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(1,179�o�C�g)�F����Ӽޭ��
-battle.bas(5,064�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(15,587�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,382�o�C�g)�F�����׽Ӽޭ��
-midplay.ctl(3,337�o�C�g)�FMIDI��ڲ԰����۰�
-animation.ctl(6,108�o�C�g)�FImage��Ұ��ݥ���۰�
-DigitFont.ctl(3,415�o�C�g)�F����̫�Đ��䥺��۰�
-weapon.dat(322�o�C�g)�F����h���ް�
-simulator.frm(41,038�o�C�g)�F�퓬�Эڰ����̫��Ӽޭ��</FONT>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(842バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+main.frm(42,254バイト)：ﾒｲﾝ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+define.bas(2,027バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(1,179バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(5,064バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(15,587バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,382バイト)：装備ｸﾗｽﾓｼﾞｭｰﾙ
+midplay.ctl(3,337バイト)：MIDIﾌﾟﾚｲﾔｰ･ｺﾝﾄﾛｰﾙ
+animation.ctl(6,108バイト)：Imageｱﾆﾒｰｼｮﾝ･ｺﾝﾄﾛｰﾙ
+DigitFont.ctl(3,415バイト)：数字ﾌｫﾝﾄ制御･ｺﾝﾄﾛｰﾙ
+weapon.dat(322バイト)：武器防具ﾃﾞｰﾀ
+simulator.frm(41,038バイト)：戦闘ｼﾐｭﾚｰﾀ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ</FONT>
 
-�����̐i���@����E�h��f�[�^�̓Ǎ���
+今日の進捗　武器・防具データの読込み
 <IMG SRC="http://hobby.2log.net/develop/images/030917a.jpg">
-<B>[2003/09/16�̐i��]</B>
-����E�h��̃T���v���f�[�^�̍쐬�B
-����E�h��f�[�^�Ǎ��ݏ����̍쐬�B
-�X���̏����i�X�܈ړ��j���쐬�B
-<B>[����̊J���\��]</B>
-�X���̏����i���i�̕\���A�X�܈ړ��j���쐬�B
-<B>[���݂̖��_]</B>
-�A�j���[�V�����ɂ�����������Ă���A���X���ꂵ���B
-�v���O�����\�[�X���Ăщ����Ȃ��Ă����B
+<B>[2003/09/16の進捗]</B>
+武器・防具のサンプルデータの作成。
+武器・防具データ読込み処理の作成。
+店内の処理（店舗移動）を作成。
+<B>[次回の開発予定]</B>
+店内の処理（商品の表示、店舗移動）を作成。
+<B>[現在の問題点]</B>
+アニメーションにちらつきが生じており、少々見苦しい。
+プログラムソースが再び汚くなってきた。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(857�o�C�g)�FVB��ۼު��̧��
-main.frm(40,962�o�C�g)�F���C�����̫��Ӽޭ��
-shop.frm(5,049�o�C�g)�F�X�܉��̫��Ӽޭ��
-define.bas(1,992�o�C�g)�F���ʒ�`Ӽޭ��
-common.bas(1,179�o�C�g)�F����Ӽޭ��
-battle.bas(5,064�o�C�g)�F�퓬�֘A����Ӽޭ��
-character.cls(15,271�o�C�g)�F��׸���׽Ӽޭ��
-equipment.cls(2,159�o�C�g)�F�����׽Ӽޭ��
-midplay.ctl(3,337�o�C�g)�FMIDI��ڲ԰����۰�
-animation.ctl(6,108�o�C�g)�FImage��Ұ��ݥ���۰�
-DigitFont.ctl(3,415�o�C�g)�F����̫�Đ��䥺��۰�
-weapon.dat(318�o�C�g)�F����h���ް�
-simulator.frm(41,038�o�C�g)�F�퓬�Эڰ����̫��Ӽޭ��</FONT>
-
-
-���́A�����ŃQ�[������낤�Ǝv���̂�
-���Ď����ŃQ�[��������Ĕ��\���邱�Ƃ́A���ȕ\���̎�i�ł���A�����̔\�͂̌֎��������B���ł́A���^�V���\�͂�債������
-�΂��d�˂邲�ƂɁA�W���͂������Ă���̂��킩��B
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(857バイト)：VBﾌﾟﾛｼﾞｪｸﾄﾌｧｲﾙ
+main.frm(40,962バイト)：メイン画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+shop.frm(5,049バイト)：店舗画面ﾌｫｰﾑﾓｼﾞｭｰﾙ
+define.bas(1,992バイト)：共通定義ﾓｼﾞｭｰﾙ
+common.bas(1,179バイト)：共通ﾓｼﾞｭｰﾙ
+battle.bas(5,064バイト)：戦闘関連共通ﾓｼﾞｭｰﾙ
+character.cls(15,271バイト)：ｷｬﾗｸﾀ･ｸﾗｽﾓｼﾞｭｰﾙ
+equipment.cls(2,159バイト)：装備ｸﾗｽﾓｼﾞｭｰﾙ
+midplay.ctl(3,337バイト)：MIDIﾌﾟﾚｲﾔｰ･ｺﾝﾄﾛｰﾙ
+animation.ctl(6,108バイト)：Imageｱﾆﾒｰｼｮﾝ･ｺﾝﾄﾛｰﾙ
+DigitFont.ctl(3,415バイト)：数字ﾌｫﾝﾄ制御･ｺﾝﾄﾛｰﾙ
+weapon.dat(318バイト)：武器防具ﾃﾞｰﾀ
+simulator.frm(41,038バイト)：戦闘ｼﾐｭﾚｰﾀ画面ﾌｫｰﾑﾓｼﾞｭｰﾙ</FONT>
 
 
+何故、自分でゲームを作ろうと思うのか
+かつて自分でゲームを作って発表することは、自己表現の手段であり、自分の能力の誇示だった。今では、ワタシが能力を大したこと
+歳を重ねるごとに、集中力が落ちてくるのがわかる。
 
-�����̐i���@����E�h��X���̏����i���̂P�j
+
+
+今日の進捗　武器・防具店内の処理（その１）
 <IMG SRC="http://hobby.2log.net/develop/images/030917a.jpg">
-<B>[2003/09/16�̐i��]</B>
-�X���̏����i���i�̍w���A�X�܈ړ��j���쐬�B
-<B>[����̊J���\��]</B>
-�X���̏����i���i�̍w���A�X�܈ړ��j���쐬�B
-����E�h��̃T���v���f�[�^�̍쐬�B
-<B>[���݂̖��_]</B>
-�A�j���[�V�����ɂ�����������Ă���A���X���ꂵ���B
+<B>[2003/09/16の進捗]</B>
+店内の処理（商品の購入、店舗移動）を作成。
+<B>[次回の開発予定]</B>
+店内の処理（商品の購入、店舗移動）を作成。
+武器・防具のサンプルデータの作成。
+<B>[現在の問題点]</B>
+アニメーションにちらつきが生じており、少々見苦しい。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(825�o�C�g)
-main.frm(37,993�o�C�g)
-shop.frm(4,993�o�C�g)
-define.bas(1,983�o�C�g)
-common.bas(1,110�o�C�g)
-battle.bas(5,064�o�C�g)
-character.cls(14,505�o�C�g)
-midplay.ctl(3,337�o�C�g)
-animation.ctl(6,108�o�C�g)
-DigitFont.ctl(3,415�o�C�g)
-simulator.frm(41,038�o�C�g)</FONT>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(825バイト)
+main.frm(37,993バイト)
+shop.frm(4,993バイト)
+define.bas(1,983バイト)
+common.bas(1,110バイト)
+battle.bas(5,064バイト)
+character.cls(14,505バイト)
+midplay.ctl(3,337バイト)
+animation.ctl(6,108バイト)
+DigitFont.ctl(3,415バイト)
+simulator.frm(41,038バイト)</FONT>
 
-�����̐i���@����Ɩh��̎���
+今日の進捗　武器と防具の実装
 <IMG SRC="http://hobby.2log.net/develop/images/030916a.jpg">
-<B>[2003/09/16�̐i��]</B>
-����Ɩh��̏������쐬�B
-�X�̉�ʘg���쐬�B
-<B>[����̊J���\��]</B>
-�X���̏����i���i�̍w���A�X�܈ړ��j���쐬�B
-�퓬�V�~�����[�^�ɂāA�Q�[���o�����X�i�G�̋����A�o���l�̗ʂȂǁj�𒲐��B
-<B>[���݂̖��_]</B>
-�A�j���[�V�����ɂ�����������Ă���A���X���ꂵ���B
+<B>[2003/09/16の進捗]</B>
+武器と防具の処理を作成。
+店の画面枠を作成。
+<B>[次回の開発予定]</B>
+店内の処理（商品の購入、店舗移動）を作成。
+戦闘シミュレータにて、ゲームバランス（敵の強さ、経験値の量など）を調整。
+<B>[現在の問題点]</B>
+アニメーションにちらつきが生じており、少々見苦しい。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(825�o�C�g)
-main.frm(37,957�o�C�g)
-shop.frm(4,993�o�C�g)
-define.bas(165�o�C�g)
-common.bas(2,086�o�C�g)
-battle.bas(5,545�o�C�g)
-character.cls(14,515�o�C�g)
-midplay.ctl(3,337�o�C�g)
-animation.ctl(6,108�o�C�g)
-DigitFont.ctl(3,415�o�C�g)
-simulator.frm(41,038�o�C�g)</FONT>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(825バイト)
+main.frm(37,957バイト)
+shop.frm(4,993バイト)
+define.bas(165バイト)
+common.bas(2,086バイト)
+battle.bas(5,545バイト)
+character.cls(14,515バイト)
+midplay.ctl(3,337バイト)
+animation.ctl(6,108バイト)
+DigitFont.ctl(3,415バイト)
+simulator.frm(41,038バイト)</FONT>
 
-�����̐i���@�A�j���[�V��������ƃo�C�u���[�V��������
+今日の進捗　アニメーション制御とバイブレーション処理
 <IMG SRC="http://hobby.2log.net/develop/images/030912a.jpg">
-<B>[2003/09/12�̐i��]</B>
-�A�j���[�V�����E�o�C�u���[�V��������R���g���[�����쐬�B
-�����摜�]���R���g���[���̍쐬�B
-�_���[�W���󂯂��L�����N�^�摜��U��������B
-�_���[�W���󂯂��L�����N�^�摜��Ƀ_���[�W�l���A�j���[�V�����\���B
-��ʃf�U�C���𑽏��ύX�B
-<B>[����̊J���\��]</B>
-�퓬�V�~�����[�^�ɂāA�Q�[���o�����X�i�G�̋����A�o���l�̗ʂȂǁj�𒲐��B
-<B>[���݂̖��_]</B>
-�A�j���[�V�����ɂ�����������Ă���A���X���ꂵ���B
+<B>[2003/09/12の進捗]</B>
+アニメーション・バイブレーション制御コントロールを作成。
+数字画像転送コントロールの作成。
+ダメージを受けたキャラクタ画像を振動させる。
+ダメージを受けたキャラクタ画像上にダメージ値をアニメーション表示。
+画面デザインを多少変更。
+<B>[次回の開発予定]</B>
+戦闘シミュレータにて、ゲームバランス（敵の強さ、経験値の量など）を調整。
+<B>[現在の問題点]</B>
+アニメーションにちらつきが生じており、少々見苦しい。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(783�o�C�g)
-main.frm(34,756�o�C�g)
-common.bas(2,086�o�C�g)
-battle.bas(5,545�o�C�g)
-character.cls(11,858�o�C�g)
-midplay.ctl(3,337�o�C�g)
-animation.ctl(6,108�o�C�g)
-DigitFont.ctl(3,415�o�C�g)
-simulator.frm(41,038�o�C�g)</FONT>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(783バイト)
+main.frm(34,756バイト)
+common.bas(2,086バイト)
+battle.bas(5,545バイト)
+character.cls(11,858バイト)
+midplay.ctl(3,337バイト)
+animation.ctl(6,108バイト)
+DigitFont.ctl(3,415バイト)
+simulator.frm(41,038バイト)</FONT>
 
-�����̐i���@�퓬�̓�����ʃA�j���[�V���������̍쐬�B
+今日の進捗　戦闘の特殊効果アニメーション処理の作成。
 <IMG SRC="http://hobby.2log.net/develop/images/030911a.jpg">
-<B>[2003/09/11�̐i��]</B>
-�퓬�̓�����ʃA�j���[�V�������쐬�B
-<B>[����̊J���\��]</B>
-�퓬�̓�����ʃA�j���[�V�����̍X�V�B
-<B>[���݂̖��_]</B>
-���̃R���g���[���ނ𓧉߂��ĉ摜��\��������@��͍����B
+<B>[2003/09/11の進捗]</B>
+戦闘の特殊効果アニメーションを作成。
+<B>[次回の開発予定]</B>
+戦闘の特殊効果アニメーションの更新。
+<B>[現在の問題点]</B>
+下のコントロール類を透過して画像を表示する方法を模索中。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(772�o�C�g)
-main.frm(27,685�o�C�g)
-common.bas(2,022�o�C�g)
-battle.bas(5,328�o�C�g)
-character.cls(11,701�o�C�g)
-midplay.ctl(3,337�o�C�g)
-digprint.ctl(3,322�o�C�g)
-simulator.frm(41,038�o�C�g)</FONT>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(772バイト)
+main.frm(27,685バイト)
+common.bas(2,022バイト)
+battle.bas(5,328バイト)
+character.cls(11,701バイト)
+midplay.ctl(3,337バイト)
+digprint.ctl(3,322バイト)
+simulator.frm(41,038バイト)</FONT>
 
-�퓬�V�~�����[�^�������[�X���܂����B
+戦闘シミュレータをリリースしました。
 
 <IMG SRC="http://hobby.2log.net/develop/images/030909a.jpg">
-�N������Ȃ��Ǝv���܂����ARPG�̐퓬�V�~�����[�^�����J���܂����B
-<A HREF="http://www.geocities.co.jp/SiliconValley/4977/battles.html">�_�E�����[�h�́A������B</A>
+誰もいらないと思いますが、RPGの戦闘シミュレータを公開しました。
+<A HREF="http://www.geocities.co.jp/SiliconValley/4977/battles.html">ダウンロードは、こちら。</A>
 
-<B>[���e����]</B><FONT SIZE=-1>
-<B>(��l���̔\�͂ɂ���)</B>
-���x���F�o���l�������Ă����ƃA�b�v�B
-HP�F�_���[�W���󂯂�ƌ����B�h������ƑS�ĉ񕜁B
-�ؗ́F���ꂪ������ƁA�G�ɗ^����_���[�W�������B
-�ł��ꋭ���F���ꂪ������ƁA�G����󂯂�_���[�W�������B
-�u���́F���ꂪ������ƁA�U���̖������ⓦ�S�̐��������A�b�v�B
-�o���l�F���ꂪ���ʓ��̒l�ɒB����ƃ��x���A�b�v�B
-���F�h���������Ɏg�p�B
-<B>(��l���̐ݒ�ɂ���)</B>
-HP�������ȉ��ɂȂ�����h���F��l���̍s���p�^�[����ݒ�
-�퓬����HP�������ȉ��ɂȂ����瓦�S�F��l���̍s���p�^�[����ݒ�
-<B>(���ݒ�)</B>
-���x�F���s�X�s�[�h
-�G�̋����F�G�̊�{�\��
-�o���l�ʁF���x���~���̒l�Ō���
-���̗ʁF���x���~���̒l�Ō���
-LVUP���x�F���݂̃��x���A�b�v�܂ł̌o���l�ʂƁA����̂���Ƃ̑����䗦�i���j</FONT>
+<B>[内容説明]</B><FONT SIZE=-1>
+<B>(主人公の能力について)</B>
+レベル：経験値が増えていくとアップ。
+HP：ダメージを受けると減少。宿泊すると全て回復。
+筋力：これが増えると、敵に与えるダメージが増加。
+打たれ強さ：これが増えると、敵から受けるダメージが減少。
+瞬発力：これが増えると、攻撃の命中率や逃亡の成功率がアップ。
+経験値：これが括弧内の値に達するとレベルアップ。
+金：宿泊料金等に使用。
+<B>(主人公の設定について)</B>
+HPが■％以下になったら宿泊：主人公の行動パターンを設定
+戦闘中にHPが■％以下になったら逃亡：主人公の行動パターンを設定
+<B>(環境設定)</B>
+速度：実行スピード
+敵の強さ：敵の基本能力
+経験値量：レベル×この値で決定
+金の量：レベル×この値で決定
+LVUP速度：現在のレベルアップまでの経験値量と、次回のそれとの増加比率（％）</FONT>
 
 
 
-�����̐i���@�퓬�V�~�����[�^�̕s��C��
+今日の進捗　戦闘シミュレータの不具合修正
 <IMG SRC="http://hobby.2log.net/develop/images/030909a.jpg">
-<B>[2003/09/09�̐i��]</B>
-Windows98��ɂ����āA�{�^���\����������������s����C���B
-��l�����S���A�ˑR�����~����s����C���B
-<B>[����̊J���\��]</B>
-�퓬�V�~�����[�^�ɂāA�Q�[���o�����X�i�G�̋����A�o���l�̗ʂȂǁj�𒲐��B
-�퓬�̓�����ʃA�j���[�V�������쐬�B
-<B>[���݂̖��_]</B>
-���ɖ����B
+<B>[2003/09/09の進捗]</B>
+Windows98上において、ボタン表示が文字化けする不具合を修正。
+主人公死亡時、突然動作停止する不具合を修正。
+<B>[次回の開発予定]</B>
+戦闘シミュレータにて、ゲームバランス（敵の強さ、経験値の量など）を調整。
+戦闘の特殊効果アニメーションを作成。
+<B>[現在の問題点]</B>
+特に無し。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(772�o�C�g)
-main.frm(27,458�o�C�g)
-common.bas(2,022�o�C�g)
-battle.bas(5,328�o�C�g)
-character.cls(11,701�o�C�g)
-midplay.ctl(3,019�o�C�g)
-digprint.ctl(487�o�C�g)
-simulator.frm(41,038�o�C�g)</FONT>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(772バイト)
+main.frm(27,458バイト)
+common.bas(2,022バイト)
+battle.bas(5,328バイト)
+character.cls(11,701バイト)
+midplay.ctl(3,019バイト)
+digprint.ctl(487バイト)
+simulator.frm(41,038バイト)</FONT>
 
 
 ========================================================
-�����̐i���@�h�b�g�G�i�����j�̍쐬
+今日の進捗　ドット絵（数字）の作成
 <IMG SRC="http://hobby.2log.net/develop/images/030908a.jpg">
-<B>[2003/09/08�̐i��]</B>
-�����̃h�b�g�G�̍쐬�i�e�e�݂����ɁA�퓬���̃_���[�W���L�����N�^��ɕ\������̂Ɏg�p�j�B
-���̃X�e�[�W�ֈړ�����{�^���̍쐬�B
-�����Ȃ��Ă����\�[�X�v���O�����̐��ȁB
-<B>[����̊J���\��]</B>
-�퓬�V�~�����[�^�ɂāA�Q�[���o�����X�i�G�̋����A�o���l�̗ʂȂǁj�𒲐��B
-�퓬�̓�����ʃA�j���[�V�������쐬�B
-<B>[���݂̖��_]</B>
-���ɖ����B
+<B>[2003/09/08の進捗]</B>
+数字のドット絵の作成（ＦＦみたいに、戦闘時のダメージをキャラクタ上に表示するのに使用）。
+次のステージへ移動するボタンの作成。
+汚くなってきたソースプログラムの推敲。
+<B>[次回の開発予定]</B>
+戦闘シミュレータにて、ゲームバランス（敵の強さ、経験値の量など）を調整。
+戦闘の特殊効果アニメーションを作成。
+<B>[現在の問題点]</B>
+特に無し。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(869�o�C�g)
-main.frm(27,458�o�C�g)
-common.bas(2,022�o�C�g)
-battle.bas(5,295�o�C�g)
-character.cls(11,701�o�C�g)
-midplay.ctl(3,019�o�C�g)
-digprint.ctl(487�o�C�g)
-simulator.frm(40,991�o�C�g)</FONT>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(869バイト)
+main.frm(27,458バイト)
+common.bas(2,022バイト)
+battle.bas(5,295バイト)
+character.cls(11,701バイト)
+midplay.ctl(3,019バイト)
+digprint.ctl(487バイト)
+simulator.frm(40,991バイト)</FONT>
 
 ========================================================
-�����̐i���@�퓬�V�~�����[�^�̃o�[�W�����E�A�b�v
+今日の進捗　戦闘シミュレータのバージョン・アップ
 <IMG SRC="http://hobby.2log.net/develop/images/030907a.jpg">
-<B>[2003/09/07�̐i��]</B>
-�퓬�V�~�����[�^�i���x���A�b�v�E�V�~�����[�^���߁j�̍X�V�B
-<B>[����̊J���\��]</B>
-�퓬�V�~�����[�^�ɂāA�Q�[���o�����X�i�G�̋����A�o���l�̗ʂȂǁj�𒲐��B
-���̃X�e�[�W�ֈړ�����{�^�����쐬�B
-�퓬�̓�����ʃA�j���[�V�������쐬�B
-<B>[���݂̖��_]</B>
-���ɖ����B
+<B>[2003/09/07の進捗]</B>
+戦闘シミュレータ（レベルアップ・シミュレータ改め）の更新。
+<B>[次回の開発予定]</B>
+戦闘シミュレータにて、ゲームバランス（敵の強さ、経験値の量など）を調整。
+次のステージへ移動するボタンを作成。
+戦闘の特殊効果アニメーションを作成。
+<B>[現在の問題点]</B>
+特に無し。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(700�o�C�g)
-main.frm(30,840�o�C�g)
-common.bas(2,022�o�C�g)
-character.cls(11,682�o�C�g)
-midplay.ctl(2,887�o�C�g)
-simulator.frm(44,113�o�C�g)</FONT>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(700バイト)
+main.frm(30,840バイト)
+common.bas(2,022バイト)
+character.cls(11,682バイト)
+midplay.ctl(2,887バイト)
+simulator.frm(44,113バイト)</FONT>
 
 ========================================================
-�����̐i���@�퓬�V�~�����[�^�̍쐬�B
+今日の進捗　戦闘シミュレータの作成。
 <IMG SRC="http://hobby.2log.net/develop/images/030906a.jpg">
-<B>[2003/09/06�̐i��]</B>
-�퓬�V�~�����[�^�i���x���A�b�v�E�V�~�����[�^���߁j�̍쐬�B
-<B>[����̊J���\��]</B>
-�퓬�V�~�����[�^�ɂāA�Q�[���o�����X�i�G�̋����A�o���l�̗ʂȂǁj�𒲐��B
-���̃X�e�[�W�ֈړ�����{�^�����쐬�B
-�퓬�̓�����ʃA�j���[�V�������쐬�B
-<B>[���݂̖��_]</B>
-���ɖ����B
+<B>[2003/09/06の進捗]</B>
+戦闘シミュレータ（レベルアップ・シミュレータ改め）の作成。
+<B>[次回の開発予定]</B>
+戦闘シミュレータにて、ゲームバランス（敵の強さ、経験値の量など）を調整。
+次のステージへ移動するボタンを作成。
+戦闘の特殊効果アニメーションを作成。
+<B>[現在の問題点]</B>
+特に無し。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(700�o�C�g)
-main.frm(30,841�o�C�g)
-common.bas(2,022�o�C�g)
-character.cls(11,682�o�C�g)
-midplay.ctl(2,887�o�C�g)
-simulator.frm(36,331�o�C�g)</FONT>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(700バイト)
+main.frm(30,841バイト)
+common.bas(2,022バイト)
+character.cls(11,682バイト)
+midplay.ctl(2,887バイト)
+simulator.frm(36,331バイト)</FONT>
 
 ========================================================
-�����̐i���@MIDI�v���C���[�R���g���[���̍쐬�B
+今日の進捗　MIDIプレイヤーコントロールの作成。
 <IMG SRC="http://hobby.2log.net/develop/images/030905a.jpg">
-<B>[2003/09/05�̐i��]</B>
-�����I�Ƀ��[�v�Đ����\��MIDI�v���C���[�R���g���[���̍쐬�iBGM�Đ��Ɏg�p����j�B
-<B>[����̊J���\��]</B>
-���x���A�b�v�E�V�~�����[�^�i�����I�ɓG�Ǝ�l�����킢�A���x���A�b�v���Ă����j�̍쐬�B
-���x���A�b�v�E�V�~�����[�^�ɂāA�Q�[���o�����X�i�G�̋����A�o���l�̗ʂȂǁj�𒲐��B
-���̃X�e�[�W�ֈړ�����{�^�����쐬�B
-<B>[���݂̖��_]</B>
-���ɖ����B
+<B>[2003/09/05の進捗]</B>
+自動的にループ再生が可能なMIDIプレイヤーコントロールの作成（BGM再生に使用する）。
+<B>[次回の開発予定]</B>
+レベルアップ・シミュレータ（自動的に敵と主人公が戦い、レベルアップしていく）の作成。
+レベルアップ・シミュレータにて、ゲームバランス（敵の強さ、経験値の量など）を調整。
+次のステージへ移動するボタンを作成。
+<B>[現在の問題点]</B>
+特に無し。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(700�o�C�g)
-main.frm(30,268�o�C�g)
-common.bas(1,663�o�C�g)
-character.cls(11,625�o�C�g)
-midplay.ctl(2,887�o�C�g)</FONT>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(700バイト)
+main.frm(30,268バイト)
+common.bas(1,663バイト)
+character.cls(11,625バイト)
+midplay.ctl(2,887バイト)</FONT>
 
 ========================================================
-�����̐i���@�L�����N�^�摜�\���A���ʉ��Đ�������
+今日の進捗　キャラクタ画像表示、効果音再生処理等
 <IMG SRC="http://hobby.2log.net/develop/images/030904a.jpg">
-<B>[2003/09/04�̐i��]</B>
-���L�����N�^�摜�쐬�i�Q���j�B
-�G�摜�\���B
---���R�ȃT�C�Y�̉摜�ɑΉ�
-���ʉ��Đ������̉��쐬�B
-<B>[����̊J���\��]</B>
-MIDI�v���C���[�R���g���[���̍쐬�B
-<B>[���݂̖��_]</B>
-���ɖ����B
+<B>[2003/09/04の進捗]</B>
+仮キャラクタ画像作成（２枚）。
+敵画像表示。
+--自由なサイズの画像に対応
+効果音再生処理の仮作成。
+<B>[次回の開発予定]</B>
+MIDIプレイヤーコントロールの作成。
+<B>[現在の問題点]</B>
+特に無し。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(700�o�C�g)
-main.frm(29,841�o�C�g)
-common.bas(1,663�o�C�g)
-character.cls(11,625�o�C�g)
-midplay.ctl(493�o�C�g)</FONT>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(700バイト)
+main.frm(29,841バイト)
+common.bas(1,663バイト)
+character.cls(11,625バイト)
+midplay.ctl(493バイト)</FONT>
 
 ========================================================
-�����̐i���@�h���ł̉񕜁A�y�уQ�[���I�[�o�[������
+今日の進捗　宿屋での回復、及びゲームオーバー処理等
 <IMG SRC="http://hobby.2log.net/develop/images/030903a.jpg">
-<B>[2003/09/03�̐i��]</B>
-�h���ł̏����쐬�B
---���z�s�����̏���
---HP�̉�
-��l�����S���̏����B
---�Q�[���I�[�o�[�\��
---�v���C���[��Ԃ̏�����
-�G�p�����[�^�̉��\���i�Q�[���o�����X�����p�j
-<B>[����̊J���\��]</B>
-�G�摜�\���B
--���R�ȃT�C�Y�̉摜�ɑΉ�
-BGM�Đ������̉��쐬�B
-���ʉ��Đ������̉��쐬�B
-<B>[���݂̖��_]</B>
-���ɖ����B
+<B>[2003/09/03の進捗]</B>
+宿屋での処理作成。
+--金額不足時の処理
+--HPの回復
+主人公死亡時の処理。
+--ゲームオーバー表示
+--プレイヤー状態の初期化
+敵パラメータの仮表示（ゲームバランス調整用）
+<B>[次回の開発予定]</B>
+敵画像表示。
+-自由なサイズの画像に対応
+BGM再生処理の仮作成。
+効果音再生処理の仮作成。
+<B>[現在の問題点]</B>
+特に無し。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(700�o�C�g)
-main.frm(29,640�o�C�g)
-common.bas(714�o�C�g)
-character.cls(11,625�o�C�g)</FONT>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(700バイト)
+main.frm(29,640バイト)
+common.bas(714バイト)
+character.cls(11,625バイト)</FONT>
 
 ========================================================
-2003/09/02�̐i���@��l���̃��x���A�b�v�����̍X�V
+2003/09/02の進捗　主人公のレベルアップ処理の更新
 <IMG SRC="images/030902a.jpg">
-<B>[�����̐i��]</B>
-��l���̃��x���A�b�v�����̍X�V�B
-�ʏ��ʂƐ퓬��ʂ̓����I�؂�ւ��B
-�L�����N�^�̉摜�Ǎ��ݕ����̍쐬�B
-<B>[����̊J���\��]</B>
-�h���ł̏����쐬�B
-��l�����S���̏����쐬�B
-<B>[���݂̖��_]</B>
-���ɖ����B
+<B>[今日の進捗]</B>
+主人公のレベルアップ処理の更新。
+通常画面と戦闘画面の内部的切り替え。
+キャラクタの画像読込み部分の作成。
+<B>[次回の開発予定]</B>
+宿屋での処理作成。
+主人公死亡時の処理作成。
+<B>[現在の問題点]</B>
+特に無し。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(700�o�C�g)
-main.frm(25,208�o�C�g)
-common.bas(714�o�C�g)
-character.cls(11,579�o�C�g)</FONT>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(700バイト)
+main.frm(25,208バイト)
+common.bas(714バイト)
+character.cls(11,579バイト)</FONT>
 
 ========================================================
-2003/09/01�̐i���@���x���A�b�v�����̉��쐬
+2003/09/01の進捗　レベルアップ部分の仮作成
 <IMG SRC="images/030901a.jpg">
-<B>[�����̐i��]</B>
-���x���A�b�v�����̉��쐬�B
-<B>[����̊J���\��]</B>
-���x���A�b�v�����̍X�V�B
-�L�����N�^�̉摜�Ǎ��ݕ����̍쐬�B
-<B>[���݂̖��_]</B>
-���ɖ���
+<B>[今日の進捗]</B>
+レベルアップ部分の仮作成。
+<B>[次回の開発予定]</B>
+レベルアップ部分の更新。
+キャラクタの画像読込み部分の作成。
+<B>[現在の問題点]</B>
+特に無し
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(700�o�C�g)
-main.frm(23,458�o�C�g)
-common.bas(714�o�C�g)
-character.cls(9,695�o�C�g)</FONT>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(700バイト)
+main.frm(23,458バイト)
+common.bas(714バイト)
+character.cls(9,695バイト)</FONT>
 
 ========================================================
 2002/08/30 
 <IMG SRC="images/030830a.jpg">
-����̖��_�������B
-�p�����[�^�\�����[�`�����X�V�B
+昨日の問題点を解決。
+パラメータ表示ルーチンを更新。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(700�o�C�g)
-main.frm(23,280�o�C�g)
-common.bas(714�o�C�g)
-character.cls(9,309�o�C�g)</FONT>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(700バイト)
+main.frm(23,280バイト)
+common.bas(714バイト)
+character.cls(9,309バイト)</FONT>
 
 ========================================================
 2002/08/29 
 <IMG SRC="images/030829a.jpg">
-�p�����[�^�\�����[�`���̍쐬�B
-[���_]
+パラメータ表示ルーチンの作成。
+[問題点]
 lblPrinterHp.Caption = Str(lngHp)
-�̂Ƃ���Łu�����̐�����v���Ă��܂���B�܂��͕s���ȃv���p�e�B�[���w�肵�Ă��܂��B�v�̃G���[�����BlblPrinterHp�̓��x���AlngHp��long�^�Ȃ̂ɉ��̂��낤�H
+のところで「引数の数が一致していません。または不正なプロパティーを指定しています。」のエラー発生。lblPrinterHpはラベル、lngHpはlong型なのに何故だろう？
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(700�o�C�g)
-main.frm(11,193�o�C�g)
-common.bas(423�o�C�g)
-character.cls(6,244�o�C�g)</FONT>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(700バイト)
+main.frm(11,193バイト)
+common.bas(423バイト)
+character.cls(6,244バイト)</FONT>
 
 ========================================================
 2002/08/28 
 <IMG SRC="images/030828a.jpg">
-�퓬���[�`���̍쐬�B
-�������[�`���̍쐬�B
+戦闘ルーチンの作成。
+逃避ルーチンの作成。
 
-<FONT SIZE=-1><B>���݂̃v���W�F�N�g�\���F</B>
-RPG.vbp(700�o�C�g)
-main.frm(7,907�o�C�g)
-common.bas(423�o�C�g)
-character.cls(5,065�o�C�g)</FONT>
+<FONT SIZE=-1><B>現在のプロジェクト構成：</B>
+RPG.vbp(700バイト)
+main.frm(7,907バイト)
+common.bas(423バイト)
+character.cls(5,065バイト)</FONT>
 
 ========================================================
 2002/08/27
-	�J���J�n�B
-	�ėp�����X�^�[��`�N���X���쐬�B
+	開発開始。
+	汎用モンスター定義クラスを作成。
 
-�J�����F
+開発環境：
 	Microsoft Visual Basic 6.0 Service Pack 5
 
 trip:0722611946
