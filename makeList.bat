@@ -1,0 +1,1 @@
+dir E:\user\Develop\vbnet\RPG\*.vb,E:\user\Develop\vbnet\RPG\RPG.vbproj,E:\user\Develop\vbnet\RPG\bin\weapon.dat > output
